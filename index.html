@@ -16,135 +16,18 @@
             theme: {
                 extend: {
                     colors: {
-                        ocean: '#0D2346',
-                        deep: '#08111F',
-                        crystal: '#4DA8FF',
-                        glow: '#8BE9FF',
-                        ink: '#0f1f3d',
-                        light: '#F5FAFF'
+                        ocean: '#0D2346', deep: '#08111F', crystal: '#4DA8FF',
+                        glow: '#8BE9FF', ink: '#0f1f3d', light: '#F5FAFF'
                     },
-                    fontFamily: {
-                        fraunces: ['Fraunces', 'serif'],
-                        inter: ['Inter', 'sans-serif']
-                    },
-                    animation: {
-                        float: 'float 7s ease-in-out infinite',
-                        'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
-                        ticker: 'ticker 28s linear infinite',
-                        drip: 'drip 2.6s ease-in-out infinite',
-                        'flow-line': 'flowLine 4s linear infinite',
-                        'pre-fill': 'preFill 2.2s ease forwards',
-                        'pre-pulse': 'prePulse 1.2s ease-in-out infinite',
-                        'pre-logo': 'preLogoAnim 3s ease-in-out infinite',
-                        'wa-pulse': 'waPulse 3s ease-in-out infinite',
-                        ripple: 'rippleAnim 3.5s ease-in-out infinite',
-                        'wave-scroll': 'waveScroll 20s linear infinite',
-                        'wave-scroll-rev': 'waveScroll 14s linear infinite reverse'
-                    },
-                    keyframes: {
-                        float: {
-                            '0%,100%': {
-                                transform: 'translateY(0) rotateZ(-0.8deg)'
-                            },
-                            '50%': {
-                                transform: 'translateY(-20px) rotateZ(0.8deg)'
-                            }
-                        },
-                        pulseGlow: {
-                            '0%,100%': {
-                                opacity: '0.8',
-                                transform: 'scale(1)'
-                            },
-                            '50%': {
-                                opacity: '1',
-                                transform: 'scale(1.12)'
-                            }
-                        },
-                        ticker: {
-                            from: {
-                                transform: 'translateX(0)'
-                            },
-                            to: {
-                                transform: 'translateX(-50%)'
-                            }
-                        },
-                        drip: {
-                            '0%': {
-                                top: '-100%'
-                            },
-                            '60%': {
-                                top: '100%'
-                            },
-                            '100%': {
-                                top: '100%'
-                            }
-                        },
-                        flowLine: {
-                            from: {
-                                left: '-30%'
-                            },
-                            to: {
-                                left: '100%'
-                            }
-                        },
-                        preFill: {
-                            to: {
-                                width: '100%'
-                            }
-                        },
-                        prePulse: {
-                            '0%,100%': {
-                                opacity: '0.3',
-                                transform: 'scale(0.7)'
-                            },
-                            '50%': {
-                                opacity: '1',
-                                transform: 'scale(1.2)'
-                            }
-                        },
-                        preLogoAnim: {
-                            '0%,100%': {
-                                transform: 'scale(1)',
-                                filter: 'drop-shadow(0 0 18px rgba(139,233,255,0.5))'
-                            },
-                            '50%': {
-                                transform: 'scale(1.12)',
-                                filter: 'drop-shadow(0 0 36px rgba(139,233,255,0.9))'
-                            }
-                        },
-                        waPulse: {
-                            '0%,100%': {
-                                boxShadow: '0 8px 28px -8px rgba(37,211,102,0.6)'
-                            },
-                            '50%': {
-                                boxShadow: '0 8px 42px -4px rgba(37,211,102,0.8)'
-                            }
-                        },
-                        rippleAnim: {
-                            '0%,100%': {
-                                opacity: '0.6',
-                                transform: 'translateX(-50%) scaleX(1)'
-                            },
-                            '50%': {
-                                opacity: '1',
-                                transform: 'translateX(-50%) scaleX(1.15)'
-                            }
-                        },
-                        waveScroll: {
-                            from: {
-                                transform: 'translateX(0)'
-                            },
-                            to: {
-                                transform: 'translateX(-50%)'
-                            }
-                        }
-                    }
+                    fontFamily: { fraunces: ['Fraunces', 'serif'], inter: ['Inter', 'sans-serif'] }
                 }
             }
         }
     </script>
     <style>
-        * {
+        *,
+        *::before,
+        *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -165,12 +48,15 @@
             color: #fff;
         }
 
-        /* Preloader */
+        /* ─── PRELOADER ─── */
+        #preloader {
+            transition: opacity .7s ease, visibility .7s;
+        }
+
         #preloader.done {
             opacity: 0;
             visibility: hidden;
             pointer-events: none;
-            transition: opacity 0.7s ease, visibility 0.7s;
         }
 
         .pre-fill-bar {
@@ -203,15 +89,72 @@
             animation-delay: .4s;
         }
 
-        /* Nav */
-        .nav-scrolled {
-            background: rgba(255, 255, 255, 0.85) !important;
-            border-color: rgba(13, 35, 70, 0.08) !important;
-            backdrop-filter: blur(22px);
-            box-shadow: 0 10px 40px -20px rgba(13, 35, 70, 0.22);
+        @keyframes prePulse {
+
+            0%,
+            100% {
+                opacity: .3;
+                transform: scale(.7)
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.2)
+            }
         }
 
-        /* Canvas */
+        @keyframes preLogoAnim {
+
+            0%,
+            100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 18px rgba(139, 233, 255, .5))
+            }
+
+            50% {
+                transform: scale(1.12);
+                filter: drop-shadow(0 0 36px rgba(139, 233, 255, .9))
+            }
+        }
+
+        .animate-pre-logo {
+            animation: preLogoAnim 3s ease-in-out infinite;
+        }
+
+        /* ─── NAV ─── */
+        .nav-scrolled {
+            background: rgba(255, 255, 255, .92) !important;
+            border-color: rgba(13, 35, 70, .08) !important;
+            backdrop-filter: blur(22px);
+            box-shadow: 0 10px 40px -20px rgba(13, 35, 70, .22);
+        }
+
+        .nav-scrolled .nav-link {
+            color: #0f1f3d !important;
+        }
+
+        .nav-scrolled .brand-name-el {
+            color: #0D2346 !important;
+        }
+
+        .nav-scrolled .brand-mark-el {
+            color: #0D2346 !important;
+        }
+
+        .nav-scrolled .btn-ghost-nav {
+            color: #0D2346 !important;
+            border-color: rgba(13, 35, 70, .2) !important;
+        }
+
+        .nav-scrolled .btn-ghost-nav:hover {
+            background: rgba(13, 35, 70, .05) !important;
+        }
+
+        .nav-scrolled .btn-order-nav {
+            background: #0D2346 !important;
+        }
+
+        /* ─── CANVAS ─── */
         #heroCanvas {
             position: absolute;
             inset: 0;
@@ -221,7 +164,7 @@
             pointer-events: none;
         }
 
-        /* Ticker */
+        /* ─── TICKER ─── */
         .ticker-wrap {
             width: max-content;
             display: flex;
@@ -238,7 +181,7 @@
             }
         }
 
-        /* Animations */
+        /* ─── FLOAT ─── */
         @keyframes float {
 
             0%,
@@ -255,6 +198,7 @@
             animation: float 7s ease-in-out infinite;
         }
 
+        /* ─── RIPPLE ─── */
         @keyframes rippleAnim {
 
             0%,
@@ -269,10 +213,7 @@
             }
         }
 
-        .animate-ripple {
-            animation: rippleAnim 3.5s ease-in-out infinite;
-        }
-
+        /* ─── DRIP ─── */
         @keyframes drip {
             0% {
                 top: -100%
@@ -287,6 +228,7 @@
             }
         }
 
+        /* ─── FLOW LINE ─── */
         @keyframes flowLine {
             from {
                 left: -30%
@@ -308,6 +250,7 @@
             animation: flowLine 4s linear infinite;
         }
 
+        /* ─── WAVE SCROLL ─── */
         @keyframes waveScroll {
             from {
                 transform: translateX(0)
@@ -322,45 +265,24 @@
             animation: waveScroll 20s linear infinite;
         }
 
-        .wave-anim-rev {
-            animation: waveScroll 14s linear infinite reverse;
+        /* ─── SCROLL INDICATOR ─── */
+        .scroll-line {
+            position: relative;
+            overflow: hidden;
         }
 
-        @keyframes preLogoAnim {
-
-            0%,
-            100% {
-                transform: scale(1);
-                filter: drop-shadow(0 0 18px rgba(139, 233, 255, .5))
-            }
-
-            50% {
-                transform: scale(1.12);
-                filter: drop-shadow(0 0 36px rgba(139, 233, 255, .9))
-            }
+        .scroll-line::after {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, #8BE9FF, transparent);
+            animation: drip 2.6s ease-in-out infinite;
         }
 
-        .animate-pre-logo {
-            animation: preLogoAnim 3s ease-in-out infinite;
-        }
-
-        @keyframes waPulse {
-
-            0%,
-            100% {
-                box-shadow: 0 8px 28px -8px rgba(37, 211, 102, .6)
-            }
-
-            50% {
-                box-shadow: 0 8px 42px -4px rgba(37, 211, 102, .8)
-            }
-        }
-
-        .wa-pulse {
-            animation: waPulse 3s ease-in-out infinite;
-        }
-
-        /* Scroll reveal */
+        /* ─── REVEAL ─── */
         .reveal {
             opacity: 0;
             transform: translateY(32px);
@@ -373,34 +295,59 @@
         }
 
         .rd1 {
-            transition-delay: .08s;
+            transition-delay: .08s
         }
 
         .rd2 {
-            transition-delay: .16s;
+            transition-delay: .16s
         }
 
         .rd3 {
-            transition-delay: .24s;
+            transition-delay: .24s
         }
 
         .rd4 {
-            transition-delay: .32s;
+            transition-delay: .32s
         }
 
         .rd5 {
-            transition-delay: .40s;
+            transition-delay: .40s
         }
 
-        /* Cards */
+        /* ─── BUTTONS ─── */
+        .btn-primary-v {
+            background: #0D2346;
+            color: #fff;
+            transition: all .35s cubic-bezier(.22, .61, .36, 1);
+        }
+
+        .btn-primary-v:hover {
+            background: #4DA8FF;
+            transform: translateY(-2px);
+            box-shadow: 0 18px 40px -14px rgba(77, 168, 255, .55);
+        }
+
+        .btn-white-v {
+            background: rgba(255, 255, 255, .12);
+            color: #fff;
+            border: 1.5px solid rgba(255, 255, 255, .32);
+            backdrop-filter: blur(8px);
+            transition: all .35s;
+        }
+
+        .btn-white-v:hover {
+            background: rgba(255, 255, 255, .22);
+        }
+
+        /* ─── PRODUCT CARDS ─── */
+        .prod-card {
+            transition: all .45s cubic-bezier(.22, .61, .36, 1);
+        }
+
         .prod-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 28px 60px -30px rgba(13, 35, 70, .2);
             border-color: rgba(77, 168, 255, .28);
-        }
-
-        .prod-card {
-            transition: all .45s cubic-bezier(.22, .61, .36, 1);
         }
 
         .prod-card .card-img img {
@@ -411,6 +358,7 @@
             transform: scale(1.07);
         }
 
+        /* ─── WHY CARDS ─── */
         .why-card {
             transition: all .4s cubic-bezier(.22, .61, .36, 1);
         }
@@ -438,15 +386,39 @@
             transform: scaleX(1);
         }
 
+        /* ─── T-CARDS ─── */
         .t-card:hover {
             transform: translateY(-3px);
             border-color: rgba(77, 168, 255, .35);
             box-shadow: 0 14px 36px -20px rgba(13, 35, 70, .18);
         }
 
-        .benefit-item:hover {
-            background: rgba(255, 255, 255, .12);
-            transform: translateX(5px);
+        .t-card {
+            transition: all .35s cubic-bezier(.22, .61, .36, 1);
+        }
+
+        /* ─── GALLERY ─── */
+        .gallery-item {
+            transition: all .4s cubic-bezier(.22, .61, .36, 1);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 24px 60px -20px rgba(13, 35, 70, .18);
+            border-color: rgba(77, 168, 255, .3);
+        }
+
+        .gallery-item img {
+            transition: transform .5s cubic-bezier(.22, .61, .36, 1);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* ─── TESTIMONIALS ─── */
+        .test-card {
+            transition: all .35s cubic-bezier(.22, .61, .36, 1);
         }
 
         .test-card:hover {
@@ -455,32 +427,19 @@
             transform: translateY(-5px);
         }
 
-        .gallery-item:hover img {
-            transform: scale(1.06);
-        }
-
-        .btn-primary-v {
-            background: #0D2346;
-            color: #fff;
-            transition: all .35s cubic-bezier(.22, .61, .36, 1);
-        }
-
-        .btn-primary-v:hover {
-            background: #4DA8FF;
-            transform: translateY(-2px);
-            box-shadow: 0 18px 40px -14px rgba(77, 168, 255, .55);
-        }
-
-        .btn-white-v {
+        /* ─── BENEFIT ITEMS ─── */
+        .benefit-item:hover {
             background: rgba(255, 255, 255, .12);
-            color: #fff;
-            border: 1.5px solid rgba(255, 255, 255, .32);
-            backdrop-filter: blur(8px);
-            transition: all .35s;
+            transform: translateX(5px);
         }
 
-        .btn-white-v:hover {
-            background: rgba(255, 255, 255, .22);
+        .benefit-item {
+            transition: all .3s cubic-bezier(.22, .61, .36, 1);
+        }
+
+        /* ─── QSTAT ─── */
+        .qstat {
+            transition: all .3s cubic-bezier(.22, .61, .36, 1);
         }
 
         .qstat:hover {
@@ -488,85 +447,24 @@
             border-color: rgba(77, 168, 255, .35);
         }
 
+        /* ─── PROCESS STEPS ─── */
         .pstep:hover .pstep-circle {
             background: rgba(77, 168, 255, .15);
             border-color: rgba(77, 168, 255, .5);
         }
 
-        /* Scroll line */
-        .scroll-line {
-            position: relative;
-            overflow: hidden;
+        /* ─── CARTON CARDS ─── */
+        .carton-card {
+            transition: all .4s cubic-bezier(.22, .61, .36, 1);
         }
 
-        .scroll-line::after {
-            content: '';
-            position: absolute;
-            top: -100%;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, transparent, #8BE9FF, transparent);
-            animation: drip 2.6s ease-in-out infinite;
+        .carton-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 22px 50px -24px rgba(13, 35, 70, .22);
+            border-color: rgba(77, 168, 255, .35);
         }
 
-        /* Nav scrolled links */
-        .nav-scrolled .nav-link {
-            color: #0f1f3d !important;
-        }
-
-        .nav-scrolled .brand-name-el {
-            color: #0D2346 !important;
-        }
-
-        .nav-scrolled .brand-mark-el {
-            color: #0D2346 !important;
-        }
-
-        .nav-scrolled .btn-ghost-nav {
-            color: #0D2346 !important;
-            border-color: rgba(13, 35, 70, .2) !important;
-        }
-
-        .nav-scrolled .btn-ghost-nav:hover {
-            background: rgba(13, 35, 70, .05) !important;
-        }
-
-        .nav-scrolled .btn-order-nav {
-            background: #0D2346 !important;
-        }
-
-        /* WA tooltip */
-        .wa-tooltip-el {
-            position: absolute;
-            bottom: 72px;
-            right: 0;
-            background: #fff;
-            border-radius: 14px;
-            padding: 14px 16px;
-            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, .22);
-            max-width: 220px;
-            font-size: 13px;
-            line-height: 1.55;
-            color: #0f1f3d;
-            border: 1px solid rgba(0, 0, 0, .06);
-            white-space: nowrap;
-        }
-
-        .wa-tooltip-el::after {
-            content: '';
-            position: absolute;
-            right: 18px;
-            bottom: -7px;
-            width: 14px;
-            height: 14px;
-            background: #fff;
-            transform: rotate(45deg);
-            border-right: 1px solid rgba(0, 0, 0, .06);
-            border-bottom: 1px solid rgba(0, 0, 0, .06);
-        }
-
-        /* Discount pill */
+        /* ─── DISCOUNT PILL ─── */
         .discount-pill {
             display: none;
         }
@@ -575,16 +473,128 @@
             display: flex;
         }
 
-        @media(max-width:768px) {
+        /* ─── WA FLOAT ─── */
+        @keyframes waPing {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: .7
+            }
+
+            50% {
+                transform: scale(1.15);
+                opacity: .3
+            }
+        }
+
+        .wa-ping {
+            animation: waPing 2s ease-in-out infinite;
+        }
+
+        /* ─── FORM ─── */
+        .form-input {
+            border: 1.5px solid rgba(15, 31, 61, .1);
+            border-radius: 14px;
+            padding: 13px 16px;
+            font-size: 14px;
+            background: #F5FAFF;
+            width: 100%;
+            transition: all .3s;
+            color: #0f1f3d;
+            outline: none;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .form-input:focus {
+            border-color: #4DA8FF;
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(77, 168, 255, .1);
+        }
+
+        .form-label {
+            font-size: 11.5px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            color: rgba(15, 31, 61, .55);
+            display: block;
+            margin-bottom: 7px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ─── PSTEP CONNECTOR ─── */
+        .pstep-circle {
+            transition: all .35s cubic-bezier(.22, .61, .36, 1);
+        }
+
+        /* ─── MOBILE ─── */
+        @media(max-width:640px) {
             .hero-grid {
                 grid-template-columns: 1fr !important;
             }
+        }
 
-            .hero-visual-mobile {
-                order: -1;
-                height: 60vw !important;
-                max-height: 320px;
+        /* ─── QTY BUTTONS ─── */
+        .qty-btn {
+            transition: all .25s cubic-bezier(.22, .61, .36, 1);
+        }
+
+        .qty-btn:hover {
+            background: #0D2346;
+            color: #fff;
+            border-color: #0D2346;
+        }
+
+        .qty-input::-webkit-inner-spin-button,
+        .qty-input::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .qty-input {
+            -moz-appearance: textfield;
+        }
+
+        /* ─── GALLERY MASONRY ─── */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: auto;
+            gap: 20px;
+        }
+
+        .gallery-grid .gi-tall {
+            grid-row: span 2;
+        }
+
+        @media(max-width:768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
+
+            .gallery-grid .gi-tall {
+                grid-row: span 1;
+            }
+        }
+
+        @media(max-width:480px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ─── CARTON QTY ─── */
+        .carton-qty-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            margin-top: 12px;
         }
     </style>
 </head>
@@ -593,7 +603,7 @@
 
     <!-- ===== PRELOADER ===== -->
     <div id="preloader"
-        class="fixed inset-0 z-[9999] bg-deep flex flex-col items-center justify-center gap-7 text-center transition-all duration-700">
+        class="fixed inset-0 z-[9999] bg-deep flex flex-col items-center justify-center gap-7 text-center">
         <svg class="w-[90px] h-[90px] animate-pre-logo" viewBox="0 0 100 100" fill="none">
             <circle cx="50" cy="50" r="46" stroke="#4DA8FF" stroke-width="1.5" />
             <circle cx="50" cy="50" r="40" stroke="#8BE9FF" stroke-width=".8" opacity=".6" />
@@ -656,7 +666,6 @@
                 <a href="#products"
                     class="btn-order-nav inline-flex items-center px-4 sm:px-5 py-2.5 rounded-full text-[13px] font-semibold text-white bg-ocean hover:bg-crystal transition-all duration-300 no-underline">Order
                     Now</a>
-                <!-- Mobile menu btn -->
                 <button id="mobileMenuBtn"
                     class="lg:hidden w-9 h-9 flex flex-col items-center justify-center gap-[5px] text-white"
                     onclick="toggleMenu()">
@@ -666,7 +675,6 @@
                 </button>
             </div>
         </div>
-        <!-- Mobile menu -->
         <div id="mobileMenu"
             class="hidden lg:hidden max-w-[1320px] mx-auto mt-2 bg-white/95 backdrop-blur-xl rounded-2xl shadow-lg border border-ocean/10 py-4 px-6">
             <div class="flex flex-col gap-3">
@@ -695,249 +703,146 @@
     <!-- ===== HERO ===== -->
     <section class="relative min-h-screen overflow-hidden flex items-center" id="top"
         style="background:linear-gradient(175deg,#08111F 0%,#0a1d3f 40%,#0e2d5c 70%,#153568 100%)">
-
         <canvas id="heroCanvas"></canvas>
-
-        <div class="absolute inset-0 pointer-events-none" style="background:
-        radial-gradient(ellipse 60% 50% at 70% 40%,rgba(77,168,255,.15),transparent 65%),
-        radial-gradient(ellipse 40% 60% at 20% 80%,rgba(139,233,255,.08),transparent 60%)">
+        <div class="absolute inset-0 pointer-events-none"
+            style="background:radial-gradient(ellipse 60% 50% at 70% 40%,rgba(77,168,255,.15),transparent 65%),radial-gradient(ellipse 40% 60% at 20% 80%,rgba(139,233,255,.08),transparent 60%)">
         </div>
-
         <div class="relative z-10 w-full max-w-[1320px] mx-auto px-5 sm:px-8 lg:px-12 pt-28 pb-16">
-
             <div class="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
-
-                <!-- LEFT CONTENT -->
                 <div class="reveal in order-1">
-
                     <p class="flex items-center gap-2.5 text-[12px] font-semibold uppercase tracking-[.22em] mb-4"
                         style="color:#8BE9FF">
-
-                        <span class="inline-block w-5 h-[1.5px] bg-glow"></span>
-
-                        Pure & Refreshing
-
+                        <span class="inline-block w-5 h-[1.5px] bg-glow"></span>Pure &amp; Refreshing
                     </p>
-
                     <h1
                         class="font-fraunces text-[clamp(38px,7vw,88px)] leading-[1.04] text-white font-medium tracking-[-0.015em]">
-
-                        Drink Pure.<br>
-
-                        Live <span style="color:#8BE9FF">Refreshed.</span>
-
+                        Drink Pure.<br>Live <span style="color:#8BE9FF">Refreshed.</span>
                     </h1>
-
                     <p class="mt-6 text-[clamp(15px,2vw,17px)] leading-[1.8] text-white/80 max-w-[520px]">
-
-                        Every bottle of VELOQUA is crafted from naturally sourced water,
-                        purified through advanced multi-stage filtration and sealed using
-                        world-class hygienic standards to deliver refreshing purity in every sip.
-
+                        Every bottle of VELOQUA is crafted from naturally sourced water, purified through advanced
+                        multi-stage filtration and sealed using world-class hygienic standards to deliver refreshing
+                        purity in every sip.
                     </p>
-
                     <div class="mt-8 flex flex-wrap gap-4">
-
                         <a href="#products"
-                            class="btn-primary-v inline-flex items-center justify-center px-8 py-3.5 rounded-full text-sm font-semibold no-underline">
-
-                            Shop Products
-
-                        </a>
-
+                            class="btn-primary-v inline-flex items-center justify-center px-8 py-3.5 rounded-full text-sm font-semibold no-underline">Shop
+                            Products</a>
                         <a href="#quality"
-                            class="btn-white-v inline-flex items-center justify-center px-8 py-3.5 rounded-full text-sm font-semibold no-underline">
-
-                            Discover Purity
-
-                        </a>
-
+                            class="btn-white-v inline-flex items-center justify-center px-8 py-3.5 rounded-full text-sm font-semibold no-underline">Discover
+                            Purity</a>
                     </div>
-
-                    <!-- Features -->
-
                     <div class="mt-10 flex flex-wrap gap-3">
-
                         <div
                             class="flex items-center gap-2 px-4 py-3 rounded-full bg-white/10 border border-white/10 backdrop-blur-lg text-white text-sm">
-
-                            🌿 Natural Source
-
-                        </div>
-
+                            Natural Source</div>
                         <div
                             class="flex items-center gap-2 px-4 py-3 rounded-full bg-white/10 border border-white/10 backdrop-blur-lg text-white text-sm">
-
-                            ✔ Quality Tested
-
-                        </div>
-
+                            Quality Tested</div>
                         <div
                             class="flex items-center gap-2 px-4 py-3 rounded-full bg-white/10 border border-white/10 backdrop-blur-lg text-white text-sm">
-
-                            💧 pH 7.2 Balanced
-
-                        </div>
-
+                            pH 7.2 Balanced</div>
                         <div
                             class="flex items-center gap-2 px-4 py-3 rounded-full bg-white/10 border border-white/10 backdrop-blur-lg text-white text-sm">
-
-                            🛡 BIS Certified
-
-                        </div>
-
+                            BIS Certified</div>
                     </div>
-
                 </div>
-
-                <!-- RIGHT VIDEO -->
-
                 <div class="order-2 flex justify-center lg:justify-end">
-
                     <div
                         class="relative w-full max-w-[460px] rounded-[28px] overflow-hidden border border-white/10 bg-white/5 backdrop-blur-xl shadow-[0_35px_90px_rgba(0,0,0,.45)]">
-
                         <video autoplay muted loop playsinline preload="auto" disablepictureinpicture
                             controlslist="nodownload nofullscreen noremoteplayback" class="w-full h-auto object-cover">
-
                             <source src="img/use_these_images_as_reference.mp4" type="video/mp4">
-
                         </video>
-
                     </div>
-
                 </div>
-
             </div>
-
         </div>
-
-        <!-- Scroll -->
-
         <div
             class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/50 uppercase tracking-[.25em] text-[10px]">
-
             <span>Scroll</span>
-
             <div class="scroll-line w-px h-12 bg-gradient-to-b from-white/70 to-transparent"></div>
-
         </div>
-
     </section>
+
     <!-- ===== TRUST BAND ===== -->
     <div class="overflow-hidden relative"
         style="background:linear-gradient(90deg,#0D2346 0%,#163876 50%,#0D2346 100%);padding:18px 0;">
-
         <div class="ticker-wrap flex items-center">
-
+            <!-- Items -->
             <div
                 class="flex items-center gap-3.5 px-8 whitespace-nowrap text-[13px] font-semibold uppercase tracking-[.06em] text-white">
-                <div class="w-[5px] h-[5px] rounded-full bg-glow flex-shrink-0"></div>
-                Pure &amp; Safe Drinking Water
+                <div class="w-[5px] h-[5px] rounded-full bg-glow flex-shrink-0"></div>Pure &amp; Safe Drinking Water
             </div>
-
             <div
                 class="flex items-center gap-3.5 px-8 whitespace-nowrap text-[13px] font-semibold uppercase tracking-[.06em] text-white">
-                <div class="w-[5px] h-[5px] rounded-full bg-glow flex-shrink-0"></div>
-                Advanced Multi-Stage Purification
+                <div class="w-[5px] h-[5px] rounded-full bg-glow flex-shrink-0"></div>Advanced Multi-Stage Purification
             </div>
-
             <div
                 class="flex items-center gap-3.5 px-8 whitespace-nowrap text-[13px] font-semibold uppercase tracking-[.06em] text-white">
-                <div class="w-[5px] h-[5px] rounded-full bg-glow flex-shrink-0"></div>
-                Hygienic Sealed Packaging
+                <div class="w-[5px] h-[5px] rounded-full bg-glow flex-shrink-0"></div>Hygienic Sealed Packaging
             </div>
-
             <div
                 class="flex items-center gap-3.5 px-8 whitespace-nowrap text-[13px] font-semibold uppercase tracking-[.06em] text-white">
-                <div class="w-[5px] h-[5px] rounded-full bg-glow flex-shrink-0"></div>
-                pH 7.2 Balanced Water
+                <div class="w-[5px] h-[5px] rounded-full bg-glow flex-shrink-0"></div>pH 7.2 Balanced Water
             </div>
-
             <div
                 class="flex items-center gap-3.5 px-8 whitespace-nowrap text-[13px] font-semibold uppercase tracking-[.06em] text-white">
-                <div class="w-[5px] h-[5px] rounded-full bg-glow flex-shrink-0"></div>
-                Natural Essential Minerals
+                <div class="w-[5px] h-[5px] rounded-full bg-glow flex-shrink-0"></div>Natural Essential Minerals
             </div>
-
             <div
                 class="flex items-center gap-3.5 px-8 whitespace-nowrap text-[13px] font-semibold uppercase tracking-[.06em] text-white">
-                <div class="w-[5px] h-[5px] rounded-full bg-glow flex-shrink-0"></div>
-                BIS Quality Standards
+                <div class="w-[5px] h-[5px] rounded-full bg-glow flex-shrink-0"></div>BIS Quality Standards
             </div>
-
             <div
                 class="flex items-center gap-3.5 px-8 whitespace-nowrap text-[13px] font-semibold uppercase tracking-[.06em] text-white">
-                <div class="w-[5px] h-[5px] rounded-full bg-glow flex-shrink-0"></div>
-                3 Product Variants Available
+                <div class="w-[5px] h-[5px] rounded-full bg-glow flex-shrink-0"></div>3 Product Variants Available
             </div>
-
             <div
                 class="flex items-center gap-3.5 px-8 whitespace-nowrap text-[13px] font-semibold uppercase tracking-[.06em] text-white">
-                <div class="w-[5px] h-[5px] rounded-full bg-glow flex-shrink-0"></div>
-                Bulk Orders Welcome
+                <div class="w-[5px] h-[5px] rounded-full bg-glow flex-shrink-0"></div>Bulk Orders Welcome
             </div>
-
-            <!-- Duplicate for seamless infinite scroll -->
-
+            <!-- Duplicate for seamless loop -->
             <div
                 class="flex items-center gap-3.5 px-8 whitespace-nowrap text-[13px] font-semibold uppercase tracking-[.06em] text-white">
-                <div class="w-[5px] h-[5px] rounded-full bg-glow flex-shrink-0"></div>
-                Pure &amp; Safe Drinking Water
+                <div class="w-[5px] h-[5px] rounded-full bg-glow flex-shrink-0"></div>Pure &amp; Safe Drinking Water
             </div>
-
             <div
                 class="flex items-center gap-3.5 px-8 whitespace-nowrap text-[13px] font-semibold uppercase tracking-[.06em] text-white">
-                <div class="w-[5px] h-[5px] rounded-full bg-glow flex-shrink-0"></div>
-                Advanced Multi-Stage Purification
+                <div class="w-[5px] h-[5px] rounded-full bg-glow flex-shrink-0"></div>Advanced Multi-Stage Purification
             </div>
-
             <div
                 class="flex items-center gap-3.5 px-8 whitespace-nowrap text-[13px] font-semibold uppercase tracking-[.06em] text-white">
-                <div class="w-[5px] h-[5px] rounded-full bg-glow flex-shrink-0"></div>
-                Hygienic Sealed Packaging
+                <div class="w-[5px] h-[5px] rounded-full bg-glow flex-shrink-0"></div>Hygienic Sealed Packaging
             </div>
-
             <div
                 class="flex items-center gap-3.5 px-8 whitespace-nowrap text-[13px] font-semibold uppercase tracking-[.06em] text-white">
-                <div class="w-[5px] h-[5px] rounded-full bg-glow flex-shrink-0"></div>
-                pH 7.2 Balanced Water
+                <div class="w-[5px] h-[5px] rounded-full bg-glow flex-shrink-0"></div>pH 7.2 Balanced Water
             </div>
-
             <div
                 class="flex items-center gap-3.5 px-8 whitespace-nowrap text-[13px] font-semibold uppercase tracking-[.06em] text-white">
-                <div class="w-[5px] h-[5px] rounded-full bg-glow flex-shrink-0"></div>
-                Natural Essential Minerals
+                <div class="w-[5px] h-[5px] rounded-full bg-glow flex-shrink-0"></div>Natural Essential Minerals
             </div>
-
             <div
                 class="flex items-center gap-3.5 px-8 whitespace-nowrap text-[13px] font-semibold uppercase tracking-[.06em] text-white">
-                <div class="w-[5px] h-[5px] rounded-full bg-glow flex-shrink-0"></div>
-                BIS Quality Standards
+                <div class="w-[5px] h-[5px] rounded-full bg-glow flex-shrink-0"></div>BIS Quality Standards
             </div>
-
             <div
                 class="flex items-center gap-3.5 px-8 whitespace-nowrap text-[13px] font-semibold uppercase tracking-[.06em] text-white">
-                <div class="w-[5px] h-[5px] rounded-full bg-glow flex-shrink-0"></div>
-                3 Product Variants Available
+                <div class="w-[5px] h-[5px] rounded-full bg-glow flex-shrink-0"></div>3 Product Variants Available
             </div>
-
             <div
                 class="flex items-center gap-3.5 px-8 whitespace-nowrap text-[13px] font-semibold uppercase tracking-[.06em] text-white">
-                <div class="w-[5px] h-[5px] rounded-full bg-glow flex-shrink-0"></div>
-                Bulk Orders Welcome
+                <div class="w-[5px] h-[5px] rounded-full bg-glow flex-shrink-0"></div>Bulk Orders Welcome
             </div>
-
         </div>
-
     </div>
 
-    <!-- ===== ABOUT / TRUST ===== -->
+    <!-- ===== ABOUT ===== -->
     <section class="bg-light py-24 sm:py-32" id="about">
         <div class="max-w-[1320px] mx-auto px-5 sm:px-8 lg:px-12">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
                 <div class="reveal relative rounded-3xl overflow-hidden">
-                    <img src="img/tilted bottle .png" alt="VELOQUA 200ml 500ml 1000ml bottles together"
+                    <img src="img/tilted bottle .png" alt="VELOQUA 200ml 500ml 1000ml bottles"
                         class="w-full block rounded-3xl" />
                     <div class="absolute inset-0 rounded-3xl pointer-events-none"
                         style="background:linear-gradient(220deg,rgba(77,168,255,.15),transparent 60%)"></div>
@@ -951,8 +856,7 @@
                                 class="text-[11px] text-white/50 uppercase tracking-[.08em]">TDS mg/L</span></div>
                         <div class="flex flex-col gap-1"><span
                                 class="font-fraunces text-xl text-glow font-medium">100%</span><span
-                                class="text-[11px] text-white/50 uppercase tracking-[.08em]">Quality Tested</span>
-                        </div>
+                                class="text-[11px] text-white/50 uppercase tracking-[.08em]">Quality Tested</span></div>
                         <div class="flex flex-col gap-1"><span
                                 class="font-fraunces text-xl text-glow font-medium">3</span><span
                                 class="text-[11px] text-white/50 uppercase tracking-[.08em]">Variants</span></div>
@@ -961,78 +865,69 @@
                 <div class="reveal rd1">
                     <p
                         class="flex items-center gap-2.5 text-[12px] font-semibold uppercase tracking-[.22em] text-crystal mb-4">
-                        <span class="inline-block w-5 h-[1.5px] bg-crystal"></span>Our Commitment
-                    </p>
-                    <h2 class="font-fraunces text-[clamp(30px,4.2vw,48px)] font-medium leading-[1.16]">Hydration you
-                        can trust, every single day.</h2>
-                    <p class="mt-5 text-base leading-[1.85] text-ink/60">VELOQUA sources water from naturally
-                        protected environments and processes it through advanced purification technology to deliver
-                        consistent purity. We offer three carefully crafted bottle sizes — 200ml, 500ml, and 1000ml
-                        — each packed with natural minerals and sealed with BIS-certified standards.</p>
-                    <p class="mt-3.5 text-base leading-[1.85] text-ink/60">From humble beginnings in Delhi to
-                        becoming a trusted hydration brand, we bring pure water to homes, offices, hotels, and
-                        institutions across the region.</p>
+                        <span class="inline-block w-5 h-[1.5px] bg-crystal"></span>Our Commitment</p>
+                    <h2 class="font-fraunces text-[clamp(30px,4.2vw,48px)] font-medium leading-[1.16]">Hydration you can
+                        trust, every single day.</h2>
+                    <p class="mt-5 text-base leading-[1.85] text-ink/60">VELOQUA sources water from naturally protected
+                        environments and processes it through advanced purification technology to deliver consistent
+                        purity. We offer three carefully crafted bottle sizes — 200ml, 500ml, and 1000ml — each packed
+                        with natural minerals and sealed with BIS-certified standards.</p>
+                    <p class="mt-3.5 text-base leading-[1.85] text-ink/60">From humble beginnings in Delhi to becoming a
+                        trusted hydration brand, we bring pure water to homes, offices, hotels, and institutions across
+                        the region.</p>
                     <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div
-                            class="t-card flex items-start gap-3.5 p-5 rounded-[18px] bg-white border border-ink/7 transition-all duration-300">
+                        <div class="t-card flex items-start gap-3.5 p-5 rounded-[18px] bg-white border border-ink/7">
                             <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-                                style="background:linear-gradient(150deg,rgba(77,168,255,.14),rgba(13,35,70,.06))">
-                                <svg class="w-5 h-5 stroke-ocean" viewBox="0 0 24 24" fill="none" stroke-width="1.8"
+                                style="background:linear-gradient(150deg,rgba(77,168,255,.14),rgba(13,35,70,.06))"><svg
+                                    class="w-5 h-5 stroke-ocean" viewBox="0 0 24 24" fill="none" stroke-width="1.8"
                                     stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M12 2.5c3.5 4 6 7.4 6 11a6 6 0 1 1-12 0c0-3.6 2.5-7 6-11Z" />
-                                </svg>
-                            </div>
+                                </svg></div>
                             <div>
                                 <h4 class="text-sm font-semibold mb-1">Pure at Source</h4>
-                                <p class="text-[13px] text-ink/60 leading-[1.65]">Naturally protected groundwater
-                                    with controlled access.</p>
+                                <p class="text-[13px] text-ink/60 leading-[1.65]">Naturally protected groundwater with
+                                    controlled access.</p>
                             </div>
                         </div>
-                        <div
-                            class="t-card flex items-start gap-3.5 p-5 rounded-[18px] bg-white border border-ink/7 transition-all duration-300">
+                        <div class="t-card flex items-start gap-3.5 p-5 rounded-[18px] bg-white border border-ink/7">
                             <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-                                style="background:linear-gradient(150deg,rgba(77,168,255,.14),rgba(13,35,70,.06))">
-                                <svg class="w-5 h-5 stroke-ocean" viewBox="0 0 24 24" fill="none" stroke-width="1.8"
+                                style="background:linear-gradient(150deg,rgba(77,168,255,.14),rgba(13,35,70,.06))"><svg
+                                    class="w-5 h-5 stroke-ocean" viewBox="0 0 24 24" fill="none" stroke-width="1.8"
                                     stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M9 12l2 2 4-4" />
                                     <circle cx="12" cy="12" r="9" />
-                                </svg>
-                            </div>
+                                </svg></div>
                             <div>
                                 <h4 class="text-sm font-semibold mb-1">Lab Certified</h4>
                                 <p class="text-[13px] text-ink/60 leading-[1.65]">Every batch tested for safety and
                                     purity standards.</p>
                             </div>
                         </div>
-                        <div
-                            class="t-card flex items-start gap-3.5 p-5 rounded-[18px] bg-white border border-ink/7 transition-all duration-300">
+                        <div class="t-card flex items-start gap-3.5 p-5 rounded-[18px] bg-white border border-ink/7">
                             <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-                                style="background:linear-gradient(150deg,rgba(77,168,255,.14),rgba(13,35,70,.06))">
-                                <svg class="w-5 h-5 stroke-ocean" viewBox="0 0 24 24" fill="none" stroke-width="1.8"
+                                style="background:linear-gradient(150deg,rgba(77,168,255,.14),rgba(13,35,70,.06))"><svg
+                                    class="w-5 h-5 stroke-ocean" viewBox="0 0 24 24" fill="none" stroke-width="1.8"
                                     stroke-linecap="round" stroke-linejoin="round">
                                     <rect x="4" y="3" width="16" height="18" rx="2" />
                                     <path d="M9 3v4h6V3" />
-                                </svg>
-                            </div>
+                                </svg></div>
                             <div>
                                 <h4 class="text-sm font-semibold mb-1">Sealed Safe</h4>
                                 <p class="text-[13px] text-ink/60 leading-[1.65]">Tamper-proof packaging for maximum
                                     hygiene.</p>
                             </div>
                         </div>
-                        <div
-                            class="t-card flex items-start gap-3.5 p-5 rounded-[18px] bg-white border border-ink/7 transition-all duration-300">
+                        <div class="t-card flex items-start gap-3.5 p-5 rounded-[18px] bg-white border border-ink/7">
                             <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-                                style="background:linear-gradient(150deg,rgba(77,168,255,.14),rgba(13,35,70,.06))">
-                                <svg class="w-5 h-5 stroke-ocean" viewBox="0 0 24 24" fill="none" stroke-width="1.8"
+                                style="background:linear-gradient(150deg,rgba(77,168,255,.14),rgba(13,35,70,.06))"><svg
+                                    class="w-5 h-5 stroke-ocean" viewBox="0 0 24 24" fill="none" stroke-width="1.8"
                                     stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M3 12h4l3 8 4-16 3 8h4" />
-                                </svg>
-                            </div>
+                                </svg></div>
                             <div>
                                 <h4 class="text-sm font-semibold mb-1">Fast Delivery</h4>
-                                <p class="text-[13px] text-ink/60 leading-[1.65]">Reliable distribution to your
-                                    door, on schedule.</p>
+                                <p class="text-[13px] text-ink/60 leading-[1.65]">Reliable distribution to your door, on
+                                    schedule.</p>
                             </div>
                         </div>
                     </div>
@@ -1050,26 +945,25 @@
             <div class="text-center max-w-[700px] mx-auto mb-14 reveal">
                 <p
                     class="flex items-center justify-center gap-2.5 text-[12px] font-semibold uppercase tracking-[.22em] text-crystal mb-3">
-                    <span class="inline-block w-5 h-[1.5px] bg-crystal"></span>Product Range
-                </p>
+                    <span class="inline-block w-5 h-[1.5px] bg-crystal"></span>Product Range</p>
                 <h2 class="font-fraunces text-[clamp(30px,4.6vw,50px)] font-medium leading-[1.15] mt-3">Choose your
                     perfect hydration size.</h2>
-                <p class="mt-4 text-base text-ink/60 leading-[1.8]">Three thoughtfully crafted sizes. All featuring
-                    the same premium quality and pH-balanced water. Available in cartons with automatic bulk
-                    discounts.</p>
+                <p class="mt-4 text-base text-ink/60 leading-[1.8]">Three thoughtfully crafted sizes. All featuring the
+                    same premium quality and pH-balanced water. Available in cartons with automatic bulk discounts.</p>
             </div>
 
-            <!-- 3 Product cards in row -->
+            <!-- 3 Product Cards -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7">
 
                 <!-- 200ml -->
                 <div class="prod-card bg-white rounded-2xl border border-ink/7 overflow-hidden flex flex-col reveal">
                     <div class="card-img relative overflow-hidden flex items-center justify-center p-6"
-                        style="background:linear-gradient(145deg,#eaf3ff,#F5FAFF);height:260px">
+                        style="background:linear-gradient(145deg,#eaf3ff,#F5FAFF);height:280px">
                         <span
                             class="absolute top-3.5 left-3.5 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-[.06em] text-white"
                             style="background:linear-gradient(135deg,#2a7ff5,#00c6fb)">Event Size</span>
-                        <img src="img/veloqua 200 ml.png" alt="VELOQUA 200ml" class="h-full w-auto object-contain" />
+                        <img src="img/veloqua 200 ml.png" alt="VELOQUA 200ml"
+                            class="h-full w-auto object-contain max-h-[220px]" />
                         <div class="absolute bottom-2 left-1/2 -translate-x-1/2 w-20 h-5 rounded-full"
                             style="background:rgba(77,168,255,.35);filter:blur(10px)"></div>
                     </div>
@@ -1084,8 +978,8 @@
                                 Pricing (48 pcs)</div>
                             <div class="flex justify-between items-center mt-1.5">
                                 <div>
-                                    <div class="text-[13px] text-ink/50 line-through">₹12 / bottle</div>
-                                    <div class="font-fraunces text-2xl text-ocean font-medium">₹8 <small
+                                    <div class="text-[13px] text-ink/50 line-through">Rs.12 / bottle</div>
+                                    <div class="font-fraunces text-2xl text-ocean font-medium">Rs.8 <small
                                             class="text-sm text-ink/50">/ bulk</small></div>
                                 </div>
                                 <span class="text-[10.5px] font-bold px-2.5 py-1 rounded-full"
@@ -1093,19 +987,18 @@
                             </div>
                         </div>
                         <div class="mt-4">
-                            <div class="text-[12px] text-ink/60 font-semibold uppercase tracking-[.05em] mb-2">
-                                Quantity (multiples of 6)</div>
+                            <div class="text-[12px] text-ink/60 font-semibold uppercase tracking-[.05em] mb-2">Quantity
+                                (multiples of 6)</div>
                             <div class="flex items-center gap-2.5">
                                 <button
-                                    class="qty-btn w-8 h-8 rounded-lg border-[1.5px] border-ink/14 bg-white flex items-center justify-center text-lg font-bold text-ocean hover:bg-ocean hover:text-white hover:border-ocean transition-all"
-                                    onclick="changeQty('q1',-6)">−</button>
+                                    class="qty-btn w-8 h-8 rounded-lg border-[1.5px] border-ink/14 bg-white flex items-center justify-center text-lg font-bold text-ocean"
+                                    onclick="changeQty('q1',-6)">&#8722;</button>
                                 <input
-                                    class="qty-input w-14 h-8 border-[1.5px] border-ink/14 rounded-lg text-center text-[15px] font-bold text-ocean bg-white outline-none focus:border-crystal"
-                                    id="q1" value="6" min="6" step="6" type="number"
-                                    oninput="checkDiscount('q1','d1','disc1')" />
+                                    class="qty-input w-14 h-8 border-[1.5px] border-ink/14 rounded-lg text-center text-[15px] font-bold text-ocean bg-white outline-none focus:border-crystal transition-colors"
+                                    id="q1" value="6" min="6" step="6" type="number" oninput="onQtyInput('q1')" />
                                 <button
-                                    class="qty-btn w-8 h-8 rounded-lg border-[1.5px] border-ink/14 bg-white flex items-center justify-center text-lg font-bold text-ocean hover:bg-ocean hover:text-white hover:border-ocean transition-all"
-                                    onclick="changeQty('q1',6)">+</button>
+                                    class="qty-btn w-8 h-8 rounded-lg border-[1.5px] border-ink/14 bg-white flex items-center justify-center text-lg font-bold text-ocean"
+                                    onclick="changeQty('q1',6)">&#43;</button>
                             </div>
                             <div class="discount-pill mt-2.5 p-2.5 rounded-xl items-center gap-2 text-[12.5px] font-semibold"
                                 id="disc1"
@@ -1134,11 +1027,12 @@
                 <div
                     class="prod-card bg-white rounded-2xl border border-ink/7 overflow-hidden flex flex-col reveal rd1">
                     <div class="card-img relative overflow-hidden flex items-center justify-center p-6"
-                        style="background:linear-gradient(145deg,#daeeff,#eaf3ff);height:260px">
+                        style="background:linear-gradient(145deg,#daeeff,#eaf3ff);height:280px">
                         <span
                             class="absolute top-3.5 left-3.5 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-[.06em] text-white"
                             style="background:linear-gradient(135deg,#0D2346,#4DA8FF)">Most Popular</span>
-                        <img src="img/front 3.png" alt="VELOQUA 500ml" class="h-full w-auto object-contain" />
+                        <img src="img/front 3.png" alt="VELOQUA 500ml"
+                            class="h-full w-auto object-contain max-h-[220px]" />
                         <div class="absolute bottom-2 left-1/2 -translate-x-1/2 w-20 h-5 rounded-full"
                             style="background:rgba(77,168,255,.35);filter:blur(10px)"></div>
                     </div>
@@ -1146,16 +1040,16 @@
                         <div class="font-fraunces text-3xl text-ocean font-medium">500ml</div>
                         <div class="text-base font-bold mt-1">Daily Companion Bottle</div>
                         <div class="text-[13.5px] text-ink/60 leading-[1.7] mt-2">The most loved size for everyday
-                            hydration — perfectly sized for work, travel, gym, school, and daily use throughout the
-                            day.</div>
+                            hydration — perfectly sized for work, travel, gym, school, and daily use throughout the day.
+                        </div>
                         <div class="mt-4 p-3.5 rounded-xl border border-ink/6"
                             style="background:linear-gradient(135deg,#F5FAFF,#e8f2ff)">
                             <div class="text-[11.5px] text-ink/60 font-semibold uppercase tracking-[.06em]">Carton
                                 Pricing (24 pcs)</div>
                             <div class="flex justify-between items-center mt-1.5">
                                 <div>
-                                    <div class="text-[13px] text-ink/50 line-through">₹20 / bottle</div>
-                                    <div class="font-fraunces text-2xl text-ocean font-medium">₹14 <small
+                                    <div class="text-[13px] text-ink/50 line-through">Rs.20 / bottle</div>
+                                    <div class="font-fraunces text-2xl text-ocean font-medium">Rs.14 <small
                                             class="text-sm text-ink/50">/ bulk</small></div>
                                 </div>
                                 <span class="text-[10.5px] font-bold px-2.5 py-1 rounded-full"
@@ -1163,19 +1057,18 @@
                             </div>
                         </div>
                         <div class="mt-4">
-                            <div class="text-[12px] text-ink/60 font-semibold uppercase tracking-[.05em] mb-2">
-                                Quantity (multiples of 6)</div>
+                            <div class="text-[12px] text-ink/60 font-semibold uppercase tracking-[.05em] mb-2">Quantity
+                                (multiples of 6)</div>
                             <div class="flex items-center gap-2.5">
                                 <button
-                                    class="qty-btn w-8 h-8 rounded-lg border-[1.5px] border-ink/14 bg-white flex items-center justify-center text-lg font-bold text-ocean hover:bg-ocean hover:text-white hover:border-ocean transition-all"
-                                    onclick="changeQty('q2',-6)">−</button>
+                                    class="qty-btn w-8 h-8 rounded-lg border-[1.5px] border-ink/14 bg-white flex items-center justify-center text-lg font-bold text-ocean"
+                                    onclick="changeQty('q2',-6)">&#8722;</button>
                                 <input
-                                    class="qty-input w-14 h-8 border-[1.5px] border-ink/14 rounded-lg text-center text-[15px] font-bold text-ocean bg-white outline-none focus:border-crystal"
-                                    id="q2" value="6" min="6" step="6" type="number"
-                                    oninput="checkDiscount('q2','d2','disc2')" />
+                                    class="qty-input w-14 h-8 border-[1.5px] border-ink/14 rounded-lg text-center text-[15px] font-bold text-ocean bg-white outline-none focus:border-crystal transition-colors"
+                                    id="q2" value="6" min="6" step="6" type="number" oninput="onQtyInput('q2')" />
                                 <button
-                                    class="qty-btn w-8 h-8 rounded-lg border-[1.5px] border-ink/14 bg-white flex items-center justify-center text-lg font-bold text-ocean hover:bg-ocean hover:text-white hover:border-ocean transition-all"
-                                    onclick="changeQty('q2',6)">+</button>
+                                    class="qty-btn w-8 h-8 rounded-lg border-[1.5px] border-ink/14 bg-white flex items-center justify-center text-lg font-bold text-ocean"
+                                    onclick="changeQty('q2',6)">&#43;</button>
                             </div>
                             <div class="discount-pill mt-2.5 p-2.5 rounded-xl items-center gap-2 text-[12.5px] font-semibold"
                                 id="disc2"
@@ -1204,11 +1097,12 @@
                 <div
                     class="prod-card bg-white rounded-2xl border border-ink/7 overflow-hidden flex flex-col reveal rd2">
                     <div class="card-img relative overflow-hidden flex items-center justify-center p-6"
-                        style="background:linear-gradient(145deg,#e0f0ff,#eaf6ff);height:260px">
+                        style="background:linear-gradient(145deg,#e0f0ff,#eaf6ff);height:280px">
                         <span
                             class="absolute top-3.5 left-3.5 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-[.06em] text-white"
                             style="background:linear-gradient(135deg,#f59e0b,#f97316)">Best Value</span>
-                        <img src="img/veloqua 1000 ml.png" alt="VELOQUA 1000ml" class="h-full w-auto object-contain" />
+                        <img src="img/veloqua 1000 ml.png" alt="VELOQUA 1000ml"
+                            class="h-full w-auto object-contain max-h-[220px]" />
                         <div class="absolute bottom-2 left-1/2 -translate-x-1/2 w-20 h-5 rounded-full"
                             style="background:rgba(77,168,255,.35);filter:blur(10px)"></div>
                     </div>
@@ -1216,16 +1110,15 @@
                         <div class="font-fraunces text-3xl text-ocean font-medium">1000ml</div>
                         <div class="text-base font-bold mt-1">Family &amp; Office Bottle</div>
                         <div class="text-[13.5px] text-ink/60 leading-[1.7] mt-2">Ideal for offices, family meals,
-                            events, and commercial supply. Longer-lasting hydration with maximum value per litre.
-                        </div>
+                            events, and commercial supply. Longer-lasting hydration with maximum value per litre.</div>
                         <div class="mt-4 p-3.5 rounded-xl border border-ink/6"
                             style="background:linear-gradient(135deg,#F5FAFF,#e8f2ff)">
                             <div class="text-[11.5px] text-ink/60 font-semibold uppercase tracking-[.06em]">Carton
                                 Pricing (12 pcs)</div>
                             <div class="flex justify-between items-center mt-1.5">
                                 <div>
-                                    <div class="text-[13px] text-ink/50 line-through">₹30 / bottle</div>
-                                    <div class="font-fraunces text-2xl text-ocean font-medium">₹21 <small
+                                    <div class="text-[13px] text-ink/50 line-through">Rs.30 / bottle</div>
+                                    <div class="font-fraunces text-2xl text-ocean font-medium">Rs.21 <small
                                             class="text-sm text-ink/50">/ bulk</small></div>
                                 </div>
                                 <span class="text-[10.5px] font-bold px-2.5 py-1 rounded-full"
@@ -1233,19 +1126,18 @@
                             </div>
                         </div>
                         <div class="mt-4">
-                            <div class="text-[12px] text-ink/60 font-semibold uppercase tracking-[.05em] mb-2">
-                                Quantity (multiples of 6)</div>
+                            <div class="text-[12px] text-ink/60 font-semibold uppercase tracking-[.05em] mb-2">Quantity
+                                (multiples of 6)</div>
                             <div class="flex items-center gap-2.5">
                                 <button
-                                    class="qty-btn w-8 h-8 rounded-lg border-[1.5px] border-ink/14 bg-white flex items-center justify-center text-lg font-bold text-ocean hover:bg-ocean hover:text-white hover:border-ocean transition-all"
-                                    onclick="changeQty('q3',-6)">−</button>
+                                    class="qty-btn w-8 h-8 rounded-lg border-[1.5px] border-ink/14 bg-white flex items-center justify-center text-lg font-bold text-ocean"
+                                    onclick="changeQty('q3',-6)">&#8722;</button>
                                 <input
-                                    class="qty-input w-14 h-8 border-[1.5px] border-ink/14 rounded-lg text-center text-[15px] font-bold text-ocean bg-white outline-none focus:border-crystal"
-                                    id="q3" value="6" min="6" step="6" type="number"
-                                    oninput="checkDiscount('q3','d3','disc3')" />
+                                    class="qty-input w-14 h-8 border-[1.5px] border-ink/14 rounded-lg text-center text-[15px] font-bold text-ocean bg-white outline-none focus:border-crystal transition-colors"
+                                    id="q3" value="6" min="6" step="6" type="number" oninput="onQtyInput('q3')" />
                                 <button
-                                    class="qty-btn w-8 h-8 rounded-lg border-[1.5px] border-ink/14 bg-white flex items-center justify-center text-lg font-bold text-ocean hover:bg-ocean hover:text-white hover:border-ocean transition-all"
-                                    onclick="changeQty('q3',6)">+</button>
+                                    class="qty-btn w-8 h-8 rounded-lg border-[1.5px] border-ink/14 bg-white flex items-center justify-center text-lg font-bold text-ocean"
+                                    onclick="changeQty('q3',6)">&#43;</button>
                             </div>
                             <div class="discount-pill mt-2.5 p-2.5 rounded-xl items-center gap-2 text-[12.5px] font-semibold"
                                 id="disc3"
@@ -1269,37 +1161,196 @@
                         </div>
                     </div>
                 </div>
-
             </div>
 
-            <!-- Carton gallery -->
-            <div class="mt-12 reveal">
+            <!-- ─── CARTON GALLERY WITH ORDER QTY ─── -->
+            <div class="mt-14 reveal">
                 <p
-                    class="text-center text-[12px] font-semibold uppercase tracking-[.22em] text-crystal mb-5 flex items-center justify-center gap-2.5">
-                    <span class="inline-block w-5 h-[1.5px] bg-crystal"></span>Carton Packaging
+                    class="text-center text-[12px] font-semibold uppercase tracking-[.22em] text-crystal mb-8 flex items-center justify-center gap-2.5">
+                    <span class="inline-block w-5 h-[1.5px] bg-crystal"></span>Order by Carton
                 </p>
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                    <div
-                        class="bg-white rounded-xl overflow-hidden border border-ink/7 hover:border-crystal/40 transition-all hover:shadow-lg">
-                        <img src="img/200 ml caton photo.png" alt="200ml x 48 Carton" class="w-full block" />
-                        <div class="p-3 text-center text-[13px] font-semibold text-ocean">200ml × 48 Pcs</div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+
+                    <!-- Carton 200ml -->
+                    <div class="carton-card bg-white rounded-2xl border border-ink/7 overflow-hidden flex flex-col">
+                        <div class="relative overflow-hidden flex items-center justify-center p-5"
+                            style="background:linear-gradient(145deg,#eaf3ff,#F5FAFF);height:200px">
+                            <img src="img/200 ml caton photo.png" alt="200ml x 48 Carton"
+                                class="w-full h-full object-contain" />
+                        </div>
+                        <div class="p-4 flex flex-col flex-1">
+                            <div class="font-fraunces text-lg text-ocean font-medium">200ml Carton</div>
+                            <div class="text-[13px] text-ink/60 mt-1">48 bottles per carton</div>
+                            <div class="flex justify-between items-center mt-3 mb-3">
+                                <div>
+                                    <div class="text-[12px] text-ink/45 line-through">Rs.576</div>
+                                    <div class="font-fraunces text-xl text-ocean font-medium">Rs.384</div>
+                                </div>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full"
+                                    style="background:rgba(16,185,129,.12);color:#059669">Save 33%</span>
+                            </div>
+                            <div class="text-[11.5px] text-ink/55 font-semibold uppercase tracking-[.05em] mb-2">No. of
+                                Cartons</div>
+                            <div class="flex items-center gap-2 mb-3">
+                                <button
+                                    class="qty-btn w-8 h-8 rounded-lg border-[1.5px] border-ink/14 bg-white flex items-center justify-center text-base font-bold text-ocean"
+                                    onclick="changeCartonQty('cq1',-1)">&#8722;</button>
+                                <input
+                                    class="qty-input w-12 h-8 border-[1.5px] border-ink/14 rounded-lg text-center text-[14px] font-bold text-ocean bg-white outline-none focus:border-crystal transition-colors"
+                                    id="cq1" value="1" min="1" step="1" type="number" oninput="onCartonInput('cq1')" />
+                                <button
+                                    class="qty-btn w-8 h-8 rounded-lg border-[1.5px] border-ink/14 bg-white flex items-center justify-center text-base font-bold text-ocean"
+                                    onclick="changeCartonQty('cq1',1)">&#43;</button>
+                                <span class="text-[12px] text-ink/50 ml-1" id="cq1-total">= 48 bottles</span>
+                            </div>
+                            <a id="cwa1" href="#" target="_blank"
+                                class="btn-primary-v w-full flex items-center justify-center gap-1.5 py-2.5 rounded-full text-[13px] font-semibold text-white no-underline mt-auto">
+                                <svg class="w-3.5 h-3.5 fill-emerald-400 shrink-0" viewBox="0 0 24 24">
+                                    <path
+                                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
+                                </svg>
+                                Order Carton
+                            </a>
+                        </div>
                     </div>
-                    <div
-                        class="bg-white rounded-xl overflow-hidden border border-ink/7 hover:border-crystal/40 transition-all hover:shadow-lg">
-                        <img src="img/500 ml carton photo.png" alt="500ml x 24 Carton" class="w-full block" />
-                        <div class="p-3 text-center text-[13px] font-semibold text-ocean">500ml × 24 Pcs</div>
+
+                    <!-- Carton 500ml -->
+                    <div class="carton-card bg-white rounded-2xl border border-ink/7 overflow-hidden flex flex-col">
+                        <div class="relative overflow-hidden flex items-center justify-center p-5"
+                            style="background:linear-gradient(145deg,#daeeff,#eaf3ff);height:200px">
+                            <img src="img/500 ml carton photo.png" alt="500ml x 24 Carton"
+                                class="w-full h-full object-contain" />
+                        </div>
+                        <div class="p-4 flex flex-col flex-1">
+                            <div class="font-fraunces text-lg text-ocean font-medium">500ml Carton</div>
+                            <div class="text-[13px] text-ink/60 mt-1">24 bottles per carton</div>
+                            <div class="flex justify-between items-center mt-3 mb-3">
+                                <div>
+                                    <div class="text-[12px] text-ink/45 line-through">Rs.480</div>
+                                    <div class="font-fraunces text-xl text-ocean font-medium">Rs.336</div>
+                                </div>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full"
+                                    style="background:rgba(16,185,129,.12);color:#059669">Save 30%</span>
+                            </div>
+                            <div class="text-[11.5px] text-ink/55 font-semibold uppercase tracking-[.05em] mb-2">No. of
+                                Cartons</div>
+                            <div class="flex items-center gap-2 mb-3">
+                                <button
+                                    class="qty-btn w-8 h-8 rounded-lg border-[1.5px] border-ink/14 bg-white flex items-center justify-center text-base font-bold text-ocean"
+                                    onclick="changeCartonQty('cq2',-1)">&#8722;</button>
+                                <input
+                                    class="qty-input w-12 h-8 border-[1.5px] border-ink/14 rounded-lg text-center text-[14px] font-bold text-ocean bg-white outline-none focus:border-crystal transition-colors"
+                                    id="cq2" value="1" min="1" step="1" type="number" oninput="onCartonInput('cq2')" />
+                                <button
+                                    class="qty-btn w-8 h-8 rounded-lg border-[1.5px] border-ink/14 bg-white flex items-center justify-center text-base font-bold text-ocean"
+                                    onclick="changeCartonQty('cq2',1)">&#43;</button>
+                                <span class="text-[12px] text-ink/50 ml-1" id="cq2-total">= 24 bottles</span>
+                            </div>
+                            <a id="cwa2" href="#" target="_blank"
+                                class="btn-primary-v w-full flex items-center justify-center gap-1.5 py-2.5 rounded-full text-[13px] font-semibold text-white no-underline mt-auto">
+                                <svg class="w-3.5 h-3.5 fill-emerald-400 shrink-0" viewBox="0 0 24 24">
+                                    <path
+                                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
+                                </svg>
+                                Order Carton
+                            </a>
+                        </div>
                     </div>
-                    <div
-                        class="bg-white rounded-xl overflow-hidden border border-ink/7 hover:border-crystal/40 transition-all hover:shadow-lg">
-                        <img src="img/1000 ml carton photo.png" alt="1000ml x 12 Carton" class="w-full block" />
-                        <div class="p-3 text-center text-[13px] font-semibold text-ocean">1000ml × 12 Pcs</div>
+
+                    <!-- Carton 1000ml -->
+                    <div class="carton-card bg-white rounded-2xl border border-ink/7 overflow-hidden flex flex-col">
+                        <div class="relative overflow-hidden flex items-center justify-center p-5"
+                            style="background:linear-gradient(145deg,#e0f0ff,#eaf6ff);height:200px">
+                            <img src="img/1000 ml carton photo.png" alt="1000ml x 12 Carton"
+                                class="w-full h-full object-contain" />
+                        </div>
+                        <div class="p-4 flex flex-col flex-1">
+                            <div class="font-fraunces text-lg text-ocean font-medium">1000ml Carton</div>
+                            <div class="text-[13px] text-ink/60 mt-1">12 bottles per carton</div>
+                            <div class="flex justify-between items-center mt-3 mb-3">
+                                <div>
+                                    <div class="text-[12px] text-ink/45 line-through">Rs.360</div>
+                                    <div class="font-fraunces text-xl text-ocean font-medium">Rs.252</div>
+                                </div>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full"
+                                    style="background:rgba(16,185,129,.12);color:#059669">Save 30%</span>
+                            </div>
+                            <div class="text-[11.5px] text-ink/55 font-semibold uppercase tracking-[.05em] mb-2">No. of
+                                Cartons</div>
+                            <div class="flex items-center gap-2 mb-3">
+                                <button
+                                    class="qty-btn w-8 h-8 rounded-lg border-[1.5px] border-ink/14 bg-white flex items-center justify-center text-base font-bold text-ocean"
+                                    onclick="changeCartonQty('cq3',-1)">&#8722;</button>
+                                <input
+                                    class="qty-input w-12 h-8 border-[1.5px] border-ink/14 rounded-lg text-center text-[14px] font-bold text-ocean bg-white outline-none focus:border-crystal transition-colors"
+                                    id="cq3" value="1" min="1" step="1" type="number" oninput="onCartonInput('cq3')" />
+                                <button
+                                    class="qty-btn w-8 h-8 rounded-lg border-[1.5px] border-ink/14 bg-white flex items-center justify-center text-base font-bold text-ocean"
+                                    onclick="changeCartonQty('cq3',1)">&#43;</button>
+                                <span class="text-[12px] text-ink/50 ml-1" id="cq3-total">= 12 bottles</span>
+                            </div>
+                            <a id="cwa3" href="#" target="_blank"
+                                class="btn-primary-v w-full flex items-center justify-center gap-1.5 py-2.5 rounded-full text-[13px] font-semibold text-white no-underline mt-auto">
+                                <svg class="w-3.5 h-3.5 fill-emerald-400 shrink-0" viewBox="0 0 24 24">
+                                    <path
+                                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
+                                </svg>
+                                Order Carton
+                            </a>
+                        </div>
                     </div>
-                    <div class="rounded-xl overflow-hidden border hover:shadow-lg"
-                        style="border-color:rgba(218,165,32,.3);background:linear-gradient(135deg,#1a1a0a,#2a2000)">
-                        <img src="img/premium 1000ml carton photo.png" alt="Premium 1000ml x 12 Carton"
-                            class="w-full block" />
-                        <div class="p-3 text-center text-[13px] font-semibold" style="color:#d4a017">Premium 1000ml
-                            × 12 Pcs</div>
+
+                    <!-- Premium Carton 1000ml -->
+                    <div class="carton-card rounded-2xl border overflow-hidden flex flex-col"
+                        style="border-color:rgba(218,165,32,.3);background:linear-gradient(145deg,#1a1a0a,#2a2000)">
+                        <div class="relative overflow-hidden flex items-center justify-center p-5"
+                            style="background:linear-gradient(145deg,#1e1600,#2d2000);height:200px">
+                            <span
+                                class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-[.06em]"
+                                style="background:rgba(212,160,23,.2);color:#d4a017;border:1px solid rgba(212,160,23,.3)">Premium</span>
+                            <img src="img/premium 1000ml carton photo.png" alt="Premium 1000ml x 12 Carton"
+                                class="w-full h-full object-contain" />
+                        </div>
+                        <div class="p-4 flex flex-col flex-1">
+                            <div class="font-fraunces text-lg font-medium" style="color:#d4a017">Premium 1000ml</div>
+                            <div class="text-[13px] mt-1" style="color:rgba(255,255,255,.5)">12 bottles per carton</div>
+                            <div class="flex justify-between items-center mt-3 mb-3">
+                                <div>
+                                    <div class="text-[12px] line-through" style="color:rgba(255,255,255,.3)">Rs.420
+                                    </div>
+                                    <div class="font-fraunces text-xl font-medium" style="color:#d4a017">Rs.300</div>
+                                </div>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full"
+                                    style="background:rgba(212,160,23,.15);color:#d4a017">Save 28%</span>
+                            </div>
+                            <div class="text-[11.5px] font-semibold uppercase tracking-[.05em] mb-2"
+                                style="color:rgba(255,255,255,.4)">No. of Cartons</div>
+                            <div class="flex items-center gap-2 mb-3">
+                                <button
+                                    class="w-8 h-8 rounded-lg flex items-center justify-center text-base font-bold transition-all"
+                                    style="border:1.5px solid rgba(212,160,23,.3);background:rgba(212,160,23,.08);color:#d4a017"
+                                    onclick="changeCartonQty('cq4',-1)">&#8722;</button>
+                                <input
+                                    class="qty-input w-12 h-8 rounded-lg text-center text-[14px] font-bold outline-none transition-colors"
+                                    style="border:1.5px solid rgba(212,160,23,.3);background:rgba(212,160,23,.08);color:#d4a017"
+                                    id="cq4" value="1" min="1" step="1" type="number" oninput="onCartonInput('cq4')" />
+                                <button
+                                    class="w-8 h-8 rounded-lg flex items-center justify-center text-base font-bold transition-all"
+                                    style="border:1.5px solid rgba(212,160,23,.3);background:rgba(212,160,23,.08);color:#d4a017"
+                                    onclick="changeCartonQty('cq4',1)">&#43;</button>
+                                <span class="text-[12px] ml-1" style="color:rgba(255,255,255,.4)" id="cq4-total">= 12
+                                    bottles</span>
+                            </div>
+                            <a id="cwa4" href="#" target="_blank"
+                                class="w-full flex items-center justify-center gap-1.5 py-2.5 rounded-full text-[13px] font-semibold no-underline mt-auto transition-all"
+                                style="background:rgba(212,160,23,.18);color:#d4a017;border:1px solid rgba(212,160,23,.35)">
+                                <svg class="w-3.5 h-3.5 shrink-0" style="fill:#25D366" viewBox="0 0 24 24">
+                                    <path
+                                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
+                                </svg>
+                                Order Carton
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1317,16 +1368,15 @@
                     </div>
                     <div>
                         <div class="font-fraunces text-xl font-medium">Bulk Order Discounts — Always Active</div>
-                        <div class="text-sm text-white/62 mt-1">Order 20+ units → <strong class="text-glow">40%
-                                off</strong> &nbsp;|&nbsp; Order 40+ units → <strong class="text-glow">Extra
+                        <div class="text-sm text-white/62 mt-1">Order 20+ units &rarr; <strong class="text-glow">40%
+                                off</strong> &nbsp;|&nbsp; Order 40+ units &rarr; <strong class="text-glow">Extra
                                 discount + FREE delivery</strong></div>
                     </div>
                 </div>
-                <a href="https://wa.me/917042978227?text=Hi%20VELOQUA%21%20I%20want%20a%20bulk%20quote%20for%20water%20bottles.%20Please%20share%20your%20best%20pricing."
+                <a href="https://wa.me/917042978227?text=Hi%20VELOQUA%20Team%2C%0A%0AI%20would%20like%20to%20get%20a%20bulk%20quote%20for%20water%20bottles.%20Please%20share%20your%20best%20pricing%20and%20available%20discounts."
                     target="_blank"
-                    class="btn-white-v inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold no-underline flex-shrink-0">
-                    Get Bulk Quote
-                </a>
+                    class="btn-white-v inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold no-underline flex-shrink-0">Get
+                    Bulk Quote</a>
             </div>
         </div>
     </section>
@@ -1353,55 +1403,51 @@
                 </div>
                 <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0">
                     <div class="pstep flex flex-col items-center text-center px-4 sm:px-6 reveal">
-                        <div class="pstep-circle w-[90px] h-[90px] rounded-full flex items-center justify-center mb-6 relative z-10 transition-all duration-300 backdrop-blur-sm"
-                            style="background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.16)">
-                            <svg class="w-9 h-9" viewBox="0 0 24 24" fill="none" stroke="#8BE9FF" stroke-width="1.6"
+                        <div class="pstep-circle w-[90px] h-[90px] rounded-full flex items-center justify-center mb-6 relative z-10 backdrop-blur-sm"
+                            style="background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.16)"><svg
+                                class="w-9 h-9" viewBox="0 0 24 24" fill="none" stroke="#8BE9FF" stroke-width="1.6"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M12 2.5c3.5 4 6 7.4 6 11a6 6 0 1 1-12 0c0-3.6 2.5-7 6-11Z" />
-                            </svg>
-                        </div>
+                            </svg></div>
                         <h3 class="text-base font-bold mb-2.5">Source Water</h3>
                         <p class="text-[13.5px] leading-[1.7]" style="color:rgba(255,255,255,.6)">Water drawn from
                             naturally protected groundwater sources with controlled access.</p>
                     </div>
                     <div class="pstep flex flex-col items-center text-center px-4 sm:px-6 reveal rd1">
-                        <div class="pstep-circle w-[90px] h-[90px] rounded-full flex items-center justify-center mb-6 relative z-10 transition-all duration-300 backdrop-blur-sm"
-                            style="background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.16)">
-                            <svg class="w-9 h-9" viewBox="0 0 24 24" fill="none" stroke="#8BE9FF" stroke-width="1.6"
+                        <div class="pstep-circle w-[90px] h-[90px] rounded-full flex items-center justify-center mb-6 relative z-10 backdrop-blur-sm"
+                            style="background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.16)"><svg
+                                class="w-9 h-9" viewBox="0 0 24 24" fill="none" stroke="#8BE9FF" stroke-width="1.6"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M4 12c2-3 4-3 6 0s4 3 6 0 4-3 6 0" />
                                 <path d="M4 18c2-3 4-3 6 0s4 3 6 0 4-3 6 0" />
-                            </svg>
-                        </div>
+                            </svg></div>
                         <h3 class="text-base font-bold mb-2.5">Multi-Stage Purification</h3>
                         <p class="text-[13.5px] leading-[1.7]" style="color:rgba(255,255,255,.6)">RO, UV, and UF
                             filtration removes all impurities while preserving natural minerals.</p>
                     </div>
                     <div class="pstep flex flex-col items-center text-center px-4 sm:px-6 reveal rd2">
-                        <div class="pstep-circle w-[90px] h-[90px] rounded-full flex items-center justify-center mb-6 relative z-10 transition-all duration-300 backdrop-blur-sm"
-                            style="background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.16)">
-                            <svg class="w-9 h-9" viewBox="0 0 24 24" fill="none" stroke="#8BE9FF" stroke-width="1.6"
+                        <div class="pstep-circle w-[90px] h-[90px] rounded-full flex items-center justify-center mb-6 relative z-10 backdrop-blur-sm"
+                            style="background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.16)"><svg
+                                class="w-9 h-9" viewBox="0 0 24 24" fill="none" stroke="#8BE9FF" stroke-width="1.6"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M9 12l2 2 4-4" />
                                 <circle cx="12" cy="12" r="9" />
-                            </svg>
-                        </div>
+                            </svg></div>
                         <h3 class="text-base font-bold mb-2.5">Quality Testing</h3>
-                        <p class="text-[13.5px] leading-[1.7]" style="color:rgba(255,255,255,.6)">Every batch is
-                            tested in-house and by third-party labs for pH, TDS, and microbial safety.</p>
+                        <p class="text-[13.5px] leading-[1.7]" style="color:rgba(255,255,255,.6)">Every batch is tested
+                            in-house and by third-party labs for pH, TDS, and microbial safety.</p>
                     </div>
                     <div class="pstep flex flex-col items-center text-center px-4 sm:px-6 reveal rd3">
-                        <div class="pstep-circle w-[90px] h-[90px] rounded-full flex items-center justify-center mb-6 relative z-10 transition-all duration-300 backdrop-blur-sm"
-                            style="background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.16)">
-                            <svg class="w-9 h-9" viewBox="0 0 24 24" fill="none" stroke="#8BE9FF" stroke-width="1.6"
+                        <div class="pstep-circle w-[90px] h-[90px] rounded-full flex items-center justify-center mb-6 relative z-10 backdrop-blur-sm"
+                            style="background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.16)"><svg
+                                class="w-9 h-9" viewBox="0 0 24 24" fill="none" stroke="#8BE9FF" stroke-width="1.6"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <rect x="4" y="3" width="16" height="18" rx="2" />
                                 <path d="M9 3v4h6V3" />
-                            </svg>
-                        </div>
+                            </svg></div>
                         <h3 class="text-base font-bold mb-2.5">Hygienic Packaging</h3>
-                        <p class="text-[13.5px] leading-[1.7]" style="color:rgba(255,255,255,.6)">Filled and sealed
-                            in a fully automated, dust-free environment with tamper-evident caps.</p>
+                        <p class="text-[13.5px] leading-[1.7]" style="color:rgba(255,255,255,.6)">Filled and sealed in a
+                            fully automated, dust-free environment with tamper-evident caps.</p>
                     </div>
                 </div>
             </div>
@@ -1426,34 +1472,33 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
                 <div class="reveal">
                     <p class="flex items-center gap-2.5 text-[12px] font-semibold uppercase tracking-[.22em] mb-4"
-                        style="color:#8BE9FF"><span class="inline-block w-5 h-[1.5px] bg-glow"></span>Water Quality
-                    </p>
+                        style="color:#8BE9FF"><span class="inline-block w-5 h-[1.5px] bg-glow"></span>Water Quality</p>
                     <h2 class="font-fraunces text-[clamp(30px,5vw,54px)] font-medium leading-[1.1]">Purity you can
                         measure. Trust you can feel.</h2>
-                    <p class="mt-5 text-base leading-[1.88]" style="color:rgba(255,255,255,.6)">VELOQUA water is
-                        tested against the most stringent quality parameters to ensure every bottle you receive is
-                        safe, mineral-balanced, and refreshing. Our transparent quality metrics reflect our
-                        commitment to earning your trust.</p>
+                    <p class="mt-5 text-base leading-[1.88]" style="color:rgba(255,255,255,.6)">VELOQUA water is tested
+                        against the most stringent quality parameters to ensure every bottle you receive is safe,
+                        mineral-balanced, and refreshing. Our transparent quality metrics reflect our commitment to
+                        earning your trust.</p>
                     <div class="mt-10 grid grid-cols-2 gap-4">
-                        <div class="qstat p-5 sm:p-6 rounded-[18px] transition-all duration-300 backdrop-blur-sm"
+                        <div class="qstat p-5 sm:p-6 rounded-[18px] backdrop-blur-sm"
                             style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1)">
                             <div class="font-fraunces text-4xl font-medium" style="color:#8BE9FF">7.2</div>
                             <div class="mt-1.5 text-[12.5px] uppercase tracking-[.06em]"
                                 style="color:rgba(255,255,255,.48)">pH Level (Ideal Alkaline)</div>
                         </div>
-                        <div class="qstat p-5 sm:p-6 rounded-[18px] transition-all duration-300 backdrop-blur-sm"
+                        <div class="qstat p-5 sm:p-6 rounded-[18px] backdrop-blur-sm"
                             style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1)">
                             <div class="font-fraunces text-4xl font-medium" style="color:#8BE9FF">105</div>
                             <div class="mt-1.5 text-[12.5px] uppercase tracking-[.06em]"
                                 style="color:rgba(255,255,255,.48)">TDS mg/L (Optimal)</div>
                         </div>
-                        <div class="qstat p-5 sm:p-6 rounded-[18px] transition-all duration-300 backdrop-blur-sm"
+                        <div class="qstat p-5 sm:p-6 rounded-[18px] backdrop-blur-sm"
                             style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1)">
                             <div class="font-fraunces text-4xl font-medium" style="color:#8BE9FF">18</div>
                             <div class="mt-1.5 text-[12.5px] uppercase tracking-[.06em]"
                                 style="color:rgba(255,255,255,.48)">Calcium mg/L</div>
                         </div>
-                        <div class="qstat p-5 sm:p-6 rounded-[18px] transition-all duration-300 backdrop-blur-sm"
+                        <div class="qstat p-5 sm:p-6 rounded-[18px] backdrop-blur-sm"
                             style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1)">
                             <div class="font-fraunces text-4xl font-medium" style="color:#8BE9FF">Zero</div>
                             <div class="mt-1.5 text-[12.5px] uppercase tracking-[.06em]"
@@ -1462,7 +1507,7 @@
                     </div>
                 </div>
                 <div class="reveal rd1 relative">
-                    <img src="img/front 1 .png" alt="VELOQUA water bottle premium" class="w-full block rounded-3xl"
+                    <img src="img/front 1 .png" alt="VELOQUA water bottle" class="w-full block rounded-3xl"
                         style="box-shadow:0 40px 80px -40px rgba(0,0,0,.6)" />
                     <div class="absolute inset-0 rounded-3xl pointer-events-none"
                         style="background:linear-gradient(160deg,rgba(139,233,255,.12),transparent 50%)"></div>
@@ -1472,72 +1517,94 @@
     </section>
 
     <!-- ===== GALLERY ===== -->
-    <section class="bg-light py-24 sm:py-32">
+    <section class="bg-light py-24 sm:py-32" id="gallery">
         <div class="max-w-[1320px] mx-auto px-5 sm:px-8 lg:px-12">
-
             <div class="text-center max-w-[640px] mx-auto mb-14 reveal">
                 <p
                     class="flex items-center justify-center gap-2.5 text-[12px] font-semibold uppercase tracking-[.22em] text-crystal mb-3">
-                    <span class="inline-block w-5 h-[1.5px] bg-crystal"></span>
-                    Product Gallery
-                </p>
-
-                <h2 class="font-fraunces text-[clamp(28px,4.2vw,46px)] font-medium leading-[1.16] mt-3">
-                    Crafted for every moment.
-                </h2>
+                    <span class="inline-block w-5 h-[1.5px] bg-crystal"></span>Product Gallery</p>
+                <h2 class="font-fraunces text-[clamp(28px,4.2vw,46px)] font-medium leading-[1.16] mt-3">Crafted for
+                    every moment.</h2>
+                <p class="mt-4 text-base text-ink/55 leading-[1.8]">Every size. Every setting. One unwavering standard
+                    of purity.</p>
             </div>
 
-            <div class="grid grid-cols-2 lg:grid-cols-3 gap-6 reveal rd1">
+            <!-- Gallery Grid — improved layout -->
+            <div class="gallery-grid reveal rd1">
 
-                <!-- Large Image -->
+                <!-- Left tall: tilted hero shot -->
                 <div
-                    class="gallery-item rounded-3xl overflow-hidden bg-white border border-slate-200 p-8 flex items-center justify-center lg:row-span-2 min-h-[520px] shadow-sm hover:shadow-xl transition-all duration-500">
-
-                    <img src="img/tilted bottle .png" alt="VELOQUA Bottle"
-                        class="max-w-full max-h-full object-contain transition duration-500 hover:scale-105">
-
+                    class="gallery-item gi-tall bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-sm flex flex-col">
+                    <div class="flex-1 flex items-center justify-center p-8"
+                        style="background:linear-gradient(145deg,#eaf4ff,#F5FAFF)">
+                        <img src="img/tilted bottle .png" alt="VELOQUA Bottle Collection"
+                            class="w-full max-h-[480px] object-contain" />
+                    </div>
+                    <div class="px-6 py-4 border-t border-slate-100">
+                        <div class="font-semibold text-ocean text-sm">Full Range Collection</div>
+                        <div class="text-[12px] text-ink/50 mt-0.5">200ml · 500ml · 1000ml</div>
+                    </div>
                 </div>
 
-                <!-- Image -->
+                <!-- Top-right: front bottle close-up -->
                 <div
-                    class="gallery-item rounded-3xl overflow-hidden bg-white border border-slate-200 p-6 flex items-center justify-center min-h-[250px] shadow-sm hover:shadow-xl transition-all duration-500">
-
-                    <img src="img/front 2 .png" alt="VELOQUA Bottle"
-                        class="max-w-full max-h-full object-contain transition duration-500 hover:scale-105">
-
+                    class="gallery-item bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-sm flex flex-col">
+                    <div class="flex-1 flex items-center justify-center p-6"
+                        style="background:linear-gradient(145deg,#daeeff,#edf6ff);min-height:220px">
+                        <img src="img/front 2 .png" alt="VELOQUA 500ml Front View"
+                            class="w-full max-h-[200px] object-contain" />
+                    </div>
+                    <div class="px-5 py-3.5 border-t border-slate-100">
+                        <div class="font-semibold text-ocean text-sm">500ml — Daily Companion</div>
+                        <div class="text-[12px] text-ink/50 mt-0.5">Most popular size</div>
+                    </div>
                 </div>
 
-                <!-- Image -->
+                <!-- Top-far-right: 500ml alternate -->
                 <div
-                    class="gallery-item rounded-3xl overflow-hidden bg-white border border-slate-200 p-6 flex items-center justify-center min-h-[250px] shadow-sm hover:shadow-xl transition-all duration-500">
-
-                    <img src="img/front 3.png" alt="VELOQUA Bottle"
-                        class="max-w-full max-h-full object-contain transition duration-500 hover:scale-105">
-
+                    class="gallery-item bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-sm flex flex-col">
+                    <div class="flex-1 flex items-center justify-center p-6"
+                        style="background:linear-gradient(145deg,#e0f0ff,#eaf6ff);min-height:220px">
+                        <img src="img/front 3.png" alt="VELOQUA 500ml" class="w-full max-h-[200px] object-contain" />
+                    </div>
+                    <div class="px-5 py-3.5 border-t border-slate-100">
+                        <div class="font-semibold text-ocean text-sm">500ml — Premium Cap</div>
+                        <div class="text-[12px] text-ink/50 mt-0.5">Tamper-evident seal</div>
+                    </div>
                 </div>
 
-                <!-- Image -->
+                <!-- Bottom-middle: UGC product -->
                 <div
-                    class="gallery-item rounded-3xl overflow-hidden bg-white border border-slate-200 p-6 flex items-center justify-center min-h-[250px] shadow-sm hover:shadow-xl transition-all duration-500">
-
-                    <img src="img/product ugc.png" alt="VELOQUA Product"
-                        class="max-w-full max-h-full object-contain transition duration-500 hover:scale-105">
-
+                    class="gallery-item bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-sm flex flex-col">
+                    <div class="flex-1 flex items-center justify-center p-6"
+                        style="background:linear-gradient(145deg,#f0f7ff,#F5FAFF);min-height:220px">
+                        <img src="img/product ugc.png" alt="VELOQUA Product in use"
+                            class="w-full max-h-[200px] object-contain" />
+                    </div>
+                    <div class="px-5 py-3.5 border-t border-slate-100">
+                        <div class="font-semibold text-ocean text-sm">Pure Every Sip</div>
+                        <div class="text-[12px] text-ink/50 mt-0.5">BIS Certified · pH 7.2</div>
+                    </div>
                 </div>
 
-                <!-- Image -->
+                <!-- Bottom-far-right: full lineup -->
                 <div
-                    class="gallery-item rounded-3xl overflow-hidden bg-white border border-slate-200 p-6 flex items-center justify-center min-h-[250px] shadow-sm hover:shadow-xl transition-all duration-500">
-
-                    <img src="img/veloqua 200,500,1000ml together.png" alt="VELOQUA Collection"
-                        class="max-w-full max-h-full object-contain transition duration-500 hover:scale-105">
-
+                    class="gallery-item bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-sm flex flex-col">
+                    <div class="flex-1 flex items-center justify-center p-6"
+                        style="background:linear-gradient(145deg,#e8f3ff,#F5FAFF);min-height:220px">
+                        <img src="img/veloqua 200,500,1000ml together.png" alt="VELOQUA Full Lineup"
+                            class="w-full max-h-[200px] object-contain" />
+                    </div>
+                    <div class="px-5 py-3.5 border-t border-slate-100">
+                        <div class="font-semibold text-ocean text-sm">Complete Lineup</div>
+                        <div class="text-[12px] text-ink/50 mt-0.5">Three sizes, one standard</div>
+                    </div>
                 </div>
 
             </div>
-
         </div>
     </section>
+
     <!-- ===== WHY CHOOSE ===== -->
     <section class="py-24 sm:py-32 relative overflow-hidden"
         style="background:linear-gradient(170deg,#fff 0%,#F5FAFF 100%)">
@@ -1547,10 +1614,9 @@
             <div class="text-center max-w-[680px] mx-auto mb-16 reveal">
                 <p
                     class="flex items-center justify-center gap-2.5 text-[12px] font-semibold uppercase tracking-[.22em] text-crystal mb-3">
-                    <span class="inline-block w-5 h-[1.5px] bg-crystal"></span>Why VELOQUA
-                </p>
-                <h2 class="font-fraunces text-[clamp(28px,4.4vw,48px)] font-medium mt-3 leading-[1.16]">Six reasons
-                    to make the switch.</h2>
+                    <span class="inline-block w-5 h-[1.5px] bg-crystal"></span>Why VELOQUA</p>
+                <h2 class="font-fraunces text-[clamp(28px,4.4vw,48px)] font-medium mt-3 leading-[1.16]">Six reasons to
+                    make the switch.</h2>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
                 <div
@@ -1562,8 +1628,8 @@
                             <path d="M12 2.5c3.5 4 6 7.4 6 11a6 6 0 1 1-12 0c0-3.6 2.5-7 6-11Z" />
                         </svg></div>
                     <h3 class="text-lg font-bold mb-3">Purity First, Always</h3>
-                    <p class="text-sm leading-[1.75] text-ink/60">Every drop passes through RO, UV, and UF
-                        filtration to remove 99.99% of contaminants while keeping natural minerals intact.</p>
+                    <p class="text-sm leading-[1.75] text-ink/60">Every drop passes through RO, UV, and UF filtration to
+                        remove 99.99% of contaminants while keeping natural minerals intact.</p>
                 </div>
                 <div
                     class="why-card relative overflow-hidden p-7 sm:p-8 rounded-[22px] border border-ink/7 bg-white reveal rd1">
@@ -1575,8 +1641,8 @@
                             <circle cx="12" cy="12" r="9" />
                         </svg></div>
                     <h3 class="text-lg font-bold mb-3">Uncompromising Quality</h3>
-                    <p class="text-sm leading-[1.75] text-ink/60">Third-party lab certifications and in-house
-                        testing on every batch ensures standards are never compromised.</p>
+                    <p class="text-sm leading-[1.75] text-ink/60">Third-party lab certifications and in-house testing on
+                        every batch ensures standards are never compromised.</p>
                 </div>
                 <div
                     class="why-card relative overflow-hidden p-7 sm:p-8 rounded-[22px] border border-ink/7 bg-white reveal rd2">
@@ -1613,8 +1679,8 @@
                             <path d="M12 6v6l4 2" />
                         </svg></div>
                     <h3 class="text-lg font-bold mb-3">Crisp, Refreshing Taste</h3>
-                    <p class="text-sm leading-[1.75] text-ink/60">Mineral-balanced water with natural pH 7.2
-                        delivers a clean, crisp taste that keeps you hydrated and refreshed.</p>
+                    <p class="text-sm leading-[1.75] text-ink/60">Mineral-balanced water with natural pH 7.2 delivers a
+                        clean, crisp taste that keeps you hydrated and refreshed.</p>
                 </div>
                 <div
                     class="why-card relative overflow-hidden p-7 sm:p-8 rounded-[22px] border border-ink/7 bg-white reveal rd5">
@@ -1645,15 +1711,15 @@
                 </div>
                 <div class="relative z-10">
                     <p class="flex items-center gap-2.5 text-[12px] font-semibold uppercase tracking-[.22em] mb-4"
-                        style="color:#8BE9FF"><span class="inline-block w-5 h-[1.5px] bg-glow"></span>Partner
-                        Program</p>
-                    <h2 class="font-fraunces text-[clamp(26px,3.8vw,42px)] font-medium leading-[1.18]">Grow with
-                        VELOQUA as a distribution partner.</h2>
-                    <p class="mt-4 text-[15.5px] leading-[1.85]" style="color:rgba(255,255,255,.68)">We're expanding
-                        our distribution network across Delhi NCR and beyond. Join us as a distributor or retailer
-                        and build a profitable, sustainable business with a trusted water brand behind you.</p>
+                        style="color:#8BE9FF"><span class="inline-block w-5 h-[1.5px] bg-glow"></span>Partner Program
+                    </p>
+                    <h2 class="font-fraunces text-[clamp(26px,3.8vw,42px)] font-medium leading-[1.18]">Grow with VELOQUA
+                        as a distribution partner.</h2>
+                    <p class="mt-4 text-[15.5px] leading-[1.85]" style="color:rgba(255,255,255,.68)">We're expanding our
+                        distribution network across Delhi NCR and beyond. Join us as a distributor or retailer and build
+                        a profitable, sustainable business with a trusted water brand behind you.</p>
                     <div class="mt-7 flex flex-wrap gap-3">
-                        <a href="https://wa.me/917042978227?text=Hi%2C%20I%20am%20interested%20in%20becoming%20a%20VELOQUA%20distributor.%20Please%20share%20details."
+                        <a href="https://wa.me/917042978227?text=Hi%20VELOQUA%20Team%2C%0A%0AI%20am%20interested%20in%20becoming%20a%20distribution%20partner%20for%20VELOQUA%20in%20my%20area.%20Please%20share%20details%20on%20the%20partnership%20program%2C%20territory%20availability%2C%20and%20pricing%20structure."
                             target="_blank"
                             class="btn-white-v inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold no-underline">Apply
                             on WhatsApp</a>
@@ -1663,93 +1729,55 @@
                     </div>
                 </div>
                 <div class="relative z-10 flex flex-col gap-3.5">
-                    <div class="relative z-10 flex flex-col gap-4">
-
-                        <div class="benefit-item flex items-center gap-4 px-6 py-5 rounded-2xl transition-all duration-300"
-                            style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12)">
-
-                            <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
-                                style="background:rgba(139,233,255,.12);border:1px solid rgba(139,233,255,.25)">
-                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="#8BE9FF" stroke-width="2.6"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 6L9 17L4 12" />
-                                </svg>
-                            </div>
-
-                            <span class="text-[15px] font-medium leading-relaxed">
-                                Exclusive Territory Rights
-                            </span>
-
-                        </div>
-
-                        <div class="benefit-item flex items-center gap-4 px-6 py-5 rounded-2xl transition-all duration-300"
-                            style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12)">
-
-                            <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
-                                style="background:rgba(139,233,255,.12);border:1px solid rgba(139,233,255,.25)">
-                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="#8BE9FF" stroke-width="2.6"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 6L9 17L4 12" />
-                                </svg>
-                            </div>
-
-                            <span class="text-[15px] font-medium leading-relaxed">
-                                Strong Brand Identity & Marketing Support
-                            </span>
-
-                        </div>
-
-                        <div class="benefit-item flex items-center gap-4 px-6 py-5 rounded-2xl transition-all duration-300"
-                            style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12)">
-
-                            <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
-                                style="background:rgba(139,233,255,.12);border:1px solid rgba(139,233,255,.25)">
-                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="#8BE9FF" stroke-width="2.6"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 6L9 17L4 12" />
-                                </svg>
-                            </div>
-
-                            <span class="text-[15px] font-medium leading-relaxed">
-                                Competitive Margins & Bulk Pricing
-                            </span>
-
-                        </div>
-
-                        <div class="benefit-item flex items-center gap-4 px-6 py-5 rounded-2xl transition-all duration-300"
-                            style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12)">
-
-                            <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
-                                style="background:rgba(139,233,255,.12);border:1px solid rgba(139,233,255,.25)">
-                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="#8BE9FF" stroke-width="2.6"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 6L9 17L4 12" />
-                                </svg>
-                            </div>
-
-                            <span class="text-[15px] font-medium leading-relaxed">
-                                Reliable Stock & Timely Supply
-                            </span>
-
-                        </div>
-
-                        <div class="benefit-item flex items-center gap-4 px-6 py-5 rounded-2xl transition-all duration-300"
-                            style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12)">
-
-                            <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
-                                style="background:rgba(139,233,255,.12);border:1px solid rgba(139,233,255,.25)">
-                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="#8BE9FF" stroke-width="2.6"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 6L9 17L4 12" />
-                                </svg>
-                            </div>
-
-                            <span class="text-[15px] font-medium leading-relaxed">
-                                Dedicated Distributor Support Team
-                            </span>
-
-                        </div>
-
+                    <div class="benefit-item flex items-center gap-4 px-6 py-5 rounded-2xl"
+                        style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12)">
+                        <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
+                            style="background:rgba(139,233,255,.12);border:1px solid rgba(139,233,255,.25)"><svg
+                                class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="#8BE9FF" stroke-width="2.6"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 6L9 17L4 12" />
+                            </svg></div><span class="text-[15px] font-medium leading-relaxed">Exclusive Territory
+                            Rights</span>
+                    </div>
+                    <div class="benefit-item flex items-center gap-4 px-6 py-5 rounded-2xl"
+                        style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12)">
+                        <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
+                            style="background:rgba(139,233,255,.12);border:1px solid rgba(139,233,255,.25)"><svg
+                                class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="#8BE9FF" stroke-width="2.6"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 6L9 17L4 12" />
+                            </svg></div><span class="text-[15px] font-medium leading-relaxed">Strong Brand Identity
+                            &amp; Marketing Support</span>
+                    </div>
+                    <div class="benefit-item flex items-center gap-4 px-6 py-5 rounded-2xl"
+                        style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12)">
+                        <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
+                            style="background:rgba(139,233,255,.12);border:1px solid rgba(139,233,255,.25)"><svg
+                                class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="#8BE9FF" stroke-width="2.6"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 6L9 17L4 12" />
+                            </svg></div><span class="text-[15px] font-medium leading-relaxed">Competitive Margins &amp;
+                            Bulk Pricing</span>
+                    </div>
+                    <div class="benefit-item flex items-center gap-4 px-6 py-5 rounded-2xl"
+                        style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12)">
+                        <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
+                            style="background:rgba(139,233,255,.12);border:1px solid rgba(139,233,255,.25)"><svg
+                                class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="#8BE9FF" stroke-width="2.6"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 6L9 17L4 12" />
+                            </svg></div><span class="text-[15px] font-medium leading-relaxed">Reliable Stock &amp;
+                            Timely Supply</span>
+                    </div>
+                    <div class="benefit-item flex items-center gap-4 px-6 py-5 rounded-2xl"
+                        style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12)">
+                        <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
+                            style="background:rgba(139,233,255,.12);border:1px solid rgba(139,233,255,.25)"><svg
+                                class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="#8BE9FF" stroke-width="2.6"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 6L9 17L4 12" />
+                            </svg></div><span class="text-[15px] font-medium leading-relaxed">Dedicated Distributor
+                            Support Team</span>
                     </div>
                 </div>
             </div>
@@ -1760,24 +1788,23 @@
     <section class="py-24 sm:py-32 relative overflow-hidden"
         style="background:linear-gradient(170deg,#08111F,#0D2346);color:#fff">
         <div class="absolute inset-0 pointer-events-none"
-            style="background:radial-gradient(ellipse 50% 60% at 85% 20%,rgba(77,168,255,.15),transparent 60%)">
-        </div>
+            style="background:radial-gradient(ellipse 50% 60% at 85% 20%,rgba(77,168,255,.15),transparent 60%)"></div>
         <div class="max-w-[1320px] mx-auto px-5 sm:px-8 lg:px-12">
             <div class="text-center max-w-[600px] mx-auto mb-14">
                 <p class="flex items-center justify-center gap-2.5 text-[12px] font-semibold uppercase tracking-[.22em] mb-4 reveal"
-                    style="color:#8BE9FF"><span class="inline-block w-5 h-[1.5px] bg-glow"></span>Customer Reviews
-                </p>
-                <h2 class="font-fraunces text-[clamp(28px,4.2vw,46px)] font-medium mt-3 reveal rd1">Loved by
-                    customers across Delhi NCR.</h2>
+                    style="color:#8BE9FF"><span class="inline-block w-5 h-[1.5px] bg-glow"></span>Customer Reviews</p>
+                <h2 class="font-fraunces text-[clamp(28px,4.2vw,46px)] font-medium mt-3 reveal rd1">Loved by customers
+                    across Delhi NCR.</h2>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
-                <div class="test-card p-7 sm:p-8 rounded-[22px] flex flex-col gap-4 transition-all duration-300 reveal"
+                <div class="test-card p-7 sm:p-8 rounded-[22px] flex flex-col gap-4 reveal"
                     style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09)">
-                    <div class="flex gap-1"><span style="color:#8BE9FF;font-size:16px">5 ★★★★★</span></div>
+                    <div class="flex gap-1"><span style="color:#8BE9FF;font-size:16px">5
+                            &#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
                     <div class="font-fraunces text-5xl leading-none opacity-55" style="color:#8BE9FF">"</div>
-                    <p class="text-[15px] leading-[1.78] flex-1" style="color:rgba(255,255,255,.8)">We've been
-                        ordering VELOQUA for our office for 6 months now. The water is consistently fresh and the
-                        delivery is always on time. Highly recommended for workplace hydration.</p>
+                    <p class="text-[15px] leading-[1.78] flex-1" style="color:rgba(255,255,255,.8)">We've been ordering
+                        VELOQUA for our office for 6 months now. The water is consistently fresh and the delivery is
+                        always on time. Highly recommended for workplace hydration.</p>
                     <div class="flex items-center gap-3 pt-3.5 border-t border-white/7">
                         <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-ocean flex-shrink-0"
                             style="background:linear-gradient(135deg,#4DA8FF,#8BE9FF)">RK</div>
@@ -1788,13 +1815,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="test-card p-7 sm:p-8 rounded-[22px] flex flex-col gap-4 transition-all duration-300 reveal rd1"
+                <div class="test-card p-7 sm:p-8 rounded-[22px] flex flex-col gap-4 reveal rd1"
                     style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09)">
-                    <div class="flex gap-1"><span style="color:#8BE9FF;font-size:16px">5 ★★★★★</span></div>
+                    <div class="flex gap-1"><span style="color:#8BE9FF;font-size:16px">5
+                            &#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
                     <div class="font-fraunces text-5xl leading-none opacity-55" style="color:#8BE9FF">"</div>
-                    <p class="text-[15px] leading-[1.78] flex-1" style="color:rgba(255,255,255,.8)">The taste is
-                        clean and crisp — you can really tell the difference. I've switched my entire family to
-                        VELOQUA. The 1000ml bottles are excellent value and the bulk pricing is unbeatable!</p>
+                    <p class="text-[15px] leading-[1.78] flex-1" style="color:rgba(255,255,255,.8)">The taste is clean
+                        and crisp — you can really tell the difference. I've switched my entire family to VELOQUA. The
+                        1000ml bottles are excellent value and the bulk pricing is unbeatable!</p>
                     <div class="flex items-center gap-3 pt-3.5 border-t border-white/7">
                         <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-ocean flex-shrink-0"
                             style="background:linear-gradient(135deg,#4DA8FF,#8BE9FF)">PS</div>
@@ -1805,37 +1833,39 @@
                         </div>
                     </div>
                 </div>
-                <div class="test-card p-7 sm:p-8 rounded-[22px] flex flex-col gap-4 transition-all duration-300 reveal rd2"
+                <div class="test-card p-7 sm:p-8 rounded-[22px] flex flex-col gap-4 reveal rd2"
                     style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09)">
-                    <div class="flex gap-1"><span style="color:#8BE9FF;font-size:16px">5 ★★★★★</span></div>
+                    <div class="flex gap-1"><span style="color:#8BE9FF;font-size:16px">5
+                            &#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
                     <div class="font-fraunces text-5xl leading-none opacity-55" style="color:#8BE9FF">"</div>
-                    <p class="text-[15px] leading-[1.78] flex-1" style="color:rgba(255,255,255,.8)">We use VELOQUA
-                        for our restaurant and the quality is outstanding. Our customers notice the difference. The
-                        200ml bottles are perfect for table service and the supply chain is flawless.</p>
+                    <p class="text-[15px] leading-[1.78] flex-1" style="color:rgba(255,255,255,.8)">We use VELOQUA for
+                        our restaurant and the quality is outstanding. Our customers notice the difference. The 200ml
+                        bottles are perfect for table service and the supply chain is flawless.</p>
                     <div class="flex items-center gap-3 pt-3.5 border-t border-white/7">
                         <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-ocean flex-shrink-0"
                             style="background:linear-gradient(135deg,#4DA8FF,#8BE9FF)">AM</div>
                         <div>
                             <div class="text-sm font-bold">Amit Malhotra</div>
-                            <div class="text-[12px] mt-0.5" style="color:rgba(255,255,255,.45)">Restaurant Owner,
-                                Lajpat Nagar</div>
+                            <div class="text-[12px] mt-0.5" style="color:rgba(255,255,255,.45)">Restaurant Owner, Lajpat
+                                Nagar</div>
                         </div>
                     </div>
                 </div>
-                <div class="test-card p-7 sm:p-8 rounded-[22px] flex flex-col gap-4 transition-all duration-300 reveal rd3"
+                <div class="test-card p-7 sm:p-8 rounded-[22px] flex flex-col gap-4 reveal rd3"
                     style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09)">
-                    <div class="flex gap-1"><span style="color:#8BE9FF;font-size:16px">5 ★★★★★</span></div>
+                    <div class="flex gap-1"><span style="color:#8BE9FF;font-size:16px">5
+                            &#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
                     <div class="font-fraunces text-5xl leading-none opacity-55" style="color:#8BE9FF">"</div>
-                    <p class="text-[15px] leading-[1.78] flex-1" style="color:rgba(255,255,255,.8)">As a
-                        distributor, VELOQUA has been an excellent brand to partner with. Strong product, consistent
-                        supply, and a team that genuinely supports your growth. Very professional.</p>
+                    <p class="text-[15px] leading-[1.78] flex-1" style="color:rgba(255,255,255,.8)">As a distributor,
+                        VELOQUA has been an excellent brand to partner with. Strong product, consistent supply, and a
+                        team that genuinely supports your growth. Very professional.</p>
                     <div class="flex items-center gap-3 pt-3.5 border-t border-white/7">
                         <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-ocean flex-shrink-0"
                             style="background:linear-gradient(135deg,#4DA8FF,#8BE9FF)">VS</div>
                         <div>
                             <div class="text-sm font-bold">Vikram Singh</div>
-                            <div class="text-[12px] mt-0.5" style="color:rgba(255,255,255,.45)">Distribution
-                                Partner, Ghaziabad</div>
+                            <div class="text-[12px] mt-0.5" style="color:rgba(255,255,255,.45)">Distribution Partner,
+                                Ghaziabad</div>
                         </div>
                     </div>
                 </div>
@@ -1850,65 +1880,61 @@
                 <div class="reveal">
                     <p
                         class="flex items-center gap-2.5 text-[12px] font-semibold uppercase tracking-[.22em] text-crystal mb-4">
-                        <span class="inline-block w-5 h-[1.5px] bg-crystal"></span>Get In Touch
-                    </p>
+                        <span class="inline-block w-5 h-[1.5px] bg-crystal"></span>Get In Touch</p>
                     <h2 class="font-fraunces text-[clamp(28px,4.6vw,50px)] font-medium leading-[1.14]">Let's stay
                         refreshed, together.</h2>
                     <p class="mt-5 text-base leading-[1.85] text-ink/60 max-w-[440px]">Whether you need regular home
-                        delivery, bulk institutional supply, or want to explore distribution partnership — our team
-                        is ready to help.</p>
+                        delivery, bulk institutional supply, or want to explore distribution partnership — our team is
+                        ready to help.</p>
                     <div class="mt-10 flex flex-col gap-5">
                         <div class="flex gap-4 items-start">
                             <div class="w-11 h-11 rounded-[14px] flex items-center justify-center flex-shrink-0"
-                                style="background:linear-gradient(150deg,rgba(77,168,255,.14),rgba(13,35,70,.06))">
-                                <svg class="w-5 h-5 stroke-ocean" viewBox="0 0 24 24" fill="none" stroke-width="1.8"
+                                style="background:linear-gradient(150deg,rgba(77,168,255,.14),rgba(13,35,70,.06))"><svg
+                                    class="w-5 h-5 stroke-ocean" viewBox="0 0 24 24" fill="none" stroke-width="1.8"
                                     stroke-linecap="round" stroke-linejoin="round">
                                     <path
                                         d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.36 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" />
-                                </svg>
-                            </div>
+                                </svg></div>
                             <div>
-                                <div class="text-[11.5px] font-bold uppercase tracking-[.1em] text-ink/60 mb-1">Call
-                                    / WhatsApp</div>
+                                <div class="text-[11.5px] font-bold uppercase tracking-[.1em] text-ink/60 mb-1">Call /
+                                    WhatsApp</div>
                                 <div class="text-[15px] font-medium"><a href="tel:+917042978227"
-                                        class="hover:text-crystal transition-colors no-underline text-ink">Garv
-                                        Gupta — +91 70429 78227</a></div>
+                                        class="hover:text-crystal transition-colors no-underline text-ink">Garv Gupta —
+                                        +91 70429 78227</a></div>
                                 <div class="text-[15px] font-medium mt-1"><a href="tel:+919999977890"
-                                        class="hover:text-crystal transition-colors no-underline text-ink">Aman —
-                                        +91 99999 77890</a></div>
+                                        class="hover:text-crystal transition-colors no-underline text-ink">Aman — +91
+                                        99999 77890</a></div>
                                 <div class="text-[15px] font-medium mt-1"><a href="tel:+919211278080"
-                                        class="hover:text-crystal transition-colors no-underline text-ink">Office —
-                                        +91 92112 78080</a></div>
+                                        class="hover:text-crystal transition-colors no-underline text-ink">Office — +91
+                                        92112 78080</a></div>
                             </div>
                         </div>
                         <div class="flex gap-4 items-start">
                             <div class="w-11 h-11 rounded-[14px] flex items-center justify-center flex-shrink-0"
-                                style="background:linear-gradient(150deg,rgba(77,168,255,.14),rgba(13,35,70,.06))">
-                                <svg class="w-5 h-5 stroke-ocean" viewBox="0 0 24 24" fill="none" stroke-width="1.8"
+                                style="background:linear-gradient(150deg,rgba(77,168,255,.14),rgba(13,35,70,.06))"><svg
+                                    class="w-5 h-5 stroke-ocean" viewBox="0 0 24 24" fill="none" stroke-width="1.8"
                                     stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 1 1 18 0Z" />
                                     <circle cx="12" cy="10" r="3" />
-                                </svg>
-                            </div>
+                                </svg></div>
                             <div>
-                                <div class="text-[11.5px] font-bold uppercase tracking-[.1em] text-ink/60 mb-1">
-                                    Office Address</div>
+                                <div class="text-[11.5px] font-bold uppercase tracking-[.1em] text-ink/60 mb-1">Office
+                                    Address</div>
                                 <div class="text-[15px] font-medium">H. No. 194/195, Balbir Nagar
                                     Extension,<br>Shahdara, Delhi — 110032</div>
                             </div>
                         </div>
                         <div class="flex gap-4 items-start">
                             <div class="w-11 h-11 rounded-[14px] flex items-center justify-center flex-shrink-0"
-                                style="background:linear-gradient(150deg,rgba(77,168,255,.14),rgba(13,35,70,.06))">
-                                <svg class="w-5 h-5 stroke-ocean" viewBox="0 0 24 24" fill="none" stroke-width="1.8"
+                                style="background:linear-gradient(150deg,rgba(77,168,255,.14),rgba(13,35,70,.06))"><svg
+                                    class="w-5 h-5 stroke-ocean" viewBox="0 0 24 24" fill="none" stroke-width="1.8"
                                     stroke-linecap="round" stroke-linejoin="round">
                                     <rect x="2" y="4" width="20" height="16" rx="2" />
                                     <path d="m22 7-10 6L2 7" />
-                                </svg>
-                            </div>
+                                </svg></div>
                             <div>
-                                <div class="text-[11.5px] font-bold uppercase tracking-[.1em] text-ink/60 mb-1">
-                                    Email</div>
+                                <div class="text-[11.5px] font-bold uppercase tracking-[.1em] text-ink/60 mb-1">Email
+                                </div>
                                 <div class="text-[15px] font-medium"><a href="mailto:hello@veloqua.in"
                                         class="hover:text-crystal transition-colors no-underline text-ink">hello@veloqua.in</a>
                                 </div>
@@ -1920,51 +1946,51 @@
                         <img src="image.png" alt="VELOQUA Business Card" class="w-full block" />
                     </div>
                 </div>
+
+                <!-- CONTACT FORM -->
                 <div class="reveal rd1 bg-white border border-ink/7 rounded-[28px] p-7 sm:p-10"
                     style="box-shadow:0 30px 70px -36px rgba(13,35,70,.2)">
                     <h3 class="font-fraunces text-2xl font-medium mb-7">Send us a message</h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="flex flex-col gap-2 mb-4"><label
-                                class="text-[12px] font-bold uppercase tracking-[.1em] text-ink/60">Your
-                                Name</label><input type="text" placeholder="Full name"
-                                class="border border-ink/10 rounded-xl px-4 py-3 text-sm bg-light focus:outline-none focus:border-crystal focus:bg-white focus:shadow-[0_0_0_3px_rgba(77,168,255,.1)] transition-all" />
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                        <div class="form-group">
+                            <label class="form-label" for="cf-name">Your Name</label>
+                            <input type="text" id="cf-name" placeholder="Full name" class="form-input" />
                         </div>
-                        <div class="flex flex-col gap-2 mb-4"><label
-                                class="text-[12px] font-bold uppercase tracking-[.1em] text-ink/60">Phone</label><input
-                                type="tel" placeholder="+91 00000 00000"
-                                class="border border-ink/10 rounded-xl px-4 py-3 text-sm bg-light focus:outline-none focus:border-crystal focus:bg-white focus:shadow-[0_0_0_3px_rgba(77,168,255,.1)] transition-all" />
+                        <div class="form-group">
+                            <label class="form-label" for="cf-phone">Phone</label>
+                            <input type="tel" id="cf-phone" placeholder="+91 00000 00000" class="form-input" />
                         </div>
                     </div>
-                    <div class="flex flex-col gap-2 mb-4"><label
-                            class="text-[12px] font-bold uppercase tracking-[.1em] text-ink/60">Inquiry
-                            Type</label><select
-                            class="border border-ink/10 rounded-xl px-4 py-3 text-sm bg-light focus:outline-none focus:border-crystal transition-all">
-                            <option>Home / Regular Order</option>
-                            <option>Bulk / Institutional Order</option>
-                            <option>Distributorship Inquiry</option>
-                            <option>Hotel / Restaurant Supply</option>
-                            <option>General Question</option>
-                        </select></div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="flex flex-col gap-2 mb-4"><label
-                                class="text-[12px] font-bold uppercase tracking-[.1em] text-ink/60">City</label><input
-                                type="text" placeholder="Your city"
-                                class="border border-ink/10 rounded-xl px-4 py-3 text-sm bg-light focus:outline-none focus:border-crystal focus:bg-white transition-all" />
+                    <div class="form-group mb-4">
+                        <label class="form-label" for="cf-type">Inquiry Type</label>
+                        <select id="cf-type" class="form-input">
+                            <option value="Home / Regular Order">Home / Regular Order</option>
+                            <option value="Bulk / Institutional Order">Bulk / Institutional Order</option>
+                            <option value="Distributorship Inquiry">Distributorship Inquiry</option>
+                            <option value="Hotel / Restaurant Supply">Hotel / Restaurant Supply</option>
+                            <option value="General Question">General Question</option>
+                        </select>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                        <div class="form-group">
+                            <label class="form-label" for="cf-city">City</label>
+                            <input type="text" id="cf-city" placeholder="Your city" class="form-input" />
                         </div>
-                        <div class="flex flex-col gap-2 mb-4"><label
-                                class="text-[12px] font-bold uppercase tracking-[.1em] text-ink/60">Required
-                                Quantity</label><input type="text" placeholder="e.g. 48 bottles/week"
-                                class="border border-ink/10 rounded-xl px-4 py-3 text-sm bg-light focus:outline-none focus:border-crystal focus:bg-white transition-all" />
+                        <div class="form-group">
+                            <label class="form-label" for="cf-qty">Required Quantity</label>
+                            <input type="text" id="cf-qty" placeholder="e.g. 48 bottles/week" class="form-input" />
                         </div>
                     </div>
-                    <div class="flex flex-col gap-2 mb-5"><label
-                            class="text-[12px] font-bold uppercase tracking-[.1em] text-ink/60">Message</label><textarea
-                            placeholder="Tell us about your requirement..."
-                            class="border border-ink/10 rounded-xl px-4 py-3 text-sm bg-light focus:outline-none focus:border-crystal focus:bg-white transition-all resize-y min-h-[100px]"></textarea>
+                    <div class="form-group mb-6">
+                        <label class="form-label" for="cf-msg">Message</label>
+                        <textarea id="cf-msg" placeholder="Tell us about your requirement..."
+                            class="form-input resize-y" style="min-height:100px"></textarea>
                     </div>
-                    <button type="button"
-                        class="btn-primary-v w-full py-4 rounded-full text-[15px] font-semibold text-white"
-                        onclick="submitForm(this)">Send Message</button>
+                    <button type="button" id="cf-submit"
+                        class="btn-primary-v w-full py-4 rounded-full text-[15px] font-semibold text-white cursor-pointer border-none"
+                        onclick="submitContactForm()">Send Message via WhatsApp</button>
+                    <p class="text-center text-[12px] text-ink/40 mt-3">Submitting will open WhatsApp with your details
+                        pre-filled.</p>
                 </div>
             </div>
         </div>
@@ -1987,9 +2013,9 @@
                         </svg>
                         <span class="font-fraunces text-lg font-semibold tracking-[.08em]">VELOQUA</span>
                     </div>
-                    <p class="text-sm leading-[1.75] max-w-[280px]" style="color:rgba(255,255,255,.45)">Pure Water.
-                        Pure Trust.<br>Bringing you the cleanest, most refreshing drinking water from the mountains
-                        to your door.</p>
+                    <p class="text-sm leading-[1.75] max-w-[280px]" style="color:rgba(255,255,255,.45)">Pure Water. Pure
+                        Trust.<br>Bringing you the cleanest, most refreshing drinking water from source to your door.
+                    </p>
                     <div class="flex gap-3 mt-5">
                         <a href="https://www.instagram.com/veloqua.waters" target="_blank" aria-label="Instagram"
                             class="w-9 h-9 rounded-full flex items-center justify-center border transition-all duration-300 hover:bg-glow hover:border-glow"
@@ -2000,16 +2026,9 @@
                                 <circle cx="12" cy="12" r="4" />
                                 <circle cx="17.5" cy="6.5" r="1" />
                             </svg></a>
-                        <a href="https://wa.me/917042978227" target="_blank" aria-label="WhatsApp Garv"
+                        <a href="https://wa.me/917042978227" target="_blank" aria-label="WhatsApp"
                             class="w-9 h-9 rounded-full flex items-center justify-center border transition-all duration-300 hover:bg-glow hover:border-glow"
-                            style="border-color:rgba(255,255,255,.14)"> <svg class="w-4 h-4 fill-emerald-400 shrink-0"
-                                viewBox="0 0 24 24">
-                                <path
-                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
-                            </svg></a>
-                        <a href="https://wa.me/919999977890" target="_blank" aria-label="WhatsApp Aman"
-                            class="w-9 h-9 rounded-full flex items-center justify-center border transition-all duration-300 hover:bg-glow hover:border-glow"
-                            style="border-color:rgba(255,255,255,.14)"> <svg class="w-4 h-4 fill-emerald-400 shrink-0"
+                            style="border-color:rgba(255,255,255,.14)"><svg class="w-4 h-4" style="fill:#25D366"
                                 viewBox="0 0 24 24">
                                 <path
                                     d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
@@ -2017,8 +2036,8 @@
                     </div>
                 </div>
                 <div>
-                    <h4 class="text-[12px] uppercase tracking-[.14em] mb-4" style="color:rgba(255,255,255,.35)">
-                        Quick Links</h4>
+                    <h4 class="text-[12px] uppercase tracking-[.14em] mb-4" style="color:rgba(255,255,255,.35)">Quick
+                        Links</h4>
                     <ul class="flex flex-col gap-3">
                         <li><a href="#products" class="text-sm hover:text-glow transition-colors no-underline"
                                 style="color:rgba(255,255,255,.62)">Products</a></li>
@@ -2036,8 +2055,8 @@
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-[12px] uppercase tracking-[.14em] mb-4" style="color:rgba(255,255,255,.35)">
-                        Products</h4>
+                    <h4 class="text-[12px] uppercase tracking-[.14em] mb-4" style="color:rgba(255,255,255,.35)">Products
+                    </h4>
                     <ul class="flex flex-col gap-3">
                         <li><a href="#products" class="text-sm hover:text-glow transition-colors no-underline"
                                 style="color:rgba(255,255,255,.62)">200ml Bottle (48/carton)</a></li>
@@ -2052,8 +2071,8 @@
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-[12px] uppercase tracking-[.14em] mb-4" style="color:rgba(255,255,255,.35)">
-                        Contact</h4>
+                    <h4 class="text-[12px] uppercase tracking-[.14em] mb-4" style="color:rgba(255,255,255,.35)">Contact
+                    </h4>
                     <ul class="flex flex-col gap-3">
                         <li><a href="tel:+917042978227" class="text-sm hover:text-glow transition-colors no-underline"
                                 style="color:rgba(255,255,255,.62)">+91 70429 78227 (Garv)</a></li>
@@ -2079,247 +2098,288 @@
 
     <!-- ===== WHATSAPP FLOAT ===== -->
     <div class="fixed bottom-6 right-6 z-[9999] flex flex-col items-end gap-3" id="waFloat">
-
-        <!-- Tooltip -->
         <div id="waTooltip"
             class="relative max-w-[250px] rounded-2xl bg-white px-4 py-3 shadow-2xl border border-slate-200 text-left">
-
-            <h4 class="text-sm font-bold text-ocean mb-1">
-                Chat with us on WhatsApp
-            </h4>
-
-            <p class="text-[13px] leading-5 text-slate-600">
-                Have questions or want to place an order? Our team is ready to help.
-            </p>
-
-            <!-- Arrow -->
+            <h4 class="text-sm font-bold text-ocean mb-1">Chat with us on WhatsApp</h4>
+            <p class="text-[13px] leading-5 text-slate-600">Have questions or want to place an order? Our team is ready
+                to help.</p>
             <span
                 class="absolute right-5 -bottom-2 w-4 h-4 bg-white rotate-45 border-r border-b border-slate-200"></span>
-
         </div>
-
-        <!-- WhatsApp Button -->
-
-        <a href="https://wa.me/919211278080?text=Hi%20VELOQUA%20Team,%20I%20would%20like%20to%20know%20more%20about%20your%20products%20or%20place%20an%20order."
+        <a href="https://wa.me/919211278080?text=Hi%20VELOQUA%20Team%2C%0A%0AI%20would%20like%20to%20know%20more%20about%20your%20products%20or%20place%20an%20order.%20Please%20get%20in%20touch."
             target="_blank" rel="noopener" aria-label="Chat on WhatsApp"
-            class="relative w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#25D366] hover:bg-[#1EBE5D] flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110">
-
-            <span class="absolute inset-0 rounded-full bg-[#25D366]/40 animate-ping"></span>
-
+            class="relative w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110"
+            style="background:#25D366">
+            <span class="absolute inset-0 rounded-full wa-ping" style="background:rgba(37,211,102,.4)"></span>
             <svg class="relative z-10 w-7 h-7 sm:w-8 sm:h-8 fill-white" viewBox="0 0 24 24">
                 <path
                     d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
             </svg>
-
         </a>
-
     </div>
 
     <script>
-        // ===== PRELOADER =====
+        /* ─── PRELOADER ─── */
         window.addEventListener('load', () => {
-            {
-                setTimeout(() => {
-                    {
-                        const pre = document.getElementById('preloader');
-                        pre.style.opacity = '0';
-                        pre.style.visibility = 'hidden';
-                        pre.style.pointerEvents = 'none';
-                    }
-                }, 2500);
-            }
+            setTimeout(() => {
+                const pre = document.getElementById('preloader');
+                pre.style.opacity = '0';
+                pre.style.visibility = 'hidden';
+                pre.style.pointerEvents = 'none';
+            }, 2500);
         });
 
-        // ===== MOBILE MENU =====
+        /* ─── MOBILE MENU ─── */
         let menuOpen = false;
         function toggleMenu() {
-            {
-                menuOpen = !menuOpen;
-                document.getElementById('mobileMenu').classList.toggle('hidden', !menuOpen);
-            }
+            menuOpen = !menuOpen;
+            document.getElementById('mobileMenu').classList.toggle('hidden', !menuOpen);
         }
         function closeMenu() {
-            {
-                menuOpen = false;
-                document.getElementById('mobileMenu').classList.add('hidden');
-            }
+            menuOpen = false;
+            document.getElementById('mobileMenu').classList.add('hidden');
         }
 
-        // ===== NAV SCROLL =====
+        /* ─── NAV SCROLL ─── */
         const navInner = document.getElementById('navInner');
         window.addEventListener('scroll', () => {
-            {
-                if (window.scrollY > 50) navInner.classList.add('nav-scrolled');
-                else navInner.classList.remove('nav-scrolled');
-            }
-        });
+            if (window.scrollY > 50) navInner.classList.add('nav-scrolled');
+            else navInner.classList.remove('nav-scrolled');
+        }, { passive: true });
 
-        // ===== REVEAL ON SCROLL =====
+        /* ─── REVEAL ON SCROLL ─── */
         const revEls = document.querySelectorAll('.reveal:not(.in)');
         const obs = new IntersectionObserver((entries) => {
-            {
-                entries.forEach(e => { { if (e.isIntersecting) { { e.target.classList.add('in'); obs.unobserve(e.target); } } } });
-            }
-        }, { threshold: 0.1 });
+            entries.forEach(e => {
+                if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+            });
+        }, { threshold: 0.08 });
         revEls.forEach(el => obs.observe(el));
 
-        // ===== WHATSAPP TOOLTIP =====
+        /* ─── WHATSAPP TOOLTIP ─── */
         const waTooltip = document.getElementById('waTooltip');
-        let waTimeout = setTimeout(() => { { if (waTooltip) waTooltip.style.display = 'none'; } }, 6000);
-        document.querySelector('.wa-pulse').addEventListener('mouseenter', () => {
-            {
-                if (waTooltip) { { waTooltip.style.display = 'block'; clearTimeout(waTimeout); } }
-            }
-        });
+        let waTimeout = setTimeout(() => { if (waTooltip) waTooltip.style.display = 'none'; }, 6000);
 
-        // ===== HERO CANVAS =====
+        /* ─── HERO CANVAS ─── */
         const canvas = document.getElementById('heroCanvas');
         const ctx = canvas.getContext('2d');
         let W, H;
-        function resize() { { W = canvas.width = canvas.parentElement.offsetWidth; H = canvas.height = canvas.parentElement.offsetHeight; } }
-        resize();
-        window.addEventListener('resize', resize);
-        const parts = Array.from({ length: 55 }, () => ({ x: Math.random(), y: Math.random(), r: Math.random() * 2.2 + 0.4, vy: Math.random() * 0.00018 + 0.00004, vx: (Math.random() - .5) * 0.0002, o: Math.random() * .32 + .06 }));
+        function resizeCanvas() {
+            W = canvas.width = canvas.parentElement.offsetWidth;
+            H = canvas.height = canvas.parentElement.offsetHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas, { passive: true });
+
+        const parts = Array.from({ length: 55 }, () => ({
+            x: Math.random(), y: Math.random(),
+            r: Math.random() * 2.2 + 0.4,
+            vy: Math.random() * 0.00018 + 0.00004,
+            vx: (Math.random() - .5) * 0.0002,
+            o: Math.random() * .32 + .06
+        }));
         const waves = [
             { amp: 22, freq: 0.0022, spd: 0.00042, yp: 0.8, c: 'rgba(77,168,255,0.09)' },
             { amp: 14, freq: 0.0034, spd: 0.0008, yp: 0.87, c: 'rgba(139,233,255,0.07)' },
             { amp: 30, freq: 0.0015, spd: 0.00028, yp: 0.74, c: 'rgba(13,35,70,0.6)' },
         ];
         function drawWave(t, w) {
-            {
-                ctx.beginPath(); ctx.moveTo(0, H);
-                for (let x = 0; x <= W; x += 5) ctx.lineTo(x, H * w.yp + Math.sin(x * w.freq + t * w.spd) * w.amp);
-                ctx.lineTo(W, H); ctx.closePath(); ctx.fillStyle = w.c; ctx.fill();
-            }
+            ctx.beginPath(); ctx.moveTo(0, H);
+            for (let x = 0; x <= W; x += 5) ctx.lineTo(x, H * w.yp + Math.sin(x * w.freq + t * w.spd) * w.amp);
+            ctx.lineTo(W, H); ctx.closePath(); ctx.fillStyle = w.c; ctx.fill();
         }
         function raf(t) {
-            {
-                ctx.clearRect(0, 0, W, H);
-                const g = ctx.createRadialGradient(W * .75, H * .35, 0, W * .75, H * .35, W * .55);
-                g.addColorStop(0, 'rgba(139,233,255,0.08)'); g.addColorStop(1, 'rgba(139,233,255,0)');
-                ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
-                parts.forEach(p => {
-                    {
-                        p.y -= p.vy; p.x += p.vx;
-                        if (p.y < -0.02) { { p.y = 1.02; p.x = Math.random(); } }
-                        if (p.x < -0.02) p.x = 1.02; if (p.x > 1.02) p.x = -0.02;
-                        ctx.beginPath(); ctx.arc(p.x * W, p.y * H, p.r, 0, Math.PI * 2); ctx.fillStyle = `rgba(139,233,255,${p.o})`; ctx.fill();
-                    }
-                });
-                waves.forEach(w => drawWave(t, w));
-                requestAnimationFrame(raf);
-            }
+            ctx.clearRect(0, 0, W, H);
+            const g = ctx.createRadialGradient(W * .75, H * .35, 0, W * .75, H * .35, W * .55);
+            g.addColorStop(0, 'rgba(139,233,255,0.08)'); g.addColorStop(1, 'rgba(139,233,255,0)');
+            ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+            parts.forEach(p => {
+                p.y -= p.vy; p.x += p.vx;
+                if (p.y < -0.02) { p.y = 1.02; p.x = Math.random(); }
+                if (p.x < -0.02) p.x = 1.02;
+                if (p.x > 1.02) p.x = -0.02;
+                ctx.beginPath(); ctx.arc(p.x * W, p.y * H, p.r, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(139,233,255,${p.o})`; ctx.fill();
+            });
+            waves.forEach(w => drawWave(t, w));
+            requestAnimationFrame(raf);
         }
         requestAnimationFrame(raf);
 
-        // ===== HERO MOUSE PARALLAX =====
-        const heroVis = document.querySelector('.hero-visual-mobile');
-        const heroBot = document.getElementById('heroBottle');
-        if (heroVis && heroBot) {
-            {
-                heroVis.addEventListener('mousemove', e => {
-                    {
-                        const r = heroVis.getBoundingClientRect();
-                        const x = (e.clientX - r.left) / r.width - .5;
-                        const y = (e.clientY - r.top) / r.height - .5;
-                        heroBot.style.transform = `rotateY(${x * 20}deg) rotateX(${- y * 14}deg)`;
-                    }
-                });
-                heroVis.addEventListener('mouseleave', () => { { heroBot.style.transform = ''; } });
-            }
-        }
-
-        // ===== PRODUCT CONFIG =====
+        /* ─── PRODUCT CONFIG ─── */
         const PRODUCTS = {
-            q1: { size: '200ml', name: 'Event & Travel Bottle', retail: 12, bulk_price: 8, unit: 'bottle', carton: 48, savings: '33%', sizes_note: '48 pieces per carton' },
-            q2: { size: '500ml', name: 'Daily Companion Bottle', retail: 20, bulk_price: 14, unit: 'bottle', carton: 24, savings: '30%', sizes_note: '24 pieces per carton' },
-            q3: { size: '1000ml', name: 'Family & Office Bottle', retail: 30, bulk_price: 21, unit: 'bottle', carton: 12, savings: '30%', sizes_note: '12 pieces per carton' },
+            q1: { size: '200ml', name: 'Event & Travel Bottle', retail: 12, bulk_price: 8, carton: 48, savings: '33%' },
+            q2: { size: '500ml', name: 'Daily Companion Bottle', retail: 20, bulk_price: 14, carton: 24, savings: '30%' },
+            q3: { size: '1000ml', name: 'Family & Office Bottle', retail: 30, bulk_price: 21, carton: 12, savings: '30%' },
         };
 
+        const CARTONS = {
+            cq1: { size: '200ml', name: 'Event & Travel Bottle', retail_per: 12, bulk_per: 8, pcs: 48 },
+            cq2: { size: '500ml', name: 'Daily Companion Bottle', retail_per: 20, bulk_per: 14, pcs: 24 },
+            cq3: { size: '1000ml', name: 'Family & Office Bottle', retail_per: 30, bulk_per: 21, pcs: 12 },
+            cq4: { size: '1000ml Premium', name: 'Premium Family & Office Bottle', retail_per: 35, bulk_per: 25, pcs: 12 },
+        };
+
+        /* ─── BOTTLE QTY FUNCTIONS ─── */
         function changeQty(id, delta) {
-            {
-                const inp = document.getElementById(id);
-                const step = 6;
-                let val = parseInt(inp.value) || 6;
-                val = Math.max(6, Math.round((val + delta) / step) * step);
-                inp.value = val;
-                updateProduct(id, val);
-            }
+            const inp = document.getElementById(id);
+            let val = Math.max(6, Math.round(((parseInt(inp.value) || 6) + delta) / 6) * 6);
+            inp.value = val;
+            updateProduct(id, val);
         }
-
-        function checkDiscount(id, discId, pillId) {
-            {
-                const val = parseInt(document.getElementById(id).value) || 6;
-                updateProduct(id, val);
-            }
+        function onQtyInput(id) {
+            const inp = document.getElementById(id);
+            const raw = parseInt(inp.value) || 6;
+            updateProduct(id, raw);
         }
-
         function updateProduct(id, val) {
-            {
-                const prod = PRODUCTS[id];
-                const pill = document.getElementById('disc' + id.replace('q', ''));
-                const dtxt = document.getElementById('d' + id.replace('q', ''));
-                const waId = 'wa' + id.replace('q', '');
-                const waBtn = document.getElementById(waId);
+            const prod = PRODUCTS[id];
+            const num = id.replace('q', '');
+            const pill = document.getElementById('disc' + num);
+            const dtxt = document.getElementById('d' + num);
+            const waBtn = document.getElementById('wa' + num);
 
-                // Calculate discount and pricing
-                let discPct = 0;
-                let discLabel = '';
-                if (val >= 40) { { discPct = 40; discLabel = `🎉 EXTRA 40% OFF + FREE DELIVERY on ${{ val }} ${prod.unit}s!`; } }
-                else if (val >= 20) { { discPct = 40; discLabel = `✅ 40% Bulk Discount on ${{ val }} ${prod.unit}s!`; } }
+            // Enforce minimum
+            if (val < 1) val = 6;
 
-                if (discLabel && pill) { { pill.classList.add('show'); if (dtxt) dtxt.textContent = discLabel; } }
-                else if (pill) { { pill.classList.remove('show'); } }
+            // Discount logic
+            let discPct = 0, discLabel = '';
+            if (val >= 40) { discPct = 40; discLabel = '40% bulk discount + FREE delivery applied on ' + val + ' bottles'; }
+            else if (val >= 20) { discPct = 40; discLabel = '40% bulk discount applied on ' + val + ' bottles'; }
 
-                // Calculate total & per unit
-                const pricePerUnit = discPct >= 40 ? Math.round(prod.bulk_price * 0.6) : prod.bulk_price;
-                const total = val * pricePerUnit;
-                const discountAmt = val * prod.retail - total;
+            if (discLabel && pill) { pill.classList.add('show'); if (dtxt) dtxt.textContent = discLabel; }
+            else if (pill) { pill.classList.remove('show'); }
 
-                // Build professional WhatsApp message
-                if (waBtn) {
-                    {
-                        const msg = encodeURIComponent([
-                            `🌊 *VELOQUA Drinking Water — Order Request*`,
-                            `━━━━━━━━━━━━━━━━━━`,
-                            `📦 *Product:* ${prod.size} ${prod.name}`,
-                            `📍 *Packaging:* ${prod.sizes_note}`,
-                            ``,
-                            `🔢 *Quantity Requested:* ${{ val }} ${prod.unit}s`,
-                            ``,
-                            `💰 *Pricing Breakdown:*`,
-                            `   • MRP: ₹${prod.retail}/${prod.unit}`,
-                            `   • Bulk Price: ₹${prod.bulk_price}/${prod.unit}`,
-                            discPct ? `   • 🎯 Discount Applied: ${discPct}%` : ``,
-                            `   • Your Price: ₹${pricePerUnit}/${prod.unit}`,
-                            `   • *Estimated Total: ₹${total.toLocaleString()}*`,
-                            discPct ? `   • 🎁 You Save: ₹${discountAmt.toLocaleString()}` : ``,
-                            ``,
-                            `📌 *Bulk Deals Available:*`,
-                            `   • 20+ units → 40% OFF`,
-                            `   • 40+ units → 40% OFF + FREE Delivery`,
-                            ``,
-                            `Please confirm availability and delivery timeline.`,
-                            `━━━━━━━━━━━━━━━━━━`,
-                            `Thank you! 🙏`
-                        ].filter(l => l !== undefined).join('%0A'));
-                        waBtn.href = `https://wa.me/917042978227?text=${msg}`;
-                    }
-                }
+            const pricePerUnit = discPct >= 40 ? Math.round(prod.bulk_price * 0.6) : prod.bulk_price;
+            const total = val * pricePerUnit;
+            const saving = val * prod.retail - total;
+
+            // Build clean WhatsApp message — no emojis
+            if (waBtn) {
+                const lines = [
+                    'VELOQUA Drinking Water - Order Request',
+                    '---',
+                    'Product: ' + prod.size + ' ' + prod.name,
+                    'Packaging: ' + prod.carton + ' pieces per carton',
+                    '',
+                    'Quantity Requested: ' + val + ' bottles',
+                    '',
+                    'Pricing Details:',
+                    '  MRP: Rs.' + prod.retail + ' per bottle',
+                    '  Bulk Price: Rs.' + prod.bulk_price + ' per bottle',
+                    discPct ? '  Discount Applied: ' + discPct + '%' : '',
+                    '  Price Per Bottle: Rs.' + pricePerUnit,
+                    '  Estimated Total: Rs.' + total.toLocaleString('en-IN'),
+                    discPct ? '  Total Saving: Rs.' + saving.toLocaleString('en-IN') : '',
+                    '',
+                    'Bulk Offer:',
+                    '  20 or more bottles - 40% off',
+                    '  40 or more bottles - 40% off + free delivery',
+                    '',
+                    'Please confirm availability and delivery details.',
+                    '---',
+                    'Thank you'
+                ].filter(l => l !== null && l !== undefined);
+
+                const msg = encodeURIComponent(lines.join('\n'));
+                waBtn.href = 'https://wa.me/917042978227?text=' + msg;
             }
         }
 
-        // Initialize all products
+        /* ─── CARTON QTY FUNCTIONS ─── */
+        function changeCartonQty(id, delta) {
+            const inp = document.getElementById(id);
+            let val = Math.max(1, (parseInt(inp.value) || 1) + delta);
+            inp.value = val;
+            updateCarton(id, val);
+        }
+        function onCartonInput(id) {
+            const inp = document.getElementById(id);
+            const raw = Math.max(1, parseInt(inp.value) || 1);
+            updateCarton(id, raw);
+        }
+        function updateCarton(id, val) {
+            const c = CARTONS[id];
+            const totalBottles = val * c.pcs;
+            const totalPrice = val * c.pcs * c.bulk_per;
+            const totalSaving = val * c.pcs * (c.retail_per - c.bulk_per);
+            const waNum = id.replace('cq', 'cwa');
+            const waBtn = document.getElementById(waNum);
+            const totalEl = document.getElementById(id + '-total');
+
+            if (totalEl) totalEl.textContent = '= ' + totalBottles + ' bottles';
+
+            if (waBtn) {
+                const lines = [
+                    'VELOQUA Drinking Water - Carton Order Request',
+                    '---',
+                    'Product: ' + c.size + ' ' + c.name,
+                    'Carton Size: ' + c.pcs + ' bottles per carton',
+                    '',
+                    'Number of Cartons: ' + val,
+                    'Total Bottles: ' + totalBottles,
+                    '',
+                    'Pricing Details:',
+                    '  Retail Price: Rs.' + c.retail_per + ' per bottle',
+                    '  Bulk Price: Rs.' + c.bulk_per + ' per bottle',
+                    '  Total Amount: Rs.' + totalPrice.toLocaleString('en-IN'),
+                    '  Total Saving: Rs.' + totalSaving.toLocaleString('en-IN'),
+                    '',
+                    'Please confirm availability, delivery address, and timeline.',
+                    '---',
+                    'Thank you'
+                ];
+                waBtn.href = 'https://wa.me/917042978227?text=' + encodeURIComponent(lines.join('\n'));
+            }
+        }
+
+        /* ─── CONTACT FORM → WHATSAPP ─── */
+        function submitContactForm() {
+            const name = (document.getElementById('cf-name').value || '').trim();
+            const phone = (document.getElementById('cf-phone').value || '').trim();
+            const type = (document.getElementById('cf-type').value || '').trim();
+            const city = (document.getElementById('cf-city').value || '').trim();
+            const qty = (document.getElementById('cf-qty').value || '').trim();
+            const msg = (document.getElementById('cf-msg').value || '').trim();
+
+            if (!name || !phone) {
+                alert('Please fill in your name and phone number before submitting.');
+                return;
+            }
+
+            const lines = [
+                'VELOQUA - New Inquiry from Website',
+                '---',
+                'Name: ' + name,
+                'Phone: ' + phone,
+                'Inquiry Type: ' + type,
+                city ? 'City: ' + city : '',
+                qty ? 'Required Quantity: ' + qty : '',
+                msg ? '' : '',
+                msg ? 'Message:' : '',
+                msg ? msg : '',
+                '---',
+                'Sent via veloqua.in contact form'
+            ].filter(l => l !== null && l !== undefined);
+
+            const waMsg = encodeURIComponent(lines.join('\n'));
+            const waUrl = 'https://wa.me/919211278080?text=' + waMsg;
+
+            window.open(waUrl, '_blank');
+
+            // Visual feedback
+            const btn = document.getElementById('cf-submit');
+            btn.textContent = 'Opening WhatsApp...';
+            btn.style.background = 'linear-gradient(135deg,#25D366,#128C7E)';
+            setTimeout(() => {
+                btn.textContent = 'Send Message via WhatsApp';
+                btn.style.background = '';
+            }, 3000);
+        }
+
+        /* ─── INIT ALL QTY CONTROLS ─── */
         ['q1', 'q2', 'q3'].forEach(id => updateProduct(id, 6));
-
-        // ===== FORM SUBMIT =====
-        function submitForm(btn) {
-            {
-                btn.textContent = '✓ Message Sent!';
-                btn.style.background = 'linear-gradient(135deg,#25D366,#128C7E)';
-                btn.disabled = true;
-            }
-        }
+        ['cq1', 'cq2', 'cq3', 'cq4'].forEach(id => updateCarton(id, 1));
     </script>
 </body>
 
