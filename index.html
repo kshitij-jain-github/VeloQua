@@ -154,6 +154,11 @@
             background: #0D2346 !important;
         }
 
+        .nav-scrolled .nav-ig-icon {
+            color: #0D2346 !important;
+            border-color: rgba(13, 35, 70, .2) !important;
+        }
+
         /* ─── CANVAS ─── */
         #heroCanvas {
             position: absolute;
@@ -596,6 +601,38 @@
             gap: 8px;
             margin-top: 12px;
         }
+
+        /* ─── HERO STATS ─── */
+        .hero-stat {
+            transition: all .3s cubic-bezier(.22, .61, .36, 1);
+        }
+
+        .hero-stat:hover {
+            background: rgba(255, 255, 255, .1);
+            transform: translateY(-3px);
+        }
+
+        /* ─── CART BAR ─── */
+        #cartBar {
+            transition: transform .4s cubic-bezier(.22, .61, .36, 1), opacity .4s;
+        }
+
+        #cartBar.hidden-bar {
+            transform: translateY(120%);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .cart-line-item {
+            transition: all .25s;
+        }
+
+        /* ─── IG GRADIENT ICON HOVER ─── */
+        .ig-hover:hover {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            border-color: transparent !important;
+            color: #fff !important;
+        }
     </style>
 </head>
 
@@ -653,17 +690,30 @@
                 <a href="#about"
                     class="nav-link text-white/85 text-sm font-medium hover:text-glow transition-colors duration-300 no-underline">About</a>
                 <a href="#quality"
-                    class="nav-link text-white/85 text-sm font-medium hover:text-glow transition-colors duration-300 no-underline">Quality</a>
+                    class="nav-link text-white/85 text-sm font-medium hover:text-glow transition-colors duration-300 no-underline">Process</a>
                 <a href="#distribute"
-                    class="nav-link text-white/85 text-sm font-medium hover:text-glow transition-colors duration-300 no-underline">Distributors</a>
+                    class="nav-link text-white/85 text-sm font-medium hover:text-glow transition-colors duration-300 no-underline">Distributorship</a>
                 <a href="#contact"
                     class="nav-link text-white/85 text-sm font-medium hover:text-glow transition-colors duration-300 no-underline">Contact</a>
+                <a href="https://www.instagram.com/veloqua.waters" target="_blank"
+                    class="nav-link text-white/85 text-sm font-medium hover:text-glow transition-colors duration-300 no-underline">Instagram</a>
             </div>
             <div class="flex items-center gap-2 sm:gap-3">
+                <a href="https://www.instagram.com/veloqua.waters" target="_blank" aria-label="Instagram"
+                    class="nav-ig-icon hidden sm:inline-flex items-center justify-center w-10 h-10 rounded-full text-white border border-white/30 hover:bg-white/12 transition-all duration-300">
+                    <svg class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" />
+                        <circle cx="12" cy="12" r="4" />
+                        <circle cx="17.5" cy="6.5" r="1" />
+                    </svg>
+                </a>
                 <a href="#distribute"
                     class="btn-ghost-nav hidden sm:inline-flex items-center px-4 py-2.5 rounded-full text-[13px] font-semibold text-white border border-white/30 hover:bg-white/12 transition-all duration-300 no-underline">Partner
                     With Us</a>
-                <a href="#products"
+                <a id="navOrderBtn"
+                    href="https://wa.me/919211278080?text=Hi%20VELOQUA%20Team%2C%0A%0AI%20would%20like%20to%20place%20an%20order.%20Please%20share%20details%20on%20products%2C%20pricing%2C%20and%20availability."
+                    target="_blank"
                     class="btn-order-nav inline-flex items-center px-4 sm:px-5 py-2.5 rounded-full text-[13px] font-semibold text-white bg-ocean hover:bg-crystal transition-all duration-300 no-underline">Order
                     Now</a>
                 <button id="mobileMenuBtn"
@@ -683,16 +733,28 @@
                 <a href="#about" class="text-ink text-sm font-medium py-2 border-b border-ink/5 no-underline"
                     onclick="closeMenu()">About</a>
                 <a href="#quality" class="text-ink text-sm font-medium py-2 border-b border-ink/5 no-underline"
-                    onclick="closeMenu()">Quality</a>
+                    onclick="closeMenu()">Process</a>
                 <a href="#distribute" class="text-ink text-sm font-medium py-2 border-b border-ink/5 no-underline"
-                    onclick="closeMenu()">Distributors</a>
-                <a href="#contact" class="text-ink text-sm font-medium py-2 no-underline"
+                    onclick="closeMenu()">Distributorship</a>
+                <a href="#contact" class="text-ink text-sm font-medium py-2 border-b border-ink/5 no-underline"
                     onclick="closeMenu()">Contact</a>
+                <a href="https://www.instagram.com/veloqua.waters" target="_blank"
+                    class="text-ink text-sm font-medium py-2 no-underline flex items-center gap-2"
+                    onclick="closeMenu()">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" />
+                        <circle cx="12" cy="12" r="4" />
+                        <circle cx="17.5" cy="6.5" r="1" />
+                    </svg>
+                    Instagram
+                </a>
                 <div class="flex gap-3 mt-2">
                     <a href="#distribute"
                         class="flex-1 text-center px-4 py-2.5 rounded-full text-[13px] font-semibold text-ocean border border-ocean/20 no-underline"
                         onclick="closeMenu()">Partner With Us</a>
-                    <a href="#products"
+                    <a href="https://wa.me/919211278080?text=Hi%20VELOQUA%20Team%2C%0A%0AI%20would%20like%20to%20place%20an%20order.%20Please%20share%20details%20on%20products%2C%20pricing%2C%20and%20availability."
+                        target="_blank"
                         class="flex-1 text-center px-4 py-2.5 rounded-full text-[13px] font-semibold text-white bg-ocean no-underline"
                         onclick="closeMenu()">Order Now</a>
                 </div>
@@ -716,12 +778,15 @@
                     </p>
                     <h1
                         class="font-fraunces text-[clamp(38px,7vw,88px)] leading-[1.04] text-white font-medium tracking-[-0.015em]">
-                        Drink Pure.<br>Live <span style="color:#8BE9FF">Refreshed.</span>
+                        Drink Pure.<br>Live <span style="color:#8BE9FF">Fresh.</span>
                     </h1>
                     <p class="mt-6 text-[clamp(15px,2vw,17px)] leading-[1.8] text-white/80 max-w-[520px]">
                         Every bottle of VELOQUA is crafted from naturally sourced water, purified through advanced
                         multi-stage filtration and sealed using world-class hygienic standards to deliver refreshing
                         purity in every sip.
+                    </p>
+                    <p class="mt-3 text-[clamp(13px,1.6vw,15px)] font-extrabold uppercase tracking-[.08em] text-glow">
+                        Your Thirst. Our Responsibility.
                     </p>
                     <div class="mt-8 flex flex-wrap gap-4">
                         <a href="#products"
@@ -734,16 +799,43 @@
                     <div class="mt-10 flex flex-wrap gap-3">
                         <div
                             class="flex items-center gap-2 px-4 py-3 rounded-full bg-white/10 border border-white/10 backdrop-blur-lg text-white text-sm">
-                            Natural Source</div>
+                            Natural Sourced</div>
                         <div
                             class="flex items-center gap-2 px-4 py-3 rounded-full bg-white/10 border border-white/10 backdrop-blur-lg text-white text-sm">
-                            Quality Tested</div>
+                            Tested Quality</div>
                         <div
                             class="flex items-center gap-2 px-4 py-3 rounded-full bg-white/10 border border-white/10 backdrop-blur-lg text-white text-sm">
                             pH 7.2 Balanced</div>
                         <div
                             class="flex items-center gap-2 px-4 py-3 rounded-full bg-white/10 border border-white/10 backdrop-blur-lg text-white text-sm">
-                            BIS Certified</div>
+                            Fssai Certified</div>
+                    </div>
+
+                    <!-- ─── HERO STATS / SOCIAL PROOF ─── -->
+                    <div class="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-3">
+                        <div
+                            class="hero-stat text-center px-3 py-4 rounded-2xl bg-white/8 border border-white/12 backdrop-blur-lg">
+                            <div class="font-fraunces text-2xl sm:text-3xl text-glow font-medium">500+</div>
+                            <div class="text-[10.5px] uppercase tracking-[.06em] text-white/55 mt-1">Happy Clients</div>
+                        </div>
+                        <div
+                            class="hero-stat text-center px-3 py-4 rounded-2xl bg-white/8 border border-white/12 backdrop-blur-lg">
+                            <div class="font-fraunces text-2xl sm:text-3xl text-glow font-medium">10K+</div>
+                            <div class="text-[10.5px] uppercase tracking-[.06em] text-white/55 mt-1">Orders Delivered
+                            </div>
+                        </div>
+                        <div
+                            class="hero-stat text-center px-3 py-4 rounded-2xl bg-white/8 border border-white/12 backdrop-blur-lg">
+                            <div class="font-fraunces text-2xl sm:text-3xl text-glow font-medium">8</div>
+                            <div class="text-[10.5px] uppercase tracking-[.06em] text-white/55 mt-1">Product Variants
+                            </div>
+                        </div>
+                        <div
+                            class="hero-stat text-center px-3 py-4 rounded-2xl bg-white/8 border border-white/12 backdrop-blur-lg">
+                            <div class="font-fraunces text-2xl sm:text-3xl text-glow font-medium">100%</div>
+                            <div class="text-[10.5px] uppercase tracking-[.06em] text-white/55 mt-1">Quality Assured
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="order-2 flex justify-center lg:justify-end">
@@ -791,15 +883,15 @@
             </div>
             <div
                 class="flex items-center gap-3.5 px-8 whitespace-nowrap text-[13px] font-semibold uppercase tracking-[.06em] text-white">
-                <div class="w-[5px] h-[5px] rounded-full bg-glow flex-shrink-0"></div>BIS Quality Standards
+                <div class="w-[5px] h-[5px] rounded-full bg-glow flex-shrink-0"></div>FSSAI Quality Standards
             </div>
             <div
                 class="flex items-center gap-3.5 px-8 whitespace-nowrap text-[13px] font-semibold uppercase tracking-[.06em] text-white">
-                <div class="w-[5px] h-[5px] rounded-full bg-glow flex-shrink-0"></div>3 Product Variants Available
+                <div class="w-[5px] h-[5px] rounded-full bg-glow flex-shrink-0"></div>8 Product Variants Available
             </div>
             <div
                 class="flex items-center gap-3.5 px-8 whitespace-nowrap text-[13px] font-semibold uppercase tracking-[.06em] text-white">
-                <div class="w-[5px] h-[5px] rounded-full bg-glow flex-shrink-0"></div>Bulk Orders Welcome
+                <div class="w-[5px] h-[5px] rounded-full bg-glow flex-shrink-0"></div>Bulk Orders Available
             </div>
             <!-- Duplicate for seamless loop -->
             <div
@@ -824,15 +916,15 @@
             </div>
             <div
                 class="flex items-center gap-3.5 px-8 whitespace-nowrap text-[13px] font-semibold uppercase tracking-[.06em] text-white">
-                <div class="w-[5px] h-[5px] rounded-full bg-glow flex-shrink-0"></div>BIS Quality Standards
+                <div class="w-[5px] h-[5px] rounded-full bg-glow flex-shrink-0"></div>FSSAI Quality Standards
             </div>
             <div
                 class="flex items-center gap-3.5 px-8 whitespace-nowrap text-[13px] font-semibold uppercase tracking-[.06em] text-white">
-                <div class="w-[5px] h-[5px] rounded-full bg-glow flex-shrink-0"></div>3 Product Variants Available
+                <div class="w-[5px] h-[5px] rounded-full bg-glow flex-shrink-0"></div>8 Product Variants Available
             </div>
             <div
                 class="flex items-center gap-3.5 px-8 whitespace-nowrap text-[13px] font-semibold uppercase tracking-[.06em] text-white">
-                <div class="w-[5px] h-[5px] rounded-full bg-glow flex-shrink-0"></div>Bulk Orders Welcome
+                <div class="w-[5px] h-[5px] rounded-full bg-glow flex-shrink-0"></div>Bulk Orders Available
             </div>
         </div>
     </div>
@@ -858,7 +950,7 @@
                                 class="font-fraunces text-xl text-glow font-medium">100%</span><span
                                 class="text-[11px] text-white/50 uppercase tracking-[.08em]">Quality Tested</span></div>
                         <div class="flex flex-col gap-1"><span
-                                class="font-fraunces text-xl text-glow font-medium">3</span><span
+                                class="font-fraunces text-xl text-glow font-medium">08</span><span
                                 class="text-[11px] text-white/50 uppercase tracking-[.08em]">Variants</span></div>
                     </div>
                 </div>
@@ -868,11 +960,11 @@
                         <span class="inline-block w-5 h-[1.5px] bg-crystal"></span>Our Commitment
                     </p>
                     <h2 class="font-fraunces text-[clamp(30px,4.2vw,48px)] font-medium leading-[1.16]">Hydration you can
-                        trust, every single day.</h2>
+                        trust, every single day. Your go to safest option.</h2>
                     <p class="mt-5 text-base leading-[1.85] text-ink/60">VELOQUA sources water from naturally protected
                         environments and processes it through advanced purification technology to deliver consistent
-                        purity. We offer three carefully crafted bottle sizes — 200ml, 500ml, and 1000ml — each packed
-                        with natural minerals and sealed with BIS-certified standards.</p>
+                        purity. We offer eight thoughtfully crafted formats — from 200ml to 1000ml Premium — each
+                        packed with natural minerals and sealed with FSSAI-certified standards.</p>
                     <p class="mt-3.5 text-base leading-[1.85] text-ink/60">From humble beginnings in Delhi to becoming a
                         trusted hydration brand, we bring pure water to homes, offices, hotels, and institutions across
                         the region.</p>
@@ -950,59 +1042,59 @@
                 </p>
                 <h2 class="font-fraunces text-[clamp(30px,4.6vw,50px)] font-medium leading-[1.15] mt-3">Choose your
                     perfect hydration size.</h2>
-                <p class="mt-4 text-base text-ink/60 leading-[1.8]">Three thoughtfully crafted sizes. All featuring the
-                    same premium quality and pH-balanced water. Available in cartons with automatic bulk discounts.</p>
+                <p class="mt-4 text-base text-ink/60 leading-[1.8]">Four bottle sizes, each with straightforward direct
+                    pricing — order by the piece (minimum 12, in multiples of 12) or by the carton. Add multiple
+                    products to your cart and check out together on WhatsApp.</p>
             </div>
 
-            <!-- 3 Product Cards -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7">
+            <!-- 4 Product Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-7">
 
                 <!-- 200ml -->
                 <div class="prod-card bg-white rounded-2xl border border-ink/7 overflow-hidden flex flex-col reveal">
                     <div class="card-img relative overflow-hidden flex items-center justify-center p-6"
-                        style="background:linear-gradient(145deg,#eaf3ff,#F5FAFF);height:280px">
+                        style="background:linear-gradient(145deg,#eaf3ff,#F5FAFF);height:240px">
                         <span
                             class="absolute top-3.5 left-3.5 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-[.06em] text-white"
                             style="background:linear-gradient(135deg,#2a7ff5,#00c6fb)">Event Size</span>
                         <img src="img/veloqua 200 ml.png" alt="VELOQUA 200ml"
-                            class="h-full w-auto object-contain max-h-[220px]" />
+                            class="h-full w-auto object-contain max-h-[190px]" />
                         <div class="absolute bottom-2 left-1/2 -translate-x-1/2 w-20 h-5 rounded-full"
                             style="background:rgba(77,168,255,.35);filter:blur(10px)"></div>
                     </div>
-                    <div class="p-5 sm:p-6 flex flex-col flex-1">
-                        <div class="font-fraunces text-3xl text-ocean font-medium">200ml</div>
-                        <div class="text-base font-bold mt-1">Event &amp; Travel Bottle</div>
-                        <div class="text-[13.5px] text-ink/60 leading-[1.7] mt-2">Compact perfection for events,
-                            corporate gifting, airlines, trains, hospitality, and quick refreshment on the go.</div>
+                    <div class="p-5 flex flex-col flex-1">
+                        <div class="font-fraunces text-2xl text-ocean font-medium">200ml</div>
+                        <div class="text-[15px] font-bold mt-1">Event &amp; Travel Bottle</div>
+                        <div class="text-[13px] text-ink/60 leading-[1.65] mt-2">Compact perfection for events,
+                            corporate gifting, airlines, hospitality, and quick refreshment on the go.</div>
                         <div class="mt-4 p-3.5 rounded-xl border border-ink/6"
                             style="background:linear-gradient(135deg,#F5FAFF,#e8f2ff)">
-                            <div class="text-[11.5px] text-ink/60 font-semibold uppercase tracking-[.06em]">Carton
-                                Pricing (48 pcs)</div>
-                            <div class="flex justify-between items-center mt-1.5">
-                                <div>
-                                    <div class="text-[13px] text-ink/50 line-through">Rs.12 / bottle</div>
-                                    <div class="font-fraunces text-2xl text-ocean font-medium">Rs.8 <small
-                                            class="text-sm text-ink/50">/ bulk</small></div>
-                                </div>
-                                <span class="text-[10.5px] font-bold px-2.5 py-1 rounded-full"
-                                    style="background:rgba(16,185,129,.12);color:#059669">Save 33%</span>
+                            <div class="text-[11px] text-ink/60 font-semibold uppercase tracking-[.06em]">Direct Price
                             </div>
+                            <div class="flex justify-between items-center mt-1.5">
+                                <div class="font-fraunces text-2xl text-ocean font-medium">Rs.6 <small
+                                        class="text-sm text-ink/50">/ bottle</small></div>
+                                <span class="text-[10.5px] font-bold px-2.5 py-1 rounded-full"
+                                    style="background:rgba(16,185,129,.12);color:#059669">48pc: Save 13.19%</span>
+                            </div>
+                            <div class="text-[11px] text-ink/45 mt-1">Min order 12 pcs</div>
                         </div>
                         <div class="mt-4">
-                            <div class="text-[12px] text-ink/60 font-semibold uppercase tracking-[.05em] mb-2">Quantity
-                                (multiples of 6)</div>
+                            <div class="text-[11.5px] text-ink/60 font-semibold uppercase tracking-[.05em] mb-2">
+                                Quantity
+                                (multiples of 12)</div>
                             <div class="flex items-center gap-2.5">
                                 <button
                                     class="qty-btn w-8 h-8 rounded-lg border-[1.5px] border-ink/14 bg-white flex items-center justify-center text-lg font-bold text-ocean"
-                                    onclick="changeQty('q1',-6)">&#8722;</button>
+                                    onclick="changeQty('q1',-12)">&#8722;</button>
                                 <input
                                     class="qty-input w-14 h-8 border-[1.5px] border-ink/14 rounded-lg text-center text-[15px] font-bold text-ocean bg-white outline-none focus:border-crystal transition-colors"
-                                    id="q1" value="6" min="6" step="6" type="number" oninput="onQtyInput('q1')" />
+                                    id="q1" value="12" min="12" step="12" type="number" oninput="onQtyInput('q1')" />
                                 <button
                                     class="qty-btn w-8 h-8 rounded-lg border-[1.5px] border-ink/14 bg-white flex items-center justify-center text-lg font-bold text-ocean"
-                                    onclick="changeQty('q1',6)">&#43;</button>
+                                    onclick="changeQty('q1',12)">&#43;</button>
                             </div>
-                            <div class="discount-pill mt-2.5 p-2.5 rounded-xl items-center gap-2 text-[12.5px] font-semibold"
+                            <div class="discount-pill mt-2.5 p-2.5 rounded-xl items-center gap-2 text-[12px] font-semibold"
                                 id="disc1"
                                 style="background:linear-gradient(135deg,rgba(16,185,129,.08),rgba(0,212,170,.06));border:1px solid rgba(16,185,129,.2);color:#059669">
                                 <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="#059669"
@@ -1011,16 +1103,13 @@
                                 </svg>
                                 <span id="d1"></span>
                             </div>
+                            <div class="mt-2.5 text-right text-sm font-bold text-ocean" id="sub1"></div>
                         </div>
                         <div class="mt-4">
-                            <a id="wa1" href="#" target="_blank"
-                                class="btn-primary-v w-full flex items-center justify-center gap-2 py-3 rounded-full text-sm font-semibold text-white no-underline">
-                                <svg class="w-4 h-4 fill-emerald-400 shrink-0" viewBox="0 0 24 24">
-                                    <path
-                                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
-                                </svg>
-                                Order on WhatsApp
-                            </a>
+                            <button onclick="addToCart('q1')"
+                                class="btn-primary-v w-full flex items-center justify-center gap-2 py-3 rounded-full text-sm font-semibold text-white border-none cursor-pointer">
+                                Add to Order
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -1029,50 +1118,48 @@
                 <div
                     class="prod-card bg-white rounded-2xl border border-ink/7 overflow-hidden flex flex-col reveal rd1">
                     <div class="card-img relative overflow-hidden flex items-center justify-center p-6"
-                        style="background:linear-gradient(145deg,#daeeff,#eaf3ff);height:280px">
+                        style="background:linear-gradient(145deg,#daeeff,#eaf3ff);height:240px">
                         <span
                             class="absolute top-3.5 left-3.5 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-[.06em] text-white"
                             style="background:linear-gradient(135deg,#0D2346,#4DA8FF)">Most Popular</span>
                         <img src="img/front 3.png" alt="VELOQUA 500ml"
-                            class="h-full w-auto object-contain max-h-[220px]" />
+                            class="h-full w-auto object-contain max-h-[190px]" />
                         <div class="absolute bottom-2 left-1/2 -translate-x-1/2 w-20 h-5 rounded-full"
                             style="background:rgba(77,168,255,.35);filter:blur(10px)"></div>
                     </div>
-                    <div class="p-5 sm:p-6 flex flex-col flex-1">
-                        <div class="font-fraunces text-3xl text-ocean font-medium">500ml</div>
-                        <div class="text-base font-bold mt-1">Daily Companion Bottle</div>
-                        <div class="text-[13.5px] text-ink/60 leading-[1.7] mt-2">The most loved size for everyday
-                            hydration — perfectly sized for work, travel, gym, school, and daily use throughout the day.
-                        </div>
+                    <div class="p-5 flex flex-col flex-1">
+                        <div class="font-fraunces text-2xl text-ocean font-medium">500ml</div>
+                        <div class="text-[15px] font-bold mt-1">Daily Companion Bottle</div>
+                        <div class="text-[13px] text-ink/60 leading-[1.65] mt-2">The most loved size for everyday
+                            hydration — perfectly sized for work, travel, gym, and daily use.</div>
                         <div class="mt-4 p-3.5 rounded-xl border border-ink/6"
                             style="background:linear-gradient(135deg,#F5FAFF,#e8f2ff)">
-                            <div class="text-[11.5px] text-ink/60 font-semibold uppercase tracking-[.06em]">Carton
-                                Pricing (24 pcs)</div>
-                            <div class="flex justify-between items-center mt-1.5">
-                                <div>
-                                    <div class="text-[13px] text-ink/50 line-through">Rs.20 / bottle</div>
-                                    <div class="font-fraunces text-2xl text-ocean font-medium">Rs.14 <small
-                                            class="text-sm text-ink/50">/ bulk</small></div>
-                                </div>
-                                <span class="text-[10.5px] font-bold px-2.5 py-1 rounded-full"
-                                    style="background:rgba(16,185,129,.12);color:#059669">Save 30%</span>
+                            <div class="text-[11px] text-ink/60 font-semibold uppercase tracking-[.06em]">Direct Price
                             </div>
+                            <div class="flex justify-between items-center mt-1.5">
+                                <div class="font-fraunces text-2xl text-ocean font-medium">Rs.10 <small
+                                        class="text-sm text-ink/50">/ bottle</small></div>
+                                <span class="text-[10.5px] font-bold px-2.5 py-1 rounded-full"
+                                    style="background:rgba(16,185,129,.12);color:#059669">24pc: Save 20.8%</span>
+                            </div>
+                            <div class="text-[11px] text-ink/45 mt-1">Min order 12 pcs</div>
                         </div>
                         <div class="mt-4">
-                            <div class="text-[12px] text-ink/60 font-semibold uppercase tracking-[.05em] mb-2">Quantity
-                                (multiples of 6)</div>
+                            <div class="text-[11.5px] text-ink/60 font-semibold uppercase tracking-[.05em] mb-2">
+                                Quantity
+                                (multiples of 12)</div>
                             <div class="flex items-center gap-2.5">
                                 <button
                                     class="qty-btn w-8 h-8 rounded-lg border-[1.5px] border-ink/14 bg-white flex items-center justify-center text-lg font-bold text-ocean"
-                                    onclick="changeQty('q2',-6)">&#8722;</button>
+                                    onclick="changeQty('q2',-12)">&#8722;</button>
                                 <input
                                     class="qty-input w-14 h-8 border-[1.5px] border-ink/14 rounded-lg text-center text-[15px] font-bold text-ocean bg-white outline-none focus:border-crystal transition-colors"
-                                    id="q2" value="6" min="6" step="6" type="number" oninput="onQtyInput('q2')" />
+                                    id="q2" value="12" min="12" step="12" type="number" oninput="onQtyInput('q2')" />
                                 <button
                                     class="qty-btn w-8 h-8 rounded-lg border-[1.5px] border-ink/14 bg-white flex items-center justify-center text-lg font-bold text-ocean"
-                                    onclick="changeQty('q2',6)">&#43;</button>
+                                    onclick="changeQty('q2',12)">&#43;</button>
                             </div>
-                            <div class="discount-pill mt-2.5 p-2.5 rounded-xl items-center gap-2 text-[12.5px] font-semibold"
+                            <div class="discount-pill mt-2.5 p-2.5 rounded-xl items-center gap-2 text-[12px] font-semibold"
                                 id="disc2"
                                 style="background:linear-gradient(135deg,rgba(16,185,129,.08),rgba(0,212,170,.06));border:1px solid rgba(16,185,129,.2);color:#059669">
                                 <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="#059669"
@@ -1081,16 +1168,13 @@
                                 </svg>
                                 <span id="d2"></span>
                             </div>
+                            <div class="mt-2.5 text-right text-sm font-bold text-ocean" id="sub2"></div>
                         </div>
                         <div class="mt-4">
-                            <a id="wa2" href="#" target="_blank"
-                                class="btn-primary-v w-full flex items-center justify-center gap-2 py-3 rounded-full text-sm font-semibold text-white no-underline">
-                                <svg class="w-4 h-4 fill-emerald-400 shrink-0" viewBox="0 0 24 24">
-                                    <path
-                                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
-                                </svg>
-                                Order on WhatsApp
-                            </a>
+                            <button onclick="addToCart('q2')"
+                                class="btn-primary-v w-full flex items-center justify-center gap-2 py-3 rounded-full text-sm font-semibold text-white border-none cursor-pointer">
+                                Add to Order
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -1099,49 +1183,48 @@
                 <div
                     class="prod-card bg-white rounded-2xl border border-ink/7 overflow-hidden flex flex-col reveal rd2">
                     <div class="card-img relative overflow-hidden flex items-center justify-center p-6"
-                        style="background:linear-gradient(145deg,#e0f0ff,#eaf6ff);height:280px">
+                        style="background:linear-gradient(145deg,#e0f0ff,#eaf6ff);height:240px">
                         <span
                             class="absolute top-3.5 left-3.5 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-[.06em] text-white"
                             style="background:linear-gradient(135deg,#f59e0b,#f97316)">Best Value</span>
                         <img src="img/veloqua 1000 ml.png" alt="VELOQUA 1000ml"
-                            class="h-full w-auto object-contain max-h-[220px]" />
+                            class="h-full w-auto object-contain max-h-[190px]" />
                         <div class="absolute bottom-2 left-1/2 -translate-x-1/2 w-20 h-5 rounded-full"
                             style="background:rgba(77,168,255,.35);filter:blur(10px)"></div>
                     </div>
-                    <div class="p-5 sm:p-6 flex flex-col flex-1">
-                        <div class="font-fraunces text-3xl text-ocean font-medium">1000ml</div>
-                        <div class="text-base font-bold mt-1">Family &amp; Office Bottle</div>
-                        <div class="text-[13.5px] text-ink/60 leading-[1.7] mt-2">Ideal for offices, family meals,
-                            events, and commercial supply. Longer-lasting hydration with maximum value per litre.</div>
+                    <div class="p-5 flex flex-col flex-1">
+                        <div class="font-fraunces text-2xl text-ocean font-medium">1000ml</div>
+                        <div class="text-[15px] font-bold mt-1">Family &amp; Office Bottle</div>
+                        <div class="text-[13px] text-ink/60 leading-[1.65] mt-2">Ideal for offices, family meals,
+                            events, and commercial supply with maximum value per litre.</div>
                         <div class="mt-4 p-3.5 rounded-xl border border-ink/6"
                             style="background:linear-gradient(135deg,#F5FAFF,#e8f2ff)">
-                            <div class="text-[11.5px] text-ink/60 font-semibold uppercase tracking-[.06em]">Carton
-                                Pricing (12 pcs)</div>
-                            <div class="flex justify-between items-center mt-1.5">
-                                <div>
-                                    <div class="text-[13px] text-ink/50 line-through">Rs.30 / bottle</div>
-                                    <div class="font-fraunces text-2xl text-ocean font-medium">Rs.21 <small
-                                            class="text-sm text-ink/50">/ bulk</small></div>
-                                </div>
-                                <span class="text-[10.5px] font-bold px-2.5 py-1 rounded-full"
-                                    style="background:rgba(16,185,129,.12);color:#059669">Save 30%</span>
+                            <div class="text-[11px] text-ink/60 font-semibold uppercase tracking-[.06em]">Direct Price
                             </div>
+                            <div class="flex justify-between items-center mt-1.5">
+                                <div class="font-fraunces text-2xl text-ocean font-medium">Rs.20 <small
+                                        class="text-sm text-ink/50">/ bottle</small></div>
+                                <span class="text-[10.5px] font-bold px-2.5 py-1 rounded-full"
+                                    style="background:rgba(16,185,129,.12);color:#059669">12pc: Save 37.5%</span>
+                            </div>
+                            <div class="text-[11px] text-ink/45 mt-1">Min order 12 pcs</div>
                         </div>
                         <div class="mt-4">
-                            <div class="text-[12px] text-ink/60 font-semibold uppercase tracking-[.05em] mb-2">Quantity
-                                (multiples of 6)</div>
+                            <div class="text-[11.5px] text-ink/60 font-semibold uppercase tracking-[.05em] mb-2">
+                                Quantity
+                                (multiples of 12)</div>
                             <div class="flex items-center gap-2.5">
                                 <button
                                     class="qty-btn w-8 h-8 rounded-lg border-[1.5px] border-ink/14 bg-white flex items-center justify-center text-lg font-bold text-ocean"
-                                    onclick="changeQty('q3',-6)">&#8722;</button>
+                                    onclick="changeQty('q3',-12)">&#8722;</button>
                                 <input
                                     class="qty-input w-14 h-8 border-[1.5px] border-ink/14 rounded-lg text-center text-[15px] font-bold text-ocean bg-white outline-none focus:border-crystal transition-colors"
-                                    id="q3" value="6" min="6" step="6" type="number" oninput="onQtyInput('q3')" />
+                                    id="q3" value="12" min="12" step="12" type="number" oninput="onQtyInput('q3')" />
                                 <button
                                     class="qty-btn w-8 h-8 rounded-lg border-[1.5px] border-ink/14 bg-white flex items-center justify-center text-lg font-bold text-ocean"
-                                    onclick="changeQty('q3',6)">&#43;</button>
+                                    onclick="changeQty('q3',12)">&#43;</button>
                             </div>
-                            <div class="discount-pill mt-2.5 p-2.5 rounded-xl items-center gap-2 text-[12.5px] font-semibold"
+                            <div class="discount-pill mt-2.5 p-2.5 rounded-xl items-center gap-2 text-[12px] font-semibold"
                                 id="disc3"
                                 style="background:linear-gradient(135deg,rgba(16,185,129,.08),rgba(0,212,170,.06));border:1px solid rgba(16,185,129,.2);color:#059669">
                                 <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="#059669"
@@ -1150,16 +1233,80 @@
                                 </svg>
                                 <span id="d3"></span>
                             </div>
+                            <div class="mt-2.5 text-right text-sm font-bold text-ocean" id="sub3"></div>
                         </div>
                         <div class="mt-4">
-                            <a id="wa3" href="#" target="_blank"
-                                class="btn-primary-v w-full flex items-center justify-center gap-2 py-3 rounded-full text-sm font-semibold text-white no-underline">
-                                <svg class="w-4 h-4 fill-emerald-400 shrink-0" viewBox="0 0 24 24">
-                                    <path
-                                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
+                            <button onclick="addToCart('q3')"
+                                class="btn-primary-v w-full flex items-center justify-center gap-2 py-3 rounded-full text-sm font-semibold text-white border-none cursor-pointer">
+                                Add to Order
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 1000ml Premium -->
+                <div class="prod-card rounded-2xl border overflow-hidden flex flex-col reveal rd3"
+                    style="border-color:rgba(218,165,32,.3);background:linear-gradient(180deg,#1a1a0a,#241c05)">
+                    <div class="card-img relative overflow-hidden flex items-center justify-center p-6"
+                        style="background:linear-gradient(145deg,#1e1600,#2d2000);height:240px">
+                        <span
+                            class="absolute top-3.5 left-3.5 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-[.06em]"
+                            style="background:rgba(212,160,23,.2);color:#d4a017;border:1px solid rgba(212,160,23,.3)">Premium</span>
+                        <img src="img/premium 1000ml carton photo.png" alt="VELOQUA 1000ml Premium"
+                            class="h-full w-auto object-contain max-h-[190px]" />
+                        <div class="absolute bottom-2 left-1/2 -translate-x-1/2 w-20 h-5 rounded-full"
+                            style="background:rgba(212,160,23,.3);filter:blur(10px)"></div>
+                    </div>
+                    <div class="p-5 flex flex-col flex-1">
+                        <div class="font-fraunces text-2xl font-medium" style="color:#d4a017">1000ml Premium</div>
+                        <div class="text-[15px] font-bold mt-1" style="color:#f0d78a">Premium Family &amp; Office
+                            Bottle</div>
+                        <div class="text-[13px] leading-[1.65] mt-2" style="color:rgba(255,255,255,.55)">Our finest
+                            grade bottle for premium hospitality, corporate gifting, and discerning households.</div>
+                        <div class="mt-4 p-3.5 rounded-xl"
+                            style="background:rgba(212,160,23,.08);border:1px solid rgba(212,160,23,.2)">
+                            <div class="text-[11px] font-semibold uppercase tracking-[.06em]"
+                                style="color:rgba(255,255,255,.45)">Direct Price</div>
+                            <div class="flex justify-between items-center mt-1.5">
+                                <div class="font-fraunces text-2xl font-medium" style="color:#d4a017">Rs.50 <small
+                                        class="text-sm" style="color:rgba(255,255,255,.4)">/ bottle</small></div>
+                                <span class="text-[10.5px] font-bold px-2.5 py-1 rounded-full"
+                                    style="background:rgba(212,160,23,.18);color:#d4a017">12pc: Save 30%</span>
+                            </div>
+                            <div class="text-[11px] mt-1" style="color:rgba(255,255,255,.35)">Min order 12 pcs</div>
+                        </div>
+                        <div class="mt-4">
+                            <div class="text-[11.5px] font-semibold uppercase tracking-[.05em] mb-2"
+                                style="color:rgba(255,255,255,.45)">Quantity (multiples of 12)</div>
+                            <div class="flex items-center gap-2.5">
+                                <button class="w-8 h-8 rounded-lg flex items-center justify-center text-lg font-bold"
+                                    style="border:1.5px solid rgba(212,160,23,.3);background:rgba(212,160,23,.08);color:#d4a017"
+                                    onclick="changeQty('q4',-12)">&#8722;</button>
+                                <input
+                                    class="qty-input w-14 h-8 rounded-lg text-center text-[15px] font-bold outline-none transition-colors"
+                                    style="border:1.5px solid rgba(212,160,23,.3);background:rgba(212,160,23,.08);color:#d4a017"
+                                    id="q4" value="12" min="12" step="12" type="number" oninput="onQtyInput('q4')" />
+                                <button class="w-8 h-8 rounded-lg flex items-center justify-center text-lg font-bold"
+                                    style="border:1.5px solid rgba(212,160,23,.3);background:rgba(212,160,23,.08);color:#d4a017"
+                                    onclick="changeQty('q4',12)">&#43;</button>
+                            </div>
+                            <div class="discount-pill mt-2.5 p-2.5 rounded-xl items-center gap-2 text-[12px] font-semibold"
+                                id="disc4"
+                                style="background:rgba(212,160,23,.1);border:1px solid rgba(212,160,23,.25);color:#d4a017">
+                                <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="#d4a017"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 6 9 17l-5-5" />
                                 </svg>
-                                Order on WhatsApp
-                            </a>
+                                <span id="d4"></span>
+                            </div>
+                            <div class="mt-2.5 text-right text-sm font-bold" style="color:#d4a017" id="sub4"></div>
+                        </div>
+                        <div class="mt-4">
+                            <button onclick="addToCart('q4')"
+                                class="w-full flex items-center justify-center gap-2 py-3 rounded-full text-sm font-semibold border-none cursor-pointer transition-all"
+                                style="background:rgba(212,160,23,.2);color:#d4a017;border:1px solid rgba(212,160,23,.35)">
+                                Add to Order
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -1185,11 +1332,11 @@
                             <div class="text-[13px] text-ink/60 mt-1">48 bottles per carton</div>
                             <div class="flex justify-between items-center mt-3 mb-3">
                                 <div>
-                                    <div class="text-[12px] text-ink/45 line-through">Rs.576</div>
-                                    <div class="font-fraunces text-xl text-ocean font-medium">Rs.384</div>
+                                    <div class="text-[12px] text-ink/45 line-through">Rs.288</div>
+                                    <div class="font-fraunces text-xl text-ocean font-medium">Rs.250</div>
                                 </div>
                                 <span class="text-[10px] font-bold px-2 py-0.5 rounded-full"
-                                    style="background:rgba(16,185,129,.12);color:#059669">Save 33%</span>
+                                    style="background:rgba(16,185,129,.12);color:#059669">Save 13.19%</span>
                             </div>
                             <div class="text-[11.5px] text-ink/55 font-semibold uppercase tracking-[.05em] mb-2">No. of
                                 Cartons</div>
@@ -1205,14 +1352,11 @@
                                     onclick="changeCartonQty('cq1',1)">&#43;</button>
                                 <span class="text-[12px] text-ink/50 ml-1" id="cq1-total">= 48 bottles</span>
                             </div>
-                            <a id="cwa1" href="#" target="_blank"
-                                class="btn-primary-v w-full flex items-center justify-center gap-1.5 py-2.5 rounded-full text-[13px] font-semibold text-white no-underline mt-auto">
-                                <svg class="w-3.5 h-3.5 fill-emerald-400 shrink-0" viewBox="0 0 24 24">
-                                    <path
-                                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
-                                </svg>
-                                Order Carton
-                            </a>
+                            <div class="text-right text-sm font-bold text-ocean mb-2" id="csub1"></div>
+                            <button onclick="addCartonToCart('cq1')"
+                                class="btn-primary-v w-full flex items-center justify-center gap-1.5 py-2.5 rounded-full text-[13px] font-semibold text-white border-none cursor-pointer mt-auto">
+                                Add to Order
+                            </button>
                         </div>
                     </div>
 
@@ -1228,11 +1372,11 @@
                             <div class="text-[13px] text-ink/60 mt-1">24 bottles per carton</div>
                             <div class="flex justify-between items-center mt-3 mb-3">
                                 <div>
-                                    <div class="text-[12px] text-ink/45 line-through">Rs.480</div>
-                                    <div class="font-fraunces text-xl text-ocean font-medium">Rs.336</div>
+                                    <div class="text-[12px] text-ink/45 line-through">Rs.240</div>
+                                    <div class="font-fraunces text-xl text-ocean font-medium">Rs.190</div>
                                 </div>
                                 <span class="text-[10px] font-bold px-2 py-0.5 rounded-full"
-                                    style="background:rgba(16,185,129,.12);color:#059669">Save 30%</span>
+                                    style="background:rgba(16,185,129,.12);color:#059669">Save 20.8%</span>
                             </div>
                             <div class="text-[11.5px] text-ink/55 font-semibold uppercase tracking-[.05em] mb-2">No. of
                                 Cartons</div>
@@ -1248,14 +1392,11 @@
                                     onclick="changeCartonQty('cq2',1)">&#43;</button>
                                 <span class="text-[12px] text-ink/50 ml-1" id="cq2-total">= 24 bottles</span>
                             </div>
-                            <a id="cwa2" href="#" target="_blank"
-                                class="btn-primary-v w-full flex items-center justify-center gap-1.5 py-2.5 rounded-full text-[13px] font-semibold text-white no-underline mt-auto">
-                                <svg class="w-3.5 h-3.5 fill-emerald-400 shrink-0" viewBox="0 0 24 24">
-                                    <path
-                                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
-                                </svg>
-                                Order Carton
-                            </a>
+                            <div class="text-right text-sm font-bold text-ocean mb-2" id="csub2"></div>
+                            <button onclick="addCartonToCart('cq2')"
+                                class="btn-primary-v w-full flex items-center justify-center gap-1.5 py-2.5 rounded-full text-[13px] font-semibold text-white border-none cursor-pointer mt-auto">
+                                Add to Order
+                            </button>
                         </div>
                     </div>
 
@@ -1271,11 +1412,11 @@
                             <div class="text-[13px] text-ink/60 mt-1">12 bottles per carton</div>
                             <div class="flex justify-between items-center mt-3 mb-3">
                                 <div>
-                                    <div class="text-[12px] text-ink/45 line-through">Rs.360</div>
-                                    <div class="font-fraunces text-xl text-ocean font-medium">Rs.252</div>
+                                    <div class="text-[12px] text-ink/45 line-through">Rs.240</div>
+                                    <div class="font-fraunces text-xl text-ocean font-medium">Rs.150</div>
                                 </div>
                                 <span class="text-[10px] font-bold px-2 py-0.5 rounded-full"
-                                    style="background:rgba(16,185,129,.12);color:#059669">Save 30%</span>
+                                    style="background:rgba(16,185,129,.12);color:#059669">Save 37.5%</span>
                             </div>
                             <div class="text-[11.5px] text-ink/55 font-semibold uppercase tracking-[.05em] mb-2">No. of
                                 Cartons</div>
@@ -1291,14 +1432,11 @@
                                     onclick="changeCartonQty('cq3',1)">&#43;</button>
                                 <span class="text-[12px] text-ink/50 ml-1" id="cq3-total">= 12 bottles</span>
                             </div>
-                            <a id="cwa3" href="#" target="_blank"
-                                class="btn-primary-v w-full flex items-center justify-center gap-1.5 py-2.5 rounded-full text-[13px] font-semibold text-white no-underline mt-auto">
-                                <svg class="w-3.5 h-3.5 fill-emerald-400 shrink-0" viewBox="0 0 24 24">
-                                    <path
-                                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
-                                </svg>
-                                Order Carton
-                            </a>
+                            <div class="text-right text-sm font-bold text-ocean mb-2" id="csub3"></div>
+                            <button onclick="addCartonToCart('cq3')"
+                                class="btn-primary-v w-full flex items-center justify-center gap-1.5 py-2.5 rounded-full text-[13px] font-semibold text-white border-none cursor-pointer mt-auto">
+                                Add to Order
+                            </button>
                         </div>
                     </div>
 
@@ -1318,12 +1456,12 @@
                             <div class="text-[13px] mt-1" style="color:rgba(255,255,255,.5)">12 bottles per carton</div>
                             <div class="flex justify-between items-center mt-3 mb-3">
                                 <div>
-                                    <div class="text-[12px] line-through" style="color:rgba(255,255,255,.3)">Rs.420
+                                    <div class="text-[12px] line-through" style="color:rgba(255,255,255,.3)">Rs.600
                                     </div>
-                                    <div class="font-fraunces text-xl font-medium" style="color:#d4a017">Rs.300</div>
+                                    <div class="font-fraunces text-xl font-medium" style="color:#d4a017">Rs.420</div>
                                 </div>
                                 <span class="text-[10px] font-bold px-2 py-0.5 rounded-full"
-                                    style="background:rgba(212,160,23,.15);color:#d4a017">Save 28%</span>
+                                    style="background:rgba(212,160,23,.15);color:#d4a017">Save 30%</span>
                             </div>
                             <div class="text-[11.5px] font-semibold uppercase tracking-[.05em] mb-2"
                                 style="color:rgba(255,255,255,.4)">No. of Cartons</div>
@@ -1343,15 +1481,12 @@
                                 <span class="text-[12px] ml-1" style="color:rgba(255,255,255,.4)" id="cq4-total">= 12
                                     bottles</span>
                             </div>
-                            <a id="cwa4" href="#" target="_blank"
-                                class="w-full flex items-center justify-center gap-1.5 py-2.5 rounded-full text-[13px] font-semibold no-underline mt-auto transition-all"
+                            <div class="text-right text-sm font-bold mb-2" style="color:#d4a017" id="csub4"></div>
+                            <button onclick="addCartonToCart('cq4')"
+                                class="w-full flex items-center justify-center gap-1.5 py-2.5 rounded-full text-[13px] font-semibold border-none cursor-pointer mt-auto transition-all"
                                 style="background:rgba(212,160,23,.18);color:#d4a017;border:1px solid rgba(212,160,23,.35)">
-                                <svg class="w-3.5 h-3.5 shrink-0" style="fill:#25D366" viewBox="0 0 24 24">
-                                    <path
-                                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
-                                </svg>
-                                Order Carton
-                            </a>
+                                Add to Order
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -1369,13 +1504,12 @@
                         </svg>
                     </div>
                     <div>
-                        <div class="font-fraunces text-xl font-medium">Bulk Order Discounts — Always Active</div>
-                        <div class="text-sm text-white/62 mt-1">Order 20+ units &rarr; <strong class="text-glow">40%
-                                off</strong> &nbsp;|&nbsp; Order 40+ units &rarr; <strong class="text-glow">Extra
-                                discount + FREE delivery</strong></div>
+                        <div class="font-fraunces text-xl font-medium">Bulk &amp; Institutional Orders Welcome</div>
+                        <div class="text-sm text-white/62 mt-1">Need a custom quote for large-volume, recurring, or
+                            multi-product orders? Our office team will prepare a tailored quote for you.</div>
                     </div>
                 </div>
-                <a href="https://wa.me/917042978227?text=Hi%20VELOQUA%20Team%2C%0A%0AI%20would%20like%20to%20get%20a%20bulk%20quote%20for%20water%20bottles.%20Please%20share%20your%20best%20pricing%20and%20available%20discounts."
+                <a href="https://wa.me/919211278080?text=Hi%20VELOQUA%20Team%2C%0A%0AI%20would%20like%20to%20get%20a%20bulk%20quote%20for%20water%20bottles.%20Please%20share%20your%20best%20pricing%20and%20available%20discounts."
                     target="_blank"
                     class="btn-white-v inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold no-underline flex-shrink-0">Get
                     Bulk Quote</a>
@@ -1529,7 +1663,11 @@
                 <h2 class="font-fraunces text-[clamp(28px,4.2vw,46px)] font-medium leading-[1.16] mt-3">Crafted for
                     every moment.</h2>
                 <p class="mt-4 text-base text-ink/55 leading-[1.8]">Every size. Every setting. One unwavering standard
-                    of purity.</p>
+                    of purity. Follow us on Instagram
+                    <a href="https://www.instagram.com/veloqua.waters" target="_blank"
+                        class="text-crystal font-semibold no-underline hover:text-ocean transition-colors">@veloqua.waters</a>
+                    for more.
+                </p>
             </div>
 
             <!-- Gallery Grid — improved layout -->
@@ -1537,7 +1675,17 @@
 
                 <!-- Left tall: tilted hero shot -->
                 <div
-                    class="gallery-item gi-tall bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-sm flex flex-col">
+                    class="gallery-item gi-tall bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-sm flex flex-col relative">
+                    <a href="https://www.instagram.com/veloqua.waters" target="_blank"
+                        class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full flex items-center justify-center bg-white/90 backdrop-blur border border-slate-200 ig-hover transition-all duration-300"
+                        aria-label="View on Instagram">
+                        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" />
+                            <circle cx="12" cy="12" r="4" />
+                            <circle cx="17.5" cy="6.5" r="1" />
+                        </svg>
+                    </a>
                     <div class="flex-1 flex items-center justify-center p-8"
                         style="background:linear-gradient(145deg,#eaf4ff,#F5FAFF)">
                         <img src="img/tilted bottle .png" alt="VELOQUA Bottle Collection"
@@ -1545,13 +1693,23 @@
                     </div>
                     <div class="px-6 py-4 border-t border-slate-100">
                         <div class="font-semibold text-ocean text-sm">Full Range Collection</div>
-                        <div class="text-[12px] text-ink/50 mt-0.5">200ml · 500ml · 1000ml</div>
+                        <div class="text-[12px] text-ink/50 mt-0.5">200ml · 500ml · 1000ml · 1000ml Premium</div>
                     </div>
                 </div>
 
                 <!-- Top-right: front bottle close-up -->
                 <div
-                    class="gallery-item bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-sm flex flex-col">
+                    class="gallery-item bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-sm flex flex-col relative">
+                    <a href="https://www.instagram.com/veloqua.waters" target="_blank"
+                        class="absolute top-3 right-3 z-10 w-8 h-8 rounded-full flex items-center justify-center bg-white/90 backdrop-blur border border-slate-200 ig-hover transition-all duration-300"
+                        aria-label="View on Instagram">
+                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" />
+                            <circle cx="12" cy="12" r="4" />
+                            <circle cx="17.5" cy="6.5" r="1" />
+                        </svg>
+                    </a>
                     <div class="flex-1 flex items-center justify-center p-6"
                         style="background:linear-gradient(145deg,#daeeff,#edf6ff);min-height:220px">
                         <img src="img/front 2 .png" alt="VELOQUA 500ml Front View"
@@ -1565,20 +1723,40 @@
 
                 <!-- Top-far-right: 500ml alternate -->
                 <div
-                    class="gallery-item bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-sm flex flex-col">
+                    class="gallery-item bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-sm flex flex-col relative">
+                    <a href="https://www.instagram.com/veloqua.waters" target="_blank"
+                        class="absolute top-3 right-3 z-10 w-8 h-8 rounded-full flex items-center justify-center bg-white/90 backdrop-blur border border-slate-200 ig-hover transition-all duration-300"
+                        aria-label="View on Instagram">
+                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" />
+                            <circle cx="12" cy="12" r="4" />
+                            <circle cx="17.5" cy="6.5" r="1" />
+                        </svg>
+                    </a>
                     <div class="flex-1 flex items-center justify-center p-6"
                         style="background:linear-gradient(145deg,#e0f0ff,#eaf6ff);min-height:220px">
                         <img src="img/front 3.png" alt="VELOQUA 500ml" class="w-full max-h-[200px] object-contain" />
                     </div>
                     <div class="px-5 py-3.5 border-t border-slate-100">
-                        <div class="font-semibold text-ocean text-sm">500ml — Premium Cap</div>
+                        <div class="font-semibold text-ocean text-sm">1000ml — Premium Bottle</div>
                         <div class="text-[12px] text-ink/50 mt-0.5">Tamper-evident seal</div>
                     </div>
                 </div>
 
                 <!-- Bottom-middle: UGC product -->
                 <div
-                    class="gallery-item bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-sm flex flex-col">
+                    class="gallery-item bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-sm flex flex-col relative">
+                    <a href="https://www.instagram.com/veloqua.waters" target="_blank"
+                        class="absolute top-3 right-3 z-10 w-8 h-8 rounded-full flex items-center justify-center bg-white/90 backdrop-blur border border-slate-200 ig-hover transition-all duration-300"
+                        aria-label="View on Instagram">
+                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" />
+                            <circle cx="12" cy="12" r="4" />
+                            <circle cx="17.5" cy="6.5" r="1" />
+                        </svg>
+                    </a>
                     <div class="flex-1 flex items-center justify-center p-6"
                         style="background:linear-gradient(145deg,#f0f7ff,#F5FAFF);min-height:220px">
                         <img src="img/product ugc.png" alt="VELOQUA Product in use"
@@ -1586,13 +1764,23 @@
                     </div>
                     <div class="px-5 py-3.5 border-t border-slate-100">
                         <div class="font-semibold text-ocean text-sm">Pure Every Sip</div>
-                        <div class="text-[12px] text-ink/50 mt-0.5">BIS Certified · pH 7.2</div>
+                        <div class="text-[12px] text-ink/50 mt-0.5">FSSAI Certified · pH 7.2</div>
                     </div>
                 </div>
 
                 <!-- Bottom-far-right: full lineup -->
                 <div
-                    class="gallery-item bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-sm flex flex-col">
+                    class="gallery-item bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-sm flex flex-col relative">
+                    <a href="https://www.instagram.com/veloqua.waters" target="_blank"
+                        class="absolute top-3 right-3 z-10 w-8 h-8 rounded-full flex items-center justify-center bg-white/90 backdrop-blur border border-slate-200 ig-hover transition-all duration-300"
+                        aria-label="View on Instagram">
+                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" />
+                            <circle cx="12" cy="12" r="4" />
+                            <circle cx="17.5" cy="6.5" r="1" />
+                        </svg>
+                    </a>
                     <div class="flex-1 flex items-center justify-center p-6"
                         style="background:linear-gradient(145deg,#e8f3ff,#F5FAFF);min-height:220px">
                         <img src="img/veloqua 200,500,1000ml together.png" alt="VELOQUA Full Lineup"
@@ -1600,10 +1788,33 @@
                     </div>
                     <div class="px-5 py-3.5 border-t border-slate-100">
                         <div class="font-semibold text-ocean text-sm">Complete Lineup</div>
-                        <div class="text-[12px] text-ink/50 mt-0.5">Three sizes, one standard</div>
+                        <div class="text-[12px] text-ink/50 mt-0.5">Four sizes, one standard</div>
                     </div>
                 </div>
 
+            </div>
+
+            <!-- Follow banner -->
+            <div class="mt-8 reveal rounded-[22px] p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-5"
+                style="background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)">
+                <div class="flex items-center gap-4 text-white">
+                    <div
+                        class="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 bg-white/20 border border-white/30">
+                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" />
+                            <circle cx="12" cy="12" r="4" />
+                            <circle cx="17.5" cy="6.5" r="1" />
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="font-fraunces text-lg font-medium">Follow @veloqua.waters</div>
+                        <div class="text-sm text-white/85">See behind-the-scenes, offers, and customer stories.</div>
+                    </div>
+                </div>
+                <a href="https://www.instagram.com/veloqua.waters" target="_blank"
+                    class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold no-underline bg-white text-[#bc1888] flex-shrink-0">Visit
+                    Profile</a>
             </div>
         </div>
     </section>
@@ -1720,10 +1931,10 @@
                     <h2 class="font-fraunces text-[clamp(26px,3.8vw,42px)] font-medium leading-[1.18]">Grow with VELOQUA
                         as a distribution partner.</h2>
                     <p class="mt-4 text-[15.5px] leading-[1.85]" style="color:rgba(255,255,255,.68)">We're expanding our
-                        distribution network across Delhi NCR and beyond. Join us as a distributor or retailer and build
-                        a profitable, sustainable business with a trusted water brand behind you.</p>
+                        distribution network across PAN-India. Join us as a distributor or retailer and build
+                        a profitable, sustainable business with good margins, a trusted water brand behind you.</p>
                     <div class="mt-7 flex flex-wrap gap-3">
-                        <a href="https://wa.me/917042978227?text=Hi%20VELOQUA%20Team%2C%0A%0AI%20am%20interested%20in%20becoming%20a%20distribution%20partner%20for%20VELOQUA%20in%20my%20area.%20Please%20share%20details%20on%20the%20partnership%20program%2C%20territory%20availability%2C%20and%20pricing%20structure."
+                        <a href="https://wa.me/919211278080?text=Hi%20VELOQUA%20Team%2C%0A%0AI%20am%20interested%20in%20becoming%20a%20distribution%20partner%20for%20VELOQUA%20in%20my%20area.%20Please%20share%20details%20on%20the%20partnership%20program%2C%20territory%20availability%2C%20and%20pricing%20structure."
                             target="_blank"
                             class="btn-white-v inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold no-underline">Apply
                             on WhatsApp</a>
@@ -1902,16 +2113,12 @@
                                 </svg></div>
                             <div>
                                 <div class="text-[11.5px] font-bold uppercase tracking-[.1em] text-ink/60 mb-1">Call /
-                                    WhatsApp</div>
-                                <div class="text-[15px] font-medium"><a href="tel:+917042978227"
-                                        class="hover:text-crystal transition-colors no-underline text-ink">Garv Gupta —
-                                        +91 70429 78227</a></div>
-                                <div class="text-[15px] font-medium mt-1"><a href="tel:+919999977890"
-                                        class="hover:text-crystal transition-colors no-underline text-ink">Aman — +91
-                                        99999 77890</a></div>
+                                    WhatsApp — Office</div>
                                 <div class="text-[15px] font-medium mt-1"><a href="tel:+919211278080"
-                                        class="hover:text-crystal transition-colors no-underline text-ink">Office — +91
-                                        92112 78080</a></div>
+                                        class="hover:text-crystal transition-colors no-underline text-ink">+91 92112
+                                        78080</a></div>
+                                <div class="text-[13px] text-ink/50 mt-1">All orders, bulk quotes, and distributor
+                                    inquiries are handled by our Office team.</div>
                             </div>
                         </div>
                         <div class="flex gap-4 items-start">
@@ -1940,8 +2147,27 @@
                             <div>
                                 <div class="text-[11.5px] font-bold uppercase tracking-[.1em] text-ink/60 mb-1">Email
                                 </div>
-                                <div class="text-[15px] font-medium"><a href="mailto:hello@veloqua.in"
-                                        class="hover:text-crystal transition-colors no-underline text-ink">hello@veloqua.in</a>
+                                <div class="text-[15px] font-medium"><a href="mailto:lakhdatarenterprises26@gmail.com"
+                                        class="hover:text-crystal transition-colors no-underline text-ink">lakhdatarenterprises26@gmail.com</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 items-start">
+                            <div class="w-11 h-11 rounded-[14px] flex items-center justify-center flex-shrink-0"
+                                style="background:linear-gradient(150deg,rgba(77,168,255,.14),rgba(13,35,70,.06))">
+                                <svg class="w-5 h-5 stroke-ocean" viewBox="0 0 24 24" fill="none" stroke-width="1.8"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" />
+                                    <circle cx="12" cy="12" r="4" />
+                                    <circle cx="17.5" cy="6.5" r="1" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="text-[11.5px] font-bold uppercase tracking-[.1em] text-ink/60 mb-1">
+                                    Instagram</div>
+                                <div class="text-[15px] font-medium"><a href="https://www.instagram.com/veloqua.waters"
+                                        target="_blank"
+                                        class="hover:text-crystal transition-colors no-underline text-ink">@veloqua.waters</a>
                                 </div>
                             </div>
                         </div>
@@ -2019,11 +2245,12 @@
                         <span class="font-fraunces text-lg font-semibold tracking-[.08em]">VELOQUA</span>
                     </div>
                     <p class="text-sm leading-[1.75] max-w-[280px]" style="color:rgba(255,255,255,.45)">Pure Water. Pure
-                        Trust.<br>Bringing you the cleanest, most refreshing drinking water from source to your door.
+                        Trust.<br>Your Thirst. Our Responsibility.<br>Bringing you the cleanest, most refreshing
+                        drinking water from source to your door.
                     </p>
                     <div class="flex gap-3 mt-5">
                         <a href="https://www.instagram.com/veloqua.waters" target="_blank" aria-label="Instagram"
-                            class="w-9 h-9 rounded-full flex items-center justify-center border transition-all duration-300 hover:bg-glow hover:border-glow"
+                            class="w-9 h-9 rounded-full flex items-center justify-center border transition-all duration-300 ig-hover"
                             style="border-color:rgba(255,255,255,.14)"><svg class="w-4 h-4" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
                                 stroke-linejoin="round">
@@ -2031,7 +2258,7 @@
                                 <circle cx="12" cy="12" r="4" />
                                 <circle cx="17.5" cy="6.5" r="1" />
                             </svg></a>
-                        <a href="https://wa.me/917042978227" target="_blank" aria-label="WhatsApp"
+                        <a href="https://wa.me/919211278080" target="_blank" aria-label="WhatsApp"
                             class="w-9 h-9 rounded-full flex items-center justify-center border transition-all duration-300 hover:bg-glow hover:border-glow"
                             style="border-color:rgba(255,255,255,.14)"><svg class="w-4 h-4" style="fill:#25D366"
                                 viewBox="0 0 24 24">
@@ -2064,13 +2291,13 @@
                     </h4>
                     <ul class="flex flex-col gap-3">
                         <li><a href="#products" class="text-sm hover:text-glow transition-colors no-underline"
-                                style="color:rgba(255,255,255,.62)">200ml Bottle (48/carton)</a></li>
+                                style="color:rgba(255,255,255,.62)">200ml Bottle — Rs.6/pc</a></li>
                         <li><a href="#products" class="text-sm hover:text-glow transition-colors no-underline"
-                                style="color:rgba(255,255,255,.62)">500ml Bottle (24/carton)</a></li>
+                                style="color:rgba(255,255,255,.62)">500ml Bottle — Rs.10/pc</a></li>
                         <li><a href="#products" class="text-sm hover:text-glow transition-colors no-underline"
-                                style="color:rgba(255,255,255,.62)">1000ml Bottle (12/carton)</a></li>
+                                style="color:rgba(255,255,255,.62)">1000ml Bottle — Rs.20/pc</a></li>
                         <li><a href="#products" class="text-sm hover:text-glow transition-colors no-underline"
-                                style="color:rgba(255,255,255,.62)">Premium 1000ml Carton</a></li>
+                                style="color:rgba(255,255,255,.62)">1000ml Premium — Rs.50/pc</a></li>
                         <li><a href="#distribute" class="text-sm hover:text-glow transition-colors no-underline"
                                 style="color:rgba(255,255,255,.62)">Bulk / Institutional Orders</a></li>
                     </ul>
@@ -2079,15 +2306,17 @@
                     <h4 class="text-[12px] uppercase tracking-[.14em] mb-4" style="color:rgba(255,255,255,.35)">Contact
                     </h4>
                     <ul class="flex flex-col gap-3">
-                        <li><a href="tel:+917042978227" class="text-sm hover:text-glow transition-colors no-underline"
-                                style="color:rgba(255,255,255,.62)">+91 70429 78227 (Garv)</a></li>
-                        <li><a href="tel:+919999977890" class="text-sm hover:text-glow transition-colors no-underline"
-                                style="color:rgba(255,255,255,.62)">+91 99999 77890 (Aman)</a></li>
                         <li><a href="tel:+919211278080" class="text-sm hover:text-glow transition-colors no-underline"
                                 style="color:rgba(255,255,255,.62)">+91 92112 78080 (Office)</a></li>
-                        <li><a href="mailto:hello@veloqua.in"
+                        <li><a href="https://wa.me/919211278080" target="_blank"
                                 class="text-sm hover:text-glow transition-colors no-underline"
-                                style="color:rgba(255,255,255,.62)">hello@veloqua.in</a></li>
+                                style="color:rgba(255,255,255,.62)">WhatsApp Office</a></li>
+                        <li><a href="mailto:lakhdatarenterprises26@gmail.com"
+                                class="text-sm hover:text-glow transition-colors no-underline"
+                                style="color:rgba(255,255,255,.62)">lakhdatarenterprises26@gmail.com</a></li>
+                        <li><a href="https://www.instagram.com/veloqua.waters" target="_blank"
+                                class="text-sm hover:text-glow transition-colors no-underline"
+                                style="color:rgba(255,255,255,.62)">@veloqua.waters</a></li>
                         <li class="text-sm" style="color:rgba(255,255,255,.62)">H.No.194/195, Balbir Nagar<br>Ext.,
                             Shahdara, Delhi 110032</li>
                     </ul>
@@ -2101,13 +2330,53 @@
         </div>
     </footer>
 
+    <!-- ===== CART BAR ===== -->
+    <div id="cartBar"
+        class="hidden-bar fixed bottom-0 left-0 right-0 z-[9998] px-4 sm:px-6 pb-4 sm:pb-6 pointer-events-none">
+        <div class="max-w-[720px] mx-auto rounded-[22px] bg-white pointer-events-auto overflow-hidden"
+            style="box-shadow:0 24px 60px -18px rgba(13,35,70,.4);border:1.5px solid rgba(13,35,70,.08)">
+            <div class="flex items-center justify-between px-5 py-3.5 border-b border-ink/7 cursor-pointer"
+                onclick="toggleCartExpand()">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-full bg-ocean flex items-center justify-center text-white font-bold text-sm"
+                        id="cartCount">0</div>
+                    <div>
+                        <div class="text-sm font-bold text-ocean">Your Order</div>
+                        <div class="text-[12px] text-ink/50" id="cartSummaryText">No items yet</div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="font-fraunces text-lg text-ocean font-medium" id="cartTotalText">Rs.0</div>
+                    <svg id="cartChevron" class="w-4 h-4 text-ink/40 transition-transform duration-300"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="m18 15-6-6-6 6" />
+                    </svg>
+                </div>
+            </div>
+            <div id="cartItemsWrap" class="hidden max-h-[260px] overflow-y-auto px-5 py-3 flex flex-col gap-2.5"></div>
+            <div class="px-5 py-4 flex gap-3">
+                <button onclick="clearCart()"
+                    class="px-4 py-3 rounded-full text-[13px] font-semibold border border-ink/15 text-ink/60 cursor-pointer bg-white hover:bg-ink/5 transition-all">Clear</button>
+                <button onclick="checkoutCart()"
+                    class="btn-primary-v flex-1 flex items-center justify-center gap-2 py-3 rounded-full text-[14px] font-semibold text-white border-none cursor-pointer">
+                    <svg class="w-4 h-4 fill-emerald-400 shrink-0" viewBox="0 0 24 24">
+                        <path
+                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
+                    </svg>
+                    Checkout on WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- ===== WHATSAPP FLOAT ===== -->
     <div class="fixed bottom-6 right-6 z-[9999] flex flex-col items-end gap-3" id="waFloat">
         <div id="waTooltip"
             class="relative max-w-[250px] rounded-2xl bg-white px-4 py-3 shadow-2xl border border-slate-200 text-left">
             <h4 class="text-sm font-bold text-ocean mb-1">Chat with us on WhatsApp</h4>
-            <p class="text-[13px] leading-5 text-slate-600">Have questions or want to place an order? Our team is ready
-                to help.</p>
+            <p class="text-[13px] leading-5 text-slate-600">Have questions or want to place an order? Our office team
+                is ready to help.</p>
             <span
                 class="absolute right-5 -bottom-2 w-4 h-4 bg-white rotate-45 border-r border-b border-slate-200"></span>
         </div>
@@ -2124,6 +2393,11 @@
     </div>
 
     <script>
+        /* ═══════════════════════════════════════════════
+           OFFICE WHATSAPP NUMBER — used everywhere for orders
+           ═══════════════════════════════════════════════ */
+        const OFFICE_WA = '919211278080';
+
         /* ─── PRELOADER ─── */
         window.addEventListener('load', () => {
             setTimeout(() => {
@@ -2211,83 +2485,82 @@
         }
         requestAnimationFrame(raf);
 
-        /* ─── PRODUCT CONFIG ─── */
+        /* ═══════════════════════════════════════════════
+           PRODUCT & PRICING CONFIG — EXACT AS SPECIFIED
+           ═══════════════════════════════════════════════
+           Bottle logic: direct price per bottle, no MRP.
+           Discount unlocks when order reaches the carton-size
+           threshold (in multiples of 12), applied to the WHOLE
+           bottle order at that tier.
+        */
         const PRODUCTS = {
-            q1: { size: '200ml', name: 'Event & Travel Bottle', retail: 12, bulk_price: 8, carton: 48, savings: '33%' },
-            q2: { size: '500ml', name: 'Daily Companion Bottle', retail: 20, bulk_price: 14, carton: 24, savings: '30%' },
-            q3: { size: '1000ml', name: 'Family & Office Bottle', retail: 30, bulk_price: 21, carton: 12, savings: '30%' },
+            q1: { key: 'q1', size: '200ml', name: 'Event & Travel Bottle', price: 6, threshold: 48, discPct: 13.19, unit: 'bottle' },
+            q2: { key: 'q2', size: '500ml', name: 'Daily Companion Bottle', price: 10, threshold: 24, discPct: 20.8, unit: 'bottle' },
+            q3: { key: 'q3', size: '1000ml', name: 'Family & Office Bottle', price: 20, threshold: 12, discPct: 37.5, unit: 'bottle' },
+            q4: { key: 'q4', size: '1000ml Premium', name: 'Premium Family & Office Bottle', price: 50, threshold: 12, discPct: 30, unit: 'bottle' },
         };
 
+        // Cartons: MRP per carton, discounted price per carton, pieces per carton
         const CARTONS = {
-            cq1: { size: '200ml', name: 'Event & Travel Bottle', retail_per: 12, bulk_per: 8, pcs: 48 },
-            cq2: { size: '500ml', name: 'Daily Companion Bottle', retail_per: 20, bulk_per: 14, pcs: 24 },
-            cq3: { size: '1000ml', name: 'Family & Office Bottle', retail_per: 30, bulk_per: 21, pcs: 12 },
-            cq4: { size: '1000ml Premium', name: 'Premium Family & Office Bottle', retail_per: 35, bulk_per: 25, pcs: 12 },
+            cq1: { key: 'cq1', size: '200ml', name: 'Event & Travel Bottle', mrp: 288, price: 250, pcs: 48, savePct: 13.19 },
+            cq2: { key: 'cq2', size: '500ml', name: 'Daily Companion Bottle', mrp: 240, price: 190, pcs: 24, savePct: 20.8 },
+            cq3: { key: 'cq3', size: '1000ml', name: 'Family & Office Bottle', mrp: 240, price: 150, pcs: 12, savePct: 37.5 },
+            cq4: { key: 'cq4', size: '1000ml Premium', name: 'Premium Family & Office Bottle', mrp: 600, price: 420, pcs: 12, savePct: 30 },
         };
+
+        /* ═══════════════════════════════════════════════
+           CART STATE
+           ═══════════════════════════════════════════════ */
+        let CART = []; // { type:'bottle'|'carton', key, size, name, qty, unitPrice, mrpUnit, lineTotal, lineMrp, saving }
+
+        function fmt(n) {
+            return Math.round(n).toLocaleString('en-IN');
+        }
 
         /* ─── BOTTLE QTY FUNCTIONS ─── */
         function changeQty(id, delta) {
             const inp = document.getElementById(id);
-            let val = Math.max(6, Math.round(((parseInt(inp.value) || 6) + delta) / 6) * 6);
+            let val = Math.max(12, Math.round(((parseInt(inp.value) || 12) + delta) / 12) * 12);
             inp.value = val;
             updateProduct(id, val);
         }
         function onQtyInput(id) {
             const inp = document.getElementById(id);
-            const raw = parseInt(inp.value) || 6;
+            let raw = parseInt(inp.value) || 12;
+            raw = Math.max(12, Math.round(raw / 12) * 12);
             updateProduct(id, raw);
         }
+
+        function calcBottleLine(prod, qty) {
+            qty = Math.max(12, Math.round(qty / 12) * 12);
+            const mrpTotal = qty * prod.price;
+            let discPct = 0;
+            if (qty >= prod.threshold) discPct = prod.discPct;
+            const total = mrpTotal * (1 - discPct / 100);
+            const saving = mrpTotal - total;
+            return { qty, mrpTotal, total, discPct, saving, pricePerUnit: total / qty };
+        }
+
         function updateProduct(id, val) {
             const prod = PRODUCTS[id];
             const num = id.replace('q', '');
             const pill = document.getElementById('disc' + num);
             const dtxt = document.getElementById('d' + num);
-            const waBtn = document.getElementById('wa' + num);
+            const sub = document.getElementById('sub' + num);
 
-            // Enforce minimum
-            if (val < 1) val = 6;
+            const calc = calcBottleLine(prod, val);
 
-            // Discount logic
-            let discPct = 0, discLabel = '';
-            if (val >= 40) { discPct = 40; discLabel = '40% bulk discount + FREE delivery applied on ' + val + ' bottles'; }
-            else if (val >= 20) { discPct = 40; discLabel = '40% bulk discount applied on ' + val + ' bottles'; }
+            if (calc.discPct > 0 && pill) {
+                pill.classList.add('show');
+                if (dtxt) dtxt.textContent = calc.discPct + '% discount unlocked — ' + calc.qty + ' bottles at Rs.' + calc.pricePerUnit.toFixed(2) + '/bottle';
+            } else if (pill) {
+                pill.classList.remove('show');
+                const remaining = prod.threshold - calc.qty;
+                if (dtxt) dtxt.textContent = remaining > 0 ? ('Add ' + remaining + ' more to unlock ' + prod.discPct + '% off') : '';
+            }
 
-            if (discLabel && pill) { pill.classList.add('show'); if (dtxt) dtxt.textContent = discLabel; }
-            else if (pill) { pill.classList.remove('show'); }
-
-            const pricePerUnit = discPct >= 40 ? Math.round(prod.bulk_price * 0.6) : prod.bulk_price;
-            const total = val * pricePerUnit;
-            const saving = val * prod.retail - total;
-
-            // Build clean WhatsApp message — no emojis
-            if (waBtn) {
-                const lines = [
-                    'VELOQUA Drinking Water - Order Request',
-                    '---',
-                    'Product: ' + prod.size + ' ' + prod.name,
-                    'Packaging: ' + prod.carton + ' pieces per carton',
-                    '',
-                    'Quantity Requested: ' + val + ' bottles',
-                    '',
-                    'Pricing Details:',
-                    '  MRP: Rs.' + prod.retail + ' per bottle',
-                    '  Bulk Price: Rs.' + prod.bulk_price + ' per bottle',
-                    discPct ? '  Discount Applied: ' + discPct + '%' : '',
-                    '  Price Per Bottle: Rs.' + pricePerUnit,
-                    '  Estimated Total: Rs.' + total.toLocaleString('en-IN'),
-                    discPct ? '  Total Saving: Rs.' + saving.toLocaleString('en-IN') : '',
-                    '',
-                    'Bulk Offer:',
-                    '  20 or more bottles - 40% off',
-                    '  40 or more bottles - 40% off + free delivery',
-                    '',
-                    'Please confirm availability and delivery details.',
-                    '---',
-                    'Thank you'
-                ].filter(l => l !== null && l !== undefined);
-
-                const msg = encodeURIComponent(lines.join('\n'));
-                waBtn.href = 'https://wa.me/917042978227?text=' + msg;
+            if (sub) {
+                sub.textContent = 'Subtotal: Rs.' + fmt(calc.total) + (calc.saving > 0 ? '  (Save Rs.' + fmt(calc.saving) + ')' : '');
             }
         }
 
@@ -2303,42 +2576,204 @@
             const raw = Math.max(1, parseInt(inp.value) || 1);
             updateCarton(id, raw);
         }
+        function calcCartonLine(c, cartons) {
+            cartons = Math.max(1, cartons);
+            const totalBottles = cartons * c.pcs;
+            const mrpTotal = cartons * c.mrp;
+            const total = cartons * c.price;
+            const saving = mrpTotal - total;
+            return { cartons, totalBottles, mrpTotal, total, saving };
+        }
         function updateCarton(id, val) {
             const c = CARTONS[id];
-            const totalBottles = val * c.pcs;
-            const totalPrice = val * c.pcs * c.bulk_per;
-            const totalSaving = val * c.pcs * (c.retail_per - c.bulk_per);
-            const waNum = id.replace('cq', 'cwa');
-            const waBtn = document.getElementById(waNum);
+            const calc = calcCartonLine(c, val);
             const totalEl = document.getElementById(id + '-total');
+            const subEl = document.getElementById('csub' + id.replace('cq', ''));
 
-            if (totalEl) totalEl.textContent = '= ' + totalBottles + ' bottles';
-
-            if (waBtn) {
-                const lines = [
-                    'VELOQUA Drinking Water - Carton Order Request',
-                    '---',
-                    'Product: ' + c.size + ' ' + c.name,
-                    'Carton Size: ' + c.pcs + ' bottles per carton',
-                    '',
-                    'Number of Cartons: ' + val,
-                    'Total Bottles: ' + totalBottles,
-                    '',
-                    'Pricing Details:',
-                    '  Retail Price: Rs.' + c.retail_per + ' per bottle',
-                    '  Bulk Price: Rs.' + c.bulk_per + ' per bottle',
-                    '  Total Amount: Rs.' + totalPrice.toLocaleString('en-IN'),
-                    '  Total Saving: Rs.' + totalSaving.toLocaleString('en-IN'),
-                    '',
-                    'Please confirm availability, delivery address, and timeline.',
-                    '---',
-                    'Thank you'
-                ];
-                waBtn.href = 'https://wa.me/917042978227?text=' + encodeURIComponent(lines.join('\n'));
-            }
+            if (totalEl) totalEl.textContent = '= ' + calc.totalBottles + ' bottles';
+            if (subEl) subEl.textContent = 'Subtotal: Rs.' + fmt(calc.total) + '  (Save Rs.' + fmt(calc.saving) + ')';
         }
 
-        /* ─── CONTACT FORM → WHATSAPP ─── */
+        /* ═══════════════════════════════════════════════
+           CART OPERATIONS
+           ═══════════════════════════════════════════════ */
+        function addToCart(id) {
+            const prod = PRODUCTS[id];
+            const inp = document.getElementById(id);
+            const qty = Math.max(12, Math.round((parseInt(inp.value) || 12) / 12) * 12);
+            const calc = calcBottleLine(prod, qty);
+
+            const existing = CART.find(i => i.type === 'bottle' && i.key === id);
+            if (existing) {
+                existing.qty = qty;
+                existing.mrpTotal = calc.mrpTotal;
+                existing.total = calc.total;
+                existing.saving = calc.saving;
+                existing.discPct = calc.discPct;
+            } else {
+                CART.push({
+                    type: 'bottle', key: id, size: prod.size, name: prod.name, unit: 'bottle',
+                    qty: qty, unitPrice: prod.price, mrpTotal: calc.mrpTotal, total: calc.total,
+                    saving: calc.saving, discPct: calc.discPct
+                });
+            }
+            renderCart();
+            flashButton(id);
+        }
+
+        function addCartonToCart(id) {
+            const c = CARTONS[id];
+            const inp = document.getElementById(id);
+            const cartons = Math.max(1, parseInt(inp.value) || 1);
+            const calc = calcCartonLine(c, cartons);
+
+            const existing = CART.find(i => i.type === 'carton' && i.key === id);
+            if (existing) {
+                existing.qty = cartons;
+                existing.totalBottles = calc.totalBottles;
+                existing.mrpTotal = calc.mrpTotal;
+                existing.total = calc.total;
+                existing.saving = calc.saving;
+            } else {
+                CART.push({
+                    type: 'carton', key: id, size: c.size, name: c.name, unit: 'carton',
+                    qty: cartons, totalBottles: calc.totalBottles, mrpUnit: c.mrp, priceUnit: c.price,
+                    mrpTotal: calc.mrpTotal, total: calc.total, saving: calc.saving, savePct: c.savePct
+                });
+            }
+            renderCart();
+            flashButton(id, true);
+        }
+
+        function flashButton(id, isCarton) {
+            const cartBar = document.getElementById('cartBar');
+            cartBar.classList.remove('hidden-bar');
+        }
+
+        function removeFromCart(type, key) {
+            CART = CART.filter(i => !(i.type === type && i.key === key));
+            renderCart();
+        }
+
+        function clearCart() {
+            CART = [];
+            renderCart();
+        }
+
+        function renderCart() {
+            const cartBar = document.getElementById('cartBar');
+            const cartCount = document.getElementById('cartCount');
+            const cartSummaryText = document.getElementById('cartSummaryText');
+            const cartTotalText = document.getElementById('cartTotalText');
+            const cartItemsWrap = document.getElementById('cartItemsWrap');
+
+            if (CART.length === 0) {
+                cartBar.classList.add('hidden-bar');
+                cartItemsWrap.innerHTML = '';
+                return;
+            }
+
+            cartBar.classList.remove('hidden-bar');
+            cartCount.textContent = CART.length;
+
+            let grandTotal = 0;
+            let totalPieces = 0;
+            CART.forEach(i => {
+                grandTotal += i.total;
+                totalPieces += (i.type === 'bottle') ? i.qty : i.totalBottles;
+            });
+
+            cartSummaryText.textContent = CART.length + ' item' + (CART.length > 1 ? 's' : '') + ' · ' + totalPieces + ' bottles';
+            cartTotalText.textContent = 'Rs.' + fmt(grandTotal);
+
+            cartItemsWrap.innerHTML = CART.map(i => {
+                const qtyLabel = i.type === 'bottle' ? (i.qty + ' bottles') : (i.qty + ' carton' + (i.qty > 1 ? 's' : '') + ' (' + i.totalBottles + ' bottles)');
+                return `
+                <div class="cart-line-item flex items-center justify-between gap-3 py-2 border-b border-ink/6 last:border-0">
+                    <div class="flex-1 min-w-0">
+                        <div class="text-[13px] font-semibold text-ocean truncate">${i.size} — ${i.name}</div>
+                        <div class="text-[11.5px] text-ink/50">${qtyLabel}${i.discPct > 0 || i.savePct ? ' · Save Rs.' + fmt(i.saving) : ''}</div>
+                    </div>
+                    <div class="text-sm font-bold text-ocean flex-shrink-0">Rs.${fmt(i.total)}</div>
+                    <button onclick="removeFromCart('${i.type}','${i.key}')" class="w-6 h-6 flex-shrink-0 flex items-center justify-center rounded-full bg-ink/5 hover:bg-red-50 hover:text-red-500 text-ink/40 border-none cursor-pointer transition-all" aria-label="Remove">
+                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                    </button>
+                </div>`;
+            }).join('');
+        }
+
+        let cartExpanded = false;
+        function toggleCartExpand() {
+            cartExpanded = !cartExpanded;
+            const wrap = document.getElementById('cartItemsWrap');
+            const chevron = document.getElementById('cartChevron');
+            wrap.classList.toggle('hidden', !cartExpanded);
+            chevron.style.transform = cartExpanded ? 'rotate(180deg)' : 'rotate(0deg)';
+        }
+
+        function checkoutCart() {
+            if (CART.length === 0) return;
+
+            let grandTotal = 0;
+            let grandMrp = 0;
+            let totalSaving = 0;
+            let totalPieces = 0;
+
+            const lines = [
+                'VELOQUA Drinking Water — Order Request',
+                '=========================================',
+                ''
+            ];
+
+            CART.forEach((i, idx) => {
+                grandTotal += i.total;
+                grandMrp += i.mrpTotal;
+                totalSaving += i.saving;
+
+                if (i.type === 'bottle') {
+                    totalPieces += i.qty;
+                    lines.push((idx + 1) + '. ' + i.size + ' — ' + i.name);
+                    lines.push('   Order Type: Loose Bottles');
+                    lines.push('   Quantity: ' + i.qty + ' bottles');
+                    lines.push('   Price per Bottle: Rs.' + PRODUCTS[i.key].price);
+                    if (i.discPct > 0) {
+                        lines.push('   Discount Applied: ' + i.discPct + '%');
+                        lines.push('   Effective Price/Bottle: Rs.' + (i.total / i.qty).toFixed(2));
+                    }
+                    lines.push('   Line Total: Rs.' + fmt(i.total));
+                    if (i.saving > 0) lines.push('   Line Saving: Rs.' + fmt(i.saving));
+                } else {
+                    totalPieces += i.totalBottles;
+                    lines.push((idx + 1) + '. ' + i.size + ' — ' + i.name);
+                    lines.push('   Order Type: Carton (' + (i.totalBottles / i.qty) + ' bottles/carton)');
+                    lines.push('   Number of Cartons: ' + i.qty);
+                    lines.push('   Total Bottles: ' + i.totalBottles);
+                    lines.push('   MRP per Carton: Rs.' + i.mrpUnit);
+                    lines.push('   Price per Carton: Rs.' + i.priceUnit + ' (Save ' + i.savePct + '%)');
+                    lines.push('   Line Total: Rs.' + fmt(i.total));
+                    lines.push('   Line Saving: Rs.' + fmt(i.saving));
+                }
+                lines.push('');
+            });
+
+            lines.push('=========================================');
+            lines.push('ORDER SUMMARY');
+            lines.push('Total Items: ' + CART.length);
+            lines.push('Total Bottles: ' + totalPieces);
+            lines.push('Total MRP Value: Rs.' + fmt(grandMrp));
+            lines.push('Total Payable: Rs.' + fmt(grandTotal));
+            lines.push('Total You Save: Rs.' + fmt(totalSaving));
+            lines.push('=========================================');
+            lines.push('');
+            lines.push('Please confirm product availability, delivery address, and expected delivery timeline.');
+            lines.push('');
+            lines.push('Thank you — VELOQUA, Pure Water. Pure Trust.');
+
+            const msg = encodeURIComponent(lines.join('\n'));
+            window.open('https://wa.me/' + OFFICE_WA + '?text=' + msg, '_blank');
+        }
+
+        /* ─── CONTACT FORM → WHATSAPP (OFFICE NUMBER) ─── */
         function submitContactForm() {
             const name = (document.getElementById('cf-name').value || '').trim();
             const phone = (document.getElementById('cf-phone').value || '').trim();
@@ -2368,7 +2803,7 @@
             ].filter(l => l !== null && l !== undefined);
 
             const waMsg = encodeURIComponent(lines.join('\n'));
-            const waUrl = 'https://wa.me/919211278080?text=' + waMsg;
+            const waUrl = 'https://wa.me/' + OFFICE_WA + '?text=' + waMsg;
 
             window.open(waUrl, '_blank');
 
@@ -2383,8 +2818,9 @@
         }
 
         /* ─── INIT ALL QTY CONTROLS ─── */
-        ['q1', 'q2', 'q3'].forEach(id => updateProduct(id, 6));
+        ['q1', 'q2', 'q3', 'q4'].forEach(id => updateProduct(id, 12));
         ['cq1', 'cq2', 'cq3', 'cq4'].forEach(id => updateCarton(id, 1));
+        renderCart();
     </script>
 </body>
 
