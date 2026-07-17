@@ -1,0 +1,608 @@
+ *,
+ *::before,
+ *::after {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+ }
+
+ html {
+     scroll-behavior: smooth;
+ }
+
+ body {
+     font-family: 'Inter', sans-serif;
+     overflow-x: hidden;
+     -webkit-font-smoothing: antialiased;
+ }
+
+ ::selection {
+     background: #4DA8FF;
+     color: #fff;
+ }
+
+ /* ─── PRELOADER ─── */
+ #preloader {
+     transition: opacity .7s ease, visibility .7s;
+ }
+
+ #preloader.done {
+     opacity: 0;
+     visibility: hidden;
+     pointer-events: none;
+ }
+
+ .pre-fill-bar {
+     height: 100%;
+     width: 0%;
+     background: linear-gradient(90deg, #4DA8FF, #8BE9FF);
+     border-radius: 2px;
+     animation: preFill 2.2s ease forwards;
+ }
+
+ @keyframes preFill {
+     to {
+         width: 100%;
+     }
+ }
+
+ .pre-drop {
+     width: 8px;
+     height: 8px;
+     border-radius: 50%;
+     background: #8BE9FF;
+     animation: prePulse 1.2s ease-in-out infinite;
+ }
+
+ .pre-drop:nth-child(2) {
+     animation-delay: .2s;
+ }
+
+ .pre-drop:nth-child(3) {
+     animation-delay: .4s;
+ }
+
+ @keyframes prePulse {
+
+     0%,
+     100% {
+         opacity: .3;
+         transform: scale(.7)
+     }
+
+     50% {
+         opacity: 1;
+         transform: scale(1.2)
+     }
+ }
+
+ @keyframes preLogoAnim {
+
+     0%,
+     100% {
+         transform: scale(1);
+         filter: drop-shadow(0 0 18px rgba(139, 233, 255, .5))
+     }
+
+     50% {
+         transform: scale(1.12);
+         filter: drop-shadow(0 0 36px rgba(139, 233, 255, .9))
+     }
+ }
+
+ .animate-pre-logo {
+     animation: preLogoAnim 3s ease-in-out infinite;
+ }
+
+ /* ─── NAV ─── */
+ .nav-scrolled {
+     background: rgba(255, 255, 255, .92) !important;
+     border-color: rgba(13, 35, 70, .08) !important;
+     backdrop-filter: blur(22px);
+     box-shadow: 0 10px 40px -20px rgba(13, 35, 70, .22);
+ }
+
+ .nav-scrolled .nav-link {
+     color: #0f1f3d !important;
+ }
+
+ .nav-scrolled .brand-name-el {
+     color: #0D2346 !important;
+ }
+
+ .nav-scrolled .brand-mark-el {
+     color: #0D2346 !important;
+ }
+
+ .nav-scrolled .btn-ghost-nav {
+     color: #0D2346 !important;
+     border-color: rgba(13, 35, 70, .2) !important;
+ }
+
+ .nav-scrolled .btn-ghost-nav:hover {
+     background: rgba(13, 35, 70, .05) !important;
+ }
+
+ .nav-scrolled .btn-order-nav {
+     background: #0D2346 !important;
+ }
+
+ .nav-scrolled .nav-ig-icon {
+     color: #0D2346 !important;
+     border-color: rgba(13, 35, 70, .2) !important;
+ }
+
+ /* ─── CANVAS ─── */
+ #heroCanvas {
+     position: absolute;
+     inset: 0;
+     width: 100%;
+     height: 100%;
+     display: block;
+     pointer-events: none;
+ }
+
+ /* ─── TICKER ─── */
+ .ticker-wrap {
+     width: max-content;
+     display: flex;
+     animation: ticker 28s linear infinite;
+ }
+
+ @keyframes ticker {
+     from {
+         transform: translateX(0)
+     }
+
+     to {
+         transform: translateX(-50%)
+     }
+ }
+
+ /* ─── FLOAT ─── */
+ @keyframes float {
+
+     0%,
+     100% {
+         transform: translateY(0) rotateZ(-.8deg)
+     }
+
+     50% {
+         transform: translateY(-20px) rotateZ(.8deg)
+     }
+ }
+
+ .animate-float {
+     animation: float 7s ease-in-out infinite;
+ }
+
+ /* ─── RIPPLE ─── */
+ @keyframes rippleAnim {
+
+     0%,
+     100% {
+         opacity: .6;
+         transform: translateX(-50%) scaleX(1)
+     }
+
+     50% {
+         opacity: 1;
+         transform: translateX(-50%) scaleX(1.15)
+     }
+ }
+
+ /* ─── DRIP ─── */
+ @keyframes drip {
+     0% {
+         top: -100%
+     }
+
+     60% {
+         top: 100%
+     }
+
+     100% {
+         top: 100%
+     }
+ }
+
+ /* ─── FLOW LINE ─── */
+ @keyframes flowLine {
+     from {
+         left: -30%
+     }
+
+     to {
+         left: 100%
+     }
+ }
+
+ .flow-line::after {
+     content: '';
+     position: absolute;
+     left: 0;
+     top: 0;
+     height: 100%;
+     width: 30%;
+     background: linear-gradient(90deg, transparent, #4DA8FF, #8BE9FF, transparent);
+     animation: flowLine 4s linear infinite;
+ }
+
+ /* ─── WAVE SCROLL ─── */
+ @keyframes waveScroll {
+     from {
+         transform: translateX(0)
+     }
+
+     to {
+         transform: translateX(-50%)
+     }
+ }
+
+ .wave-anim {
+     animation: waveScroll 20s linear infinite;
+ }
+
+ /* ─── SCROLL INDICATOR ─── */
+ .scroll-line {
+     position: relative;
+     overflow: hidden;
+ }
+
+ .scroll-line::after {
+     content: '';
+     position: absolute;
+     top: -100%;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     background: linear-gradient(to bottom, transparent, #8BE9FF, transparent);
+     animation: drip 2.6s ease-in-out infinite;
+ }
+
+ /* ─── REVEAL ─── */
+ .reveal {
+     opacity: 0;
+     transform: translateY(32px);
+     transition: opacity .85s cubic-bezier(.22, .61, .36, 1), transform .85s cubic-bezier(.22, .61, .36, 1);
+ }
+
+ .reveal.in {
+     opacity: 1;
+     transform: translateY(0);
+ }
+
+ .rd1 {
+     transition-delay: .08s
+ }
+
+ .rd2 {
+     transition-delay: .16s
+ }
+
+ .rd3 {
+     transition-delay: .24s
+ }
+
+ .rd4 {
+     transition-delay: .32s
+ }
+
+ .rd5 {
+     transition-delay: .40s
+ }
+
+ /* ─── BUTTONS ─── */
+ .btn-primary-v {
+     background: #0D2346;
+     color: #fff;
+     transition: all .35s cubic-bezier(.22, .61, .36, 1);
+ }
+
+ .btn-primary-v:hover {
+     background: #4DA8FF;
+     transform: translateY(-2px);
+     box-shadow: 0 18px 40px -14px rgba(77, 168, 255, .55);
+ }
+
+ .btn-white-v {
+     background: rgba(255, 255, 255, .12);
+     color: #fff;
+     border: 1.5px solid rgba(255, 255, 255, .32);
+     backdrop-filter: blur(8px);
+     transition: all .35s;
+ }
+
+ .btn-white-v:hover {
+     background: rgba(255, 255, 255, .22);
+ }
+
+ /* ─── PRODUCT CARDS ─── */
+ .prod-card {
+     transition: all .45s cubic-bezier(.22, .61, .36, 1);
+ }
+
+ .prod-card:hover {
+     transform: translateY(-8px);
+     box-shadow: 0 28px 60px -30px rgba(13, 35, 70, .2);
+     border-color: rgba(77, 168, 255, .28);
+ }
+
+ .prod-card .card-img img {
+     transition: transform .5s cubic-bezier(.22, .61, .36, 1);
+ }
+
+ .prod-card:hover .card-img img {
+     transform: scale(1.07);
+ }
+
+ /* ─── WHY CARDS ─── */
+ .why-card {
+     transition: all .4s cubic-bezier(.22, .61, .36, 1);
+ }
+
+ .why-card:hover {
+     transform: translateY(-6px);
+     box-shadow: 0 20px 50px -24px rgba(13, 35, 70, .18);
+     border-color: rgba(77, 168, 255, .25);
+ }
+
+ .why-card::before {
+     content: '';
+     position: absolute;
+     top: 0;
+     left: 0;
+     right: 0;
+     height: 3px;
+     background: linear-gradient(90deg, #4DA8FF, #8BE9FF);
+     transform: scaleX(0);
+     transform-origin: left;
+     transition: transform .45s cubic-bezier(.22, .61, .36, 1);
+ }
+
+ .why-card:hover::before {
+     transform: scaleX(1);
+ }
+
+ /* ─── T-CARDS ─── */
+ .t-card:hover {
+     transform: translateY(-3px);
+     border-color: rgba(77, 168, 255, .35);
+     box-shadow: 0 14px 36px -20px rgba(13, 35, 70, .18);
+ }
+
+ .t-card {
+     transition: all .35s cubic-bezier(.22, .61, .36, 1);
+ }
+
+ /* ─── GALLERY ─── */
+ .gallery-item {
+     transition: all .4s cubic-bezier(.22, .61, .36, 1);
+ }
+
+ .gallery-item:hover {
+     transform: translateY(-6px);
+     box-shadow: 0 24px 60px -20px rgba(13, 35, 70, .18);
+     border-color: rgba(77, 168, 255, .3);
+ }
+
+ .gallery-item img {
+     transition: transform .5s cubic-bezier(.22, .61, .36, 1);
+ }
+
+ .gallery-item:hover img {
+     transform: scale(1.05);
+ }
+
+ /* ─── TESTIMONIALS ─── */
+ .test-card {
+     transition: all .35s cubic-bezier(.22, .61, .36, 1);
+ }
+
+ .test-card:hover {
+     background: rgba(255, 255, 255, .08);
+     border-color: rgba(139, 233, 255, .3);
+     transform: translateY(-5px);
+ }
+
+ /* ─── BENEFIT ITEMS ─── */
+ .benefit-item:hover {
+     background: rgba(255, 255, 255, .12);
+     transform: translateX(5px);
+ }
+
+ .benefit-item {
+     transition: all .3s cubic-bezier(.22, .61, .36, 1);
+ }
+
+ /* ─── QSTAT ─── */
+ .qstat {
+     transition: all .3s cubic-bezier(.22, .61, .36, 1);
+ }
+
+ .qstat:hover {
+     background: rgba(77, 168, 255, .1);
+     border-color: rgba(77, 168, 255, .35);
+ }
+
+ /* ─── PROCESS STEPS ─── */
+ .pstep:hover .pstep-circle {
+     background: rgba(77, 168, 255, .15);
+     border-color: rgba(77, 168, 255, .5);
+ }
+
+ /* ─── CARTON CARDS ─── */
+ .carton-card {
+     transition: all .4s cubic-bezier(.22, .61, .36, 1);
+ }
+
+ .carton-card:hover {
+     transform: translateY(-6px);
+     box-shadow: 0 22px 50px -24px rgba(13, 35, 70, .22);
+     border-color: rgba(77, 168, 255, .35);
+ }
+
+ /* ─── DISCOUNT PILL ─── */
+ .discount-pill {
+     display: none;
+ }
+
+ .discount-pill.show {
+     display: flex;
+ }
+
+ /* ─── WA FLOAT ─── */
+ @keyframes waPing {
+
+     0%,
+     100% {
+         transform: scale(1);
+         opacity: .7
+     }
+
+     50% {
+         transform: scale(1.15);
+         opacity: .3
+     }
+ }
+
+ .wa-ping {
+     animation: waPing 2s ease-in-out infinite;
+ }
+
+ /* ─── FORM ─── */
+ .form-input {
+     border: 1.5px solid rgba(15, 31, 61, .1);
+     border-radius: 14px;
+     padding: 13px 16px;
+     font-size: 14px;
+     background: #F5FAFF;
+     width: 100%;
+     transition: all .3s;
+     color: #0f1f3d;
+     outline: none;
+     font-family: 'Inter', sans-serif;
+ }
+
+ .form-input:focus {
+     border-color: #4DA8FF;
+     background: #fff;
+     box-shadow: 0 0 0 3px rgba(77, 168, 255, .1);
+ }
+
+ .form-label {
+     font-size: 11.5px;
+     font-weight: 700;
+     text-transform: uppercase;
+     letter-spacing: .1em;
+     color: rgba(15, 31, 61, .55);
+     display: block;
+     margin-bottom: 7px;
+ }
+
+ .form-group {
+     display: flex;
+     flex-direction: column;
+ }
+
+ /* ─── PSTEP CONNECTOR ─── */
+ .pstep-circle {
+     transition: all .35s cubic-bezier(.22, .61, .36, 1);
+ }
+
+ /* ─── MOBILE ─── */
+ @media(max-width:640px) {
+     .hero-grid {
+         grid-template-columns: 1fr !important;
+     }
+ }
+
+ /* ─── QTY BUTTONS ─── */
+ .qty-btn {
+     transition: all .25s cubic-bezier(.22, .61, .36, 1);
+ }
+
+ .qty-btn:hover {
+     background: #0D2346;
+     color: #fff;
+     border-color: #0D2346;
+ }
+
+ .qty-input::-webkit-inner-spin-button,
+ .qty-input::-webkit-outer-spin-button {
+     -webkit-appearance: none;
+     margin: 0;
+ }
+
+ .qty-input {
+     -moz-appearance: textfield;
+ }
+
+ /* ─── GALLERY MASONRY ─── */
+ .gallery-grid {
+     display: grid;
+     grid-template-columns: repeat(3, 1fr);
+     grid-template-rows: auto;
+     gap: 20px;
+ }
+
+ .gallery-grid .gi-tall {
+     grid-row: span 2;
+ }
+
+ @media(max-width:768px) {
+     .gallery-grid {
+         grid-template-columns: repeat(2, 1fr);
+     }
+
+     .gallery-grid .gi-tall {
+         grid-row: span 1;
+     }
+ }
+
+ @media(max-width:480px) {
+     .gallery-grid {
+         grid-template-columns: 1fr;
+     }
+ }
+
+ /* ─── CARTON QTY ─── */
+ .carton-qty-row {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     gap: 8px;
+     margin-top: 12px;
+ }
+
+ /* ─── HERO STATS ─── */
+ .hero-stat {
+     transition: all .3s cubic-bezier(.22, .61, .36, 1);
+ }
+
+ .hero-stat:hover {
+     background: rgba(255, 255, 255, .1);
+     transform: translateY(-3px);
+ }
+
+ /* ─── CART BAR ─── */
+ #cartBar {
+     transition: transform .4s cubic-bezier(.22, .61, .36, 1), opacity .4s;
+ }
+
+ #cartBar.hidden-bar {
+     transform: translateY(120%);
+     opacity: 0;
+     pointer-events: none;
+ }
+
+ .cart-line-item {
+     transition: all .25s;
+ }
+
+ /* ─── IG GRADIENT ICON HOVER ─── */
+ .ig-hover:hover {
+     background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+     border-color: transparent !important;
+     color: #fff !important;
+ }

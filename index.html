@@ -6,11 +6,15 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>VELOQUA — Pure Water. Pure Trust.</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" href="img/favicon/Logo.png"  width="40" height="40">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" type="image/x-icon" href="favicon/favicon.ico" width="60">
     <link
         href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
+   
+
     <script>
         tailwind.config = {
             theme: {
@@ -24,616 +28,7 @@
             }
         }
     </script>
-    <style>
-        *,
-        *::before,
-        *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        ::selection {
-            background: #4DA8FF;
-            color: #fff;
-        }
-
-        /* ─── PRELOADER ─── */
-        #preloader {
-            transition: opacity .7s ease, visibility .7s;
-        }
-
-        #preloader.done {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
-
-        .pre-fill-bar {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, #4DA8FF, #8BE9FF);
-            border-radius: 2px;
-            animation: preFill 2.2s ease forwards;
-        }
-
-        @keyframes preFill {
-            to {
-                width: 100%;
-            }
-        }
-
-        .pre-drop {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #8BE9FF;
-            animation: prePulse 1.2s ease-in-out infinite;
-        }
-
-        .pre-drop:nth-child(2) {
-            animation-delay: .2s;
-        }
-
-        .pre-drop:nth-child(3) {
-            animation-delay: .4s;
-        }
-
-        @keyframes prePulse {
-
-            0%,
-            100% {
-                opacity: .3;
-                transform: scale(.7)
-            }
-
-            50% {
-                opacity: 1;
-                transform: scale(1.2)
-            }
-        }
-
-        @keyframes preLogoAnim {
-
-            0%,
-            100% {
-                transform: scale(1);
-                filter: drop-shadow(0 0 18px rgba(139, 233, 255, .5))
-            }
-
-            50% {
-                transform: scale(1.12);
-                filter: drop-shadow(0 0 36px rgba(139, 233, 255, .9))
-            }
-        }
-
-        .animate-pre-logo {
-            animation: preLogoAnim 3s ease-in-out infinite;
-        }
-
-        /* ─── NAV ─── */
-        .nav-scrolled {
-            background: rgba(255, 255, 255, .92) !important;
-            border-color: rgba(13, 35, 70, .08) !important;
-            backdrop-filter: blur(22px);
-            box-shadow: 0 10px 40px -20px rgba(13, 35, 70, .22);
-        }
-
-        .nav-scrolled .nav-link {
-            color: #0f1f3d !important;
-        }
-
-        .nav-scrolled .brand-name-el {
-            color: #0D2346 !important;
-        }
-
-        .nav-scrolled .brand-mark-el {
-            color: #0D2346 !important;
-        }
-
-        .nav-scrolled .btn-ghost-nav {
-            color: #0D2346 !important;
-            border-color: rgba(13, 35, 70, .2) !important;
-        }
-
-        .nav-scrolled .btn-ghost-nav:hover {
-            background: rgba(13, 35, 70, .05) !important;
-        }
-
-        .nav-scrolled .btn-order-nav {
-            background: #0D2346 !important;
-        }
-
-        .nav-scrolled .nav-ig-icon {
-            color: #0D2346 !important;
-            border-color: rgba(13, 35, 70, .2) !important;
-        }
-
-        /* ─── CANVAS ─── */
-        #heroCanvas {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            display: block;
-            pointer-events: none;
-        }
-
-        /* ─── TICKER ─── */
-        .ticker-wrap {
-            width: max-content;
-            display: flex;
-            animation: ticker 28s linear infinite;
-        }
-
-        @keyframes ticker {
-            from {
-                transform: translateX(0)
-            }
-
-            to {
-                transform: translateX(-50%)
-            }
-        }
-
-        /* ─── FLOAT ─── */
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0) rotateZ(-.8deg)
-            }
-
-            50% {
-                transform: translateY(-20px) rotateZ(.8deg)
-            }
-        }
-
-        .animate-float {
-            animation: float 7s ease-in-out infinite;
-        }
-
-        /* ─── RIPPLE ─── */
-        @keyframes rippleAnim {
-
-            0%,
-            100% {
-                opacity: .6;
-                transform: translateX(-50%) scaleX(1)
-            }
-
-            50% {
-                opacity: 1;
-                transform: translateX(-50%) scaleX(1.15)
-            }
-        }
-
-        /* ─── DRIP ─── */
-        @keyframes drip {
-            0% {
-                top: -100%
-            }
-
-            60% {
-                top: 100%
-            }
-
-            100% {
-                top: 100%
-            }
-        }
-
-        /* ─── FLOW LINE ─── */
-        @keyframes flowLine {
-            from {
-                left: -30%
-            }
-
-            to {
-                left: 100%
-            }
-        }
-
-        .flow-line::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 30%;
-            background: linear-gradient(90deg, transparent, #4DA8FF, #8BE9FF, transparent);
-            animation: flowLine 4s linear infinite;
-        }
-
-        /* ─── WAVE SCROLL ─── */
-        @keyframes waveScroll {
-            from {
-                transform: translateX(0)
-            }
-
-            to {
-                transform: translateX(-50%)
-            }
-        }
-
-        .wave-anim {
-            animation: waveScroll 20s linear infinite;
-        }
-
-        /* ─── SCROLL INDICATOR ─── */
-        .scroll-line {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .scroll-line::after {
-            content: '';
-            position: absolute;
-            top: -100%;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, transparent, #8BE9FF, transparent);
-            animation: drip 2.6s ease-in-out infinite;
-        }
-
-        /* ─── REVEAL ─── */
-        .reveal {
-            opacity: 0;
-            transform: translateY(32px);
-            transition: opacity .85s cubic-bezier(.22, .61, .36, 1), transform .85s cubic-bezier(.22, .61, .36, 1);
-        }
-
-        .reveal.in {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .rd1 {
-            transition-delay: .08s
-        }
-
-        .rd2 {
-            transition-delay: .16s
-        }
-
-        .rd3 {
-            transition-delay: .24s
-        }
-
-        .rd4 {
-            transition-delay: .32s
-        }
-
-        .rd5 {
-            transition-delay: .40s
-        }
-
-        /* ─── BUTTONS ─── */
-        .btn-primary-v {
-            background: #0D2346;
-            color: #fff;
-            transition: all .35s cubic-bezier(.22, .61, .36, 1);
-        }
-
-        .btn-primary-v:hover {
-            background: #4DA8FF;
-            transform: translateY(-2px);
-            box-shadow: 0 18px 40px -14px rgba(77, 168, 255, .55);
-        }
-
-        .btn-white-v {
-            background: rgba(255, 255, 255, .12);
-            color: #fff;
-            border: 1.5px solid rgba(255, 255, 255, .32);
-            backdrop-filter: blur(8px);
-            transition: all .35s;
-        }
-
-        .btn-white-v:hover {
-            background: rgba(255, 255, 255, .22);
-        }
-
-        /* ─── PRODUCT CARDS ─── */
-        .prod-card {
-            transition: all .45s cubic-bezier(.22, .61, .36, 1);
-        }
-
-        .prod-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 28px 60px -30px rgba(13, 35, 70, .2);
-            border-color: rgba(77, 168, 255, .28);
-        }
-
-        .prod-card .card-img img {
-            transition: transform .5s cubic-bezier(.22, .61, .36, 1);
-        }
-
-        .prod-card:hover .card-img img {
-            transform: scale(1.07);
-        }
-
-        /* ─── WHY CARDS ─── */
-        .why-card {
-            transition: all .4s cubic-bezier(.22, .61, .36, 1);
-        }
-
-        .why-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 50px -24px rgba(13, 35, 70, .18);
-            border-color: rgba(77, 168, 255, .25);
-        }
-
-        .why-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #4DA8FF, #8BE9FF);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform .45s cubic-bezier(.22, .61, .36, 1);
-        }
-
-        .why-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        /* ─── T-CARDS ─── */
-        .t-card:hover {
-            transform: translateY(-3px);
-            border-color: rgba(77, 168, 255, .35);
-            box-shadow: 0 14px 36px -20px rgba(13, 35, 70, .18);
-        }
-
-        .t-card {
-            transition: all .35s cubic-bezier(.22, .61, .36, 1);
-        }
-
-        /* ─── GALLERY ─── */
-        .gallery-item {
-            transition: all .4s cubic-bezier(.22, .61, .36, 1);
-        }
-
-        .gallery-item:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 24px 60px -20px rgba(13, 35, 70, .18);
-            border-color: rgba(77, 168, 255, .3);
-        }
-
-        .gallery-item img {
-            transition: transform .5s cubic-bezier(.22, .61, .36, 1);
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.05);
-        }
-
-        /* ─── TESTIMONIALS ─── */
-        .test-card {
-            transition: all .35s cubic-bezier(.22, .61, .36, 1);
-        }
-
-        .test-card:hover {
-            background: rgba(255, 255, 255, .08);
-            border-color: rgba(139, 233, 255, .3);
-            transform: translateY(-5px);
-        }
-
-        /* ─── BENEFIT ITEMS ─── */
-        .benefit-item:hover {
-            background: rgba(255, 255, 255, .12);
-            transform: translateX(5px);
-        }
-
-        .benefit-item {
-            transition: all .3s cubic-bezier(.22, .61, .36, 1);
-        }
-
-        /* ─── QSTAT ─── */
-        .qstat {
-            transition: all .3s cubic-bezier(.22, .61, .36, 1);
-        }
-
-        .qstat:hover {
-            background: rgba(77, 168, 255, .1);
-            border-color: rgba(77, 168, 255, .35);
-        }
-
-        /* ─── PROCESS STEPS ─── */
-        .pstep:hover .pstep-circle {
-            background: rgba(77, 168, 255, .15);
-            border-color: rgba(77, 168, 255, .5);
-        }
-
-        /* ─── CARTON CARDS ─── */
-        .carton-card {
-            transition: all .4s cubic-bezier(.22, .61, .36, 1);
-        }
-
-        .carton-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 22px 50px -24px rgba(13, 35, 70, .22);
-            border-color: rgba(77, 168, 255, .35);
-        }
-
-        /* ─── DISCOUNT PILL ─── */
-        .discount-pill {
-            display: none;
-        }
-
-        .discount-pill.show {
-            display: flex;
-        }
-
-        /* ─── WA FLOAT ─── */
-        @keyframes waPing {
-
-            0%,
-            100% {
-                transform: scale(1);
-                opacity: .7
-            }
-
-            50% {
-                transform: scale(1.15);
-                opacity: .3
-            }
-        }
-
-        .wa-ping {
-            animation: waPing 2s ease-in-out infinite;
-        }
-
-        /* ─── FORM ─── */
-        .form-input {
-            border: 1.5px solid rgba(15, 31, 61, .1);
-            border-radius: 14px;
-            padding: 13px 16px;
-            font-size: 14px;
-            background: #F5FAFF;
-            width: 100%;
-            transition: all .3s;
-            color: #0f1f3d;
-            outline: none;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .form-input:focus {
-            border-color: #4DA8FF;
-            background: #fff;
-            box-shadow: 0 0 0 3px rgba(77, 168, 255, .1);
-        }
-
-        .form-label {
-            font-size: 11.5px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: .1em;
-            color: rgba(15, 31, 61, .55);
-            display: block;
-            margin-bottom: 7px;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* ─── PSTEP CONNECTOR ─── */
-        .pstep-circle {
-            transition: all .35s cubic-bezier(.22, .61, .36, 1);
-        }
-
-        /* ─── MOBILE ─── */
-        @media(max-width:640px) {
-            .hero-grid {
-                grid-template-columns: 1fr !important;
-            }
-        }
-
-        /* ─── QTY BUTTONS ─── */
-        .qty-btn {
-            transition: all .25s cubic-bezier(.22, .61, .36, 1);
-        }
-
-        .qty-btn:hover {
-            background: #0D2346;
-            color: #fff;
-            border-color: #0D2346;
-        }
-
-        .qty-input::-webkit-inner-spin-button,
-        .qty-input::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-
-        .qty-input {
-            -moz-appearance: textfield;
-        }
-
-        /* ─── GALLERY MASONRY ─── */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: auto;
-            gap: 20px;
-        }
-
-        .gallery-grid .gi-tall {
-            grid-row: span 2;
-        }
-
-        @media(max-width:768px) {
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .gallery-grid .gi-tall {
-                grid-row: span 1;
-            }
-        }
-
-        @media(max-width:480px) {
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* ─── CARTON QTY ─── */
-        .carton-qty-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 8px;
-            margin-top: 12px;
-        }
-
-        /* ─── HERO STATS ─── */
-        .hero-stat {
-            transition: all .3s cubic-bezier(.22, .61, .36, 1);
-        }
-
-        .hero-stat:hover {
-            background: rgba(255, 255, 255, .1);
-            transform: translateY(-3px);
-        }
-
-        /* ─── CART BAR ─── */
-        #cartBar {
-            transition: transform .4s cubic-bezier(.22, .61, .36, 1), opacity .4s;
-        }
-
-        #cartBar.hidden-bar {
-            transform: translateY(120%);
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .cart-line-item {
-            transition: all .25s;
-        }
-
-        /* ─── IG GRADIENT ICON HOVER ─── */
-        .ig-hover:hover {
-            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-            border-color: transparent !important;
-            color: #fff !important;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css" class="rel">
 </head>
 
 <body class="bg-light font-inter text-ink">
@@ -641,16 +36,7 @@
     <!-- ===== PRELOADER ===== -->
     <div id="preloader"
         class="fixed inset-0 z-[9999] bg-deep flex flex-col items-center justify-center gap-7 text-center">
-        <svg class="w-[90px] h-[90px] animate-pre-logo" viewBox="0 0 100 100" fill="none">
-            <circle cx="50" cy="50" r="46" stroke="#4DA8FF" stroke-width="1.5" />
-            <circle cx="50" cy="50" r="40" stroke="#8BE9FF" stroke-width=".8" opacity=".6" />
-            <path d="M50 18C50 18 57 30 57 36c0 3.9-3.1 7-7 7s-7-3.1-7-7c0-6 7-18 7-18Z" fill="#8BE9FF" />
-            <path d="M12 66l16-20 11 14 11-20 14 20 10-12 14 18Z" fill="#4DA8FF" />
-            <path d="M14 72c12-5 24 5 36 0s24 5 36 0" stroke="#8BE9FF" stroke-width="2" fill="none"
-                stroke-linecap="round" />
-            <path d="M14 78c12-5 24 5 36 0s24 5 36 0" stroke="#8BE9FF" stroke-width="2" fill="none"
-                stroke-linecap="round" opacity=".55" />
-        </svg>
+        <img src="favicon/Logo.png" width="80" height="80" alt="">
         <div>
             <div class="font-fraunces text-3xl text-white tracking-[.16em] font-medium">VELOQUA</div>
             <div class="text-[13px] text-white/45 tracking-[.25em] uppercase mt-1">Pure Water. Pure Trust.</div>
@@ -670,16 +56,7 @@
         <div id="navInner"
             class="max-w-[1320px] mx-auto flex items-center justify-between px-4 sm:px-6 py-3 rounded-full border border-transparent transition-all duration-500">
             <a href="#top" class="flex items-center gap-3 no-underline flex-shrink-0">
-                <span class="brand-mark-el w-9 h-9 text-white transition-colors duration-500">
-                    <svg viewBox="0 0 100 100" fill="none" class="w-full h-full">
-                        <circle cx="50" cy="50" r="46" stroke="currentColor" stroke-width="2.5" />
-                        <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="1" opacity=".6" />
-                        <path d="M50 18C50 18 57 30 57 36c0 3.9-3.1 7-7 7s-7-3.1-7-7c0-6 7-18 7-18Z"
-                            fill="currentColor" />
-                        <path d="M12 66l16-20 11 14 11-20 14 20 10-12 14 18Z" fill="currentColor" />
-                        <path d="M14 72c12-5 24 5 36 0s24 5 36 0" stroke="currentColor" stroke-width="2.2" fill="none"
-                            stroke-linecap="round" />
-                    </svg>
+                <img src="favicon/Logo.png" width="80" height="80" alt="">
                 </span>
                 <span
                     class="brand-name-el font-fraunces text-lg font-semibold tracking-[.08em] text-white transition-colors duration-500">VELOQUA</span>
@@ -843,7 +220,7 @@
                         class="relative w-full max-w-[460px] rounded-[28px] overflow-hidden border border-white/10 bg-white/5 backdrop-blur-xl shadow-[0_35px_90px_rgba(0,0,0,.45)]">
                         <video autoplay muted loop playsinline preload="auto" disablepictureinpicture
                             controlslist="nodownload nofullscreen noremoteplayback" class="w-full h-auto object-cover">
-                            <source src="img/use_these_images_as_reference.mp4" type="video/mp4">
+                            <source src="ugc video.mp4" type="video/mp4">
                         </video>
                     </div>
                 </div>
@@ -934,7 +311,7 @@
         <div class="max-w-[1320px] mx-auto px-5 sm:px-8 lg:px-12">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
                 <div class="reveal relative rounded-3xl overflow-hidden">
-                    <img src="img/tilted bottle .png" alt="VELOQUA 200ml 500ml 1000ml bottles"
+                    <img src="img/tilted.png" alt="VELOQUA 200ml 500ml 1000ml bottles"
                         class="w-full block rounded-3xl" />
                     <div class="absolute inset-0 rounded-3xl pointer-events-none"
                         style="background:linear-gradient(220deg,rgba(77,168,255,.15),transparent 60%)"></div>
@@ -1122,7 +499,7 @@
                         <span
                             class="absolute top-3.5 left-3.5 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-[.06em] text-white"
                             style="background:linear-gradient(135deg,#0D2346,#4DA8FF)">Most Popular</span>
-                        <img src="img/front 3.png" alt="VELOQUA 500ml"
+                        <img src="img/f3.png" alt="VELOQUA 500ml"
                             class="h-full w-auto object-contain max-h-[190px]" />
                         <div class="absolute bottom-2 left-1/2 -translate-x-1/2 w-20 h-5 rounded-full"
                             style="background:rgba(77,168,255,.35);filter:blur(10px)"></div>
@@ -1252,7 +629,7 @@
                         <span
                             class="absolute top-3.5 left-3.5 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-[.06em]"
                             style="background:rgba(212,160,23,.2);color:#d4a017;border:1px solid rgba(212,160,23,.3)">Premium</span>
-                        <img src="img/premium 1000ml carton photo.png" alt="VELOQUA 1000ml Premium"
+                        <img src="img/Premium 1000ml bottle .png" alt="VELOQUA 1000ml Premium"
                             class="h-full w-auto object-contain max-h-[190px]" />
                         <div class="absolute bottom-2 left-1/2 -translate-x-1/2 w-20 h-5 rounded-full"
                             style="background:rgba(212,160,23,.3);filter:blur(10px)"></div>
@@ -1643,7 +1020,7 @@
                     </div>
                 </div>
                 <div class="reveal rd1 relative">
-                    <img src="img/front 1 .png" alt="VELOQUA water bottle" class="w-full block rounded-3xl"
+                    <img src="img/f1.png" alt="VELOQUA water bottle" class="w-full block rounded-3xl"
                         style="box-shadow:0 40px 80px -40px rgba(0,0,0,.6)" />
                     <div class="absolute inset-0 rounded-3xl pointer-events-none"
                         style="background:linear-gradient(160deg,rgba(139,233,255,.12),transparent 50%)"></div>
@@ -1688,7 +1065,7 @@
                     </a>
                     <div class="flex-1 flex items-center justify-center p-8"
                         style="background:linear-gradient(145deg,#eaf4ff,#F5FAFF)">
-                        <img src="img/tilted bottle .png" alt="VELOQUA Bottle Collection"
+                        <img src="img/tilted.png" alt="VELOQUA Bottle Collection"
                             class="w-full max-h-[480px] object-contain" />
                     </div>
                     <div class="px-6 py-4 border-t border-slate-100">
@@ -1712,7 +1089,7 @@
                     </a>
                     <div class="flex-1 flex items-center justify-center p-6"
                         style="background:linear-gradient(145deg,#daeeff,#edf6ff);min-height:220px">
-                        <img src="img/front 2 .png" alt="VELOQUA 500ml Front View"
+                        <img src="img/f2.png" alt="VELOQUA 500ml Front View"
                             class="w-full max-h-[200px] object-contain" />
                     </div>
                     <div class="px-5 py-3.5 border-t border-slate-100">
@@ -1736,7 +1113,7 @@
                     </a>
                     <div class="flex-1 flex items-center justify-center p-6"
                         style="background:linear-gradient(145deg,#e0f0ff,#eaf6ff);min-height:220px">
-                        <img src="img/front 3.png" alt="VELOQUA 500ml" class="w-full max-h-[200px] object-contain" />
+                        <img src="img/f3.png" alt="VELOQUA 500ml" class="w-full max-h-[200px] object-contain" />
                     </div>
                     <div class="px-5 py-3.5 border-t border-slate-100">
                         <div class="font-semibold text-ocean text-sm">1000ml — Premium Bottle</div>
@@ -1759,7 +1136,7 @@
                     </a>
                     <div class="flex-1 flex items-center justify-center p-6"
                         style="background:linear-gradient(145deg,#f0f7ff,#F5FAFF);min-height:220px">
-                        <img src="img/product ugc.png" alt="VELOQUA Product in use"
+                        <img src="img/ugc mix.png" alt="VELOQUA Product in use"
                             class="w-full max-h-[200px] object-contain" />
                     </div>
                     <div class="px-5 py-3.5 border-t border-slate-100">
@@ -2391,437 +1768,7 @@
             </svg>
         </a>
     </div>
-
-    <script>
-        /* ═══════════════════════════════════════════════
-           OFFICE WHATSAPP NUMBER — used everywhere for orders
-           ═══════════════════════════════════════════════ */
-        const OFFICE_WA = '919211278080';
-
-        /* ─── PRELOADER ─── */
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                const pre = document.getElementById('preloader');
-                pre.style.opacity = '0';
-                pre.style.visibility = 'hidden';
-                pre.style.pointerEvents = 'none';
-            }, 2500);
-        });
-
-        /* ─── MOBILE MENU ─── */
-        let menuOpen = false;
-        function toggleMenu() {
-            menuOpen = !menuOpen;
-            document.getElementById('mobileMenu').classList.toggle('hidden', !menuOpen);
-        }
-        function closeMenu() {
-            menuOpen = false;
-            document.getElementById('mobileMenu').classList.add('hidden');
-        }
-
-        /* ─── NAV SCROLL ─── */
-        const navInner = document.getElementById('navInner');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) navInner.classList.add('nav-scrolled');
-            else navInner.classList.remove('nav-scrolled');
-        }, { passive: true });
-
-        /* ─── REVEAL ON SCROLL ─── */
-        const revEls = document.querySelectorAll('.reveal:not(.in)');
-        const obs = new IntersectionObserver((entries) => {
-            entries.forEach(e => {
-                if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
-            });
-        }, { threshold: 0.08 });
-        revEls.forEach(el => obs.observe(el));
-
-        /* ─── WHATSAPP TOOLTIP ─── */
-        const waTooltip = document.getElementById('waTooltip');
-        let waTimeout = setTimeout(() => { if (waTooltip) waTooltip.style.display = 'none'; }, 6000);
-
-        /* ─── HERO CANVAS ─── */
-        const canvas = document.getElementById('heroCanvas');
-        const ctx = canvas.getContext('2d');
-        let W, H;
-        function resizeCanvas() {
-            W = canvas.width = canvas.parentElement.offsetWidth;
-            H = canvas.height = canvas.parentElement.offsetHeight;
-        }
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas, { passive: true });
-
-        const parts = Array.from({ length: 55 }, () => ({
-            x: Math.random(), y: Math.random(),
-            r: Math.random() * 2.2 + 0.4,
-            vy: Math.random() * 0.00018 + 0.00004,
-            vx: (Math.random() - .5) * 0.0002,
-            o: Math.random() * .32 + .06
-        }));
-        const waves = [
-            { amp: 22, freq: 0.0022, spd: 0.00042, yp: 0.8, c: 'rgba(77,168,255,0.09)' },
-            { amp: 14, freq: 0.0034, spd: 0.0008, yp: 0.87, c: 'rgba(139,233,255,0.07)' },
-            { amp: 30, freq: 0.0015, spd: 0.00028, yp: 0.74, c: 'rgba(13,35,70,0.6)' },
-        ];
-        function drawWave(t, w) {
-            ctx.beginPath(); ctx.moveTo(0, H);
-            for (let x = 0; x <= W; x += 5) ctx.lineTo(x, H * w.yp + Math.sin(x * w.freq + t * w.spd) * w.amp);
-            ctx.lineTo(W, H); ctx.closePath(); ctx.fillStyle = w.c; ctx.fill();
-        }
-        function raf(t) {
-            ctx.clearRect(0, 0, W, H);
-            const g = ctx.createRadialGradient(W * .75, H * .35, 0, W * .75, H * .35, W * .55);
-            g.addColorStop(0, 'rgba(139,233,255,0.08)'); g.addColorStop(1, 'rgba(139,233,255,0)');
-            ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
-            parts.forEach(p => {
-                p.y -= p.vy; p.x += p.vx;
-                if (p.y < -0.02) { p.y = 1.02; p.x = Math.random(); }
-                if (p.x < -0.02) p.x = 1.02;
-                if (p.x > 1.02) p.x = -0.02;
-                ctx.beginPath(); ctx.arc(p.x * W, p.y * H, p.r, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(139,233,255,${p.o})`; ctx.fill();
-            });
-            waves.forEach(w => drawWave(t, w));
-            requestAnimationFrame(raf);
-        }
-        requestAnimationFrame(raf);
-
-        /* ═══════════════════════════════════════════════
-           PRODUCT & PRICING CONFIG — EXACT AS SPECIFIED
-           ═══════════════════════════════════════════════
-           Bottle logic: direct price per bottle, no MRP.
-           Discount unlocks when order reaches the carton-size
-           threshold (in multiples of 12), applied to the WHOLE
-           bottle order at that tier.
-        */
-        const PRODUCTS = {
-            q1: { key: 'q1', size: '200ml', name: 'Event & Travel Bottle', price: 6, threshold: 48, discPct: 13.19, unit: 'bottle' },
-            q2: { key: 'q2', size: '500ml', name: 'Daily Companion Bottle', price: 10, threshold: 24, discPct: 20.8, unit: 'bottle' },
-            q3: { key: 'q3', size: '1000ml', name: 'Family & Office Bottle', price: 20, threshold: 12, discPct: 37.5, unit: 'bottle' },
-            q4: { key: 'q4', size: '1000ml Premium', name: 'Premium Family & Office Bottle', price: 50, threshold: 12, discPct: 30, unit: 'bottle' },
-        };
-
-        // Cartons: MRP per carton, discounted price per carton, pieces per carton
-        const CARTONS = {
-            cq1: { key: 'cq1', size: '200ml', name: 'Event & Travel Bottle', mrp: 288, price: 250, pcs: 48, savePct: 13.19 },
-            cq2: { key: 'cq2', size: '500ml', name: 'Daily Companion Bottle', mrp: 240, price: 190, pcs: 24, savePct: 20.8 },
-            cq3: { key: 'cq3', size: '1000ml', name: 'Family & Office Bottle', mrp: 240, price: 150, pcs: 12, savePct: 37.5 },
-            cq4: { key: 'cq4', size: '1000ml Premium', name: 'Premium Family & Office Bottle', mrp: 600, price: 420, pcs: 12, savePct: 30 },
-        };
-
-        /* ═══════════════════════════════════════════════
-           CART STATE
-           ═══════════════════════════════════════════════ */
-        let CART = []; // { type:'bottle'|'carton', key, size, name, qty, unitPrice, mrpUnit, lineTotal, lineMrp, saving }
-
-        function fmt(n) {
-            return Math.round(n).toLocaleString('en-IN');
-        }
-
-        /* ─── BOTTLE QTY FUNCTIONS ─── */
-        function changeQty(id, delta) {
-            const inp = document.getElementById(id);
-            let val = Math.max(12, Math.round(((parseInt(inp.value) || 12) + delta) / 12) * 12);
-            inp.value = val;
-            updateProduct(id, val);
-        }
-        function onQtyInput(id) {
-            const inp = document.getElementById(id);
-            let raw = parseInt(inp.value) || 12;
-            raw = Math.max(12, Math.round(raw / 12) * 12);
-            updateProduct(id, raw);
-        }
-
-        function calcBottleLine(prod, qty) {
-            qty = Math.max(12, Math.round(qty / 12) * 12);
-            const mrpTotal = qty * prod.price;
-            let discPct = 0;
-            if (qty >= prod.threshold) discPct = prod.discPct;
-            const total = mrpTotal * (1 - discPct / 100);
-            const saving = mrpTotal - total;
-            return { qty, mrpTotal, total, discPct, saving, pricePerUnit: total / qty };
-        }
-
-        function updateProduct(id, val) {
-            const prod = PRODUCTS[id];
-            const num = id.replace('q', '');
-            const pill = document.getElementById('disc' + num);
-            const dtxt = document.getElementById('d' + num);
-            const sub = document.getElementById('sub' + num);
-
-            const calc = calcBottleLine(prod, val);
-
-            if (calc.discPct > 0 && pill) {
-                pill.classList.add('show');
-                if (dtxt) dtxt.textContent = calc.discPct + '% discount unlocked — ' + calc.qty + ' bottles at Rs.' + calc.pricePerUnit.toFixed(2) + '/bottle';
-            } else if (pill) {
-                pill.classList.remove('show');
-                const remaining = prod.threshold - calc.qty;
-                if (dtxt) dtxt.textContent = remaining > 0 ? ('Add ' + remaining + ' more to unlock ' + prod.discPct + '% off') : '';
-            }
-
-            if (sub) {
-                sub.textContent = 'Subtotal: Rs.' + fmt(calc.total) + (calc.saving > 0 ? '  (Save Rs.' + fmt(calc.saving) + ')' : '');
-            }
-        }
-
-        /* ─── CARTON QTY FUNCTIONS ─── */
-        function changeCartonQty(id, delta) {
-            const inp = document.getElementById(id);
-            let val = Math.max(1, (parseInt(inp.value) || 1) + delta);
-            inp.value = val;
-            updateCarton(id, val);
-        }
-        function onCartonInput(id) {
-            const inp = document.getElementById(id);
-            const raw = Math.max(1, parseInt(inp.value) || 1);
-            updateCarton(id, raw);
-        }
-        function calcCartonLine(c, cartons) {
-            cartons = Math.max(1, cartons);
-            const totalBottles = cartons * c.pcs;
-            const mrpTotal = cartons * c.mrp;
-            const total = cartons * c.price;
-            const saving = mrpTotal - total;
-            return { cartons, totalBottles, mrpTotal, total, saving };
-        }
-        function updateCarton(id, val) {
-            const c = CARTONS[id];
-            const calc = calcCartonLine(c, val);
-            const totalEl = document.getElementById(id + '-total');
-            const subEl = document.getElementById('csub' + id.replace('cq', ''));
-
-            if (totalEl) totalEl.textContent = '= ' + calc.totalBottles + ' bottles';
-            if (subEl) subEl.textContent = 'Subtotal: Rs.' + fmt(calc.total) + '  (Save Rs.' + fmt(calc.saving) + ')';
-        }
-
-        /* ═══════════════════════════════════════════════
-           CART OPERATIONS
-           ═══════════════════════════════════════════════ */
-        function addToCart(id) {
-            const prod = PRODUCTS[id];
-            const inp = document.getElementById(id);
-            const qty = Math.max(12, Math.round((parseInt(inp.value) || 12) / 12) * 12);
-            const calc = calcBottleLine(prod, qty);
-
-            const existing = CART.find(i => i.type === 'bottle' && i.key === id);
-            if (existing) {
-                existing.qty = qty;
-                existing.mrpTotal = calc.mrpTotal;
-                existing.total = calc.total;
-                existing.saving = calc.saving;
-                existing.discPct = calc.discPct;
-            } else {
-                CART.push({
-                    type: 'bottle', key: id, size: prod.size, name: prod.name, unit: 'bottle',
-                    qty: qty, unitPrice: prod.price, mrpTotal: calc.mrpTotal, total: calc.total,
-                    saving: calc.saving, discPct: calc.discPct
-                });
-            }
-            renderCart();
-            flashButton(id);
-        }
-
-        function addCartonToCart(id) {
-            const c = CARTONS[id];
-            const inp = document.getElementById(id);
-            const cartons = Math.max(1, parseInt(inp.value) || 1);
-            const calc = calcCartonLine(c, cartons);
-
-            const existing = CART.find(i => i.type === 'carton' && i.key === id);
-            if (existing) {
-                existing.qty = cartons;
-                existing.totalBottles = calc.totalBottles;
-                existing.mrpTotal = calc.mrpTotal;
-                existing.total = calc.total;
-                existing.saving = calc.saving;
-            } else {
-                CART.push({
-                    type: 'carton', key: id, size: c.size, name: c.name, unit: 'carton',
-                    qty: cartons, totalBottles: calc.totalBottles, mrpUnit: c.mrp, priceUnit: c.price,
-                    mrpTotal: calc.mrpTotal, total: calc.total, saving: calc.saving, savePct: c.savePct
-                });
-            }
-            renderCart();
-            flashButton(id, true);
-        }
-
-        function flashButton(id, isCarton) {
-            const cartBar = document.getElementById('cartBar');
-            cartBar.classList.remove('hidden-bar');
-        }
-
-        function removeFromCart(type, key) {
-            CART = CART.filter(i => !(i.type === type && i.key === key));
-            renderCart();
-        }
-
-        function clearCart() {
-            CART = [];
-            renderCart();
-        }
-
-        function renderCart() {
-            const cartBar = document.getElementById('cartBar');
-            const cartCount = document.getElementById('cartCount');
-            const cartSummaryText = document.getElementById('cartSummaryText');
-            const cartTotalText = document.getElementById('cartTotalText');
-            const cartItemsWrap = document.getElementById('cartItemsWrap');
-
-            if (CART.length === 0) {
-                cartBar.classList.add('hidden-bar');
-                cartItemsWrap.innerHTML = '';
-                return;
-            }
-
-            cartBar.classList.remove('hidden-bar');
-            cartCount.textContent = CART.length;
-
-            let grandTotal = 0;
-            let totalPieces = 0;
-            CART.forEach(i => {
-                grandTotal += i.total;
-                totalPieces += (i.type === 'bottle') ? i.qty : i.totalBottles;
-            });
-
-            cartSummaryText.textContent = CART.length + ' item' + (CART.length > 1 ? 's' : '') + ' · ' + totalPieces + ' bottles';
-            cartTotalText.textContent = 'Rs.' + fmt(grandTotal);
-
-            cartItemsWrap.innerHTML = CART.map(i => {
-                const qtyLabel = i.type === 'bottle' ? (i.qty + ' bottles') : (i.qty + ' carton' + (i.qty > 1 ? 's' : '') + ' (' + i.totalBottles + ' bottles)');
-                return `
-                <div class="cart-line-item flex items-center justify-between gap-3 py-2 border-b border-ink/6 last:border-0">
-                    <div class="flex-1 min-w-0">
-                        <div class="text-[13px] font-semibold text-ocean truncate">${i.size} — ${i.name}</div>
-                        <div class="text-[11.5px] text-ink/50">${qtyLabel}${i.discPct > 0 || i.savePct ? ' · Save Rs.' + fmt(i.saving) : ''}</div>
-                    </div>
-                    <div class="text-sm font-bold text-ocean flex-shrink-0">Rs.${fmt(i.total)}</div>
-                    <button onclick="removeFromCart('${i.type}','${i.key}')" class="w-6 h-6 flex-shrink-0 flex items-center justify-center rounded-full bg-ink/5 hover:bg-red-50 hover:text-red-500 text-ink/40 border-none cursor-pointer transition-all" aria-label="Remove">
-                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
-                    </button>
-                </div>`;
-            }).join('');
-        }
-
-        let cartExpanded = false;
-        function toggleCartExpand() {
-            cartExpanded = !cartExpanded;
-            const wrap = document.getElementById('cartItemsWrap');
-            const chevron = document.getElementById('cartChevron');
-            wrap.classList.toggle('hidden', !cartExpanded);
-            chevron.style.transform = cartExpanded ? 'rotate(180deg)' : 'rotate(0deg)';
-        }
-
-        function checkoutCart() {
-            if (CART.length === 0) return;
-
-            let grandTotal = 0;
-            let grandMrp = 0;
-            let totalSaving = 0;
-            let totalPieces = 0;
-
-            const lines = [
-                'VELOQUA Drinking Water — Order Request',
-                '=========================================',
-                ''
-            ];
-
-            CART.forEach((i, idx) => {
-                grandTotal += i.total;
-                grandMrp += i.mrpTotal;
-                totalSaving += i.saving;
-
-                if (i.type === 'bottle') {
-                    totalPieces += i.qty;
-                    lines.push((idx + 1) + '. ' + i.size + ' — ' + i.name);
-                    lines.push('   Order Type: Loose Bottles');
-                    lines.push('   Quantity: ' + i.qty + ' bottles');
-                    lines.push('   Price per Bottle: Rs.' + PRODUCTS[i.key].price);
-                    if (i.discPct > 0) {
-                        lines.push('   Discount Applied: ' + i.discPct + '%');
-                        lines.push('   Effective Price/Bottle: Rs.' + (i.total / i.qty).toFixed(2));
-                    }
-                    lines.push('   Line Total: Rs.' + fmt(i.total));
-                    if (i.saving > 0) lines.push('   Line Saving: Rs.' + fmt(i.saving));
-                } else {
-                    totalPieces += i.totalBottles;
-                    lines.push((idx + 1) + '. ' + i.size + ' — ' + i.name);
-                    lines.push('   Order Type: Carton (' + (i.totalBottles / i.qty) + ' bottles/carton)');
-                    lines.push('   Number of Cartons: ' + i.qty);
-                    lines.push('   Total Bottles: ' + i.totalBottles);
-                    lines.push('   MRP per Carton: Rs.' + i.mrpUnit);
-                    lines.push('   Price per Carton: Rs.' + i.priceUnit + ' (Save ' + i.savePct + '%)');
-                    lines.push('   Line Total: Rs.' + fmt(i.total));
-                    lines.push('   Line Saving: Rs.' + fmt(i.saving));
-                }
-                lines.push('');
-            });
-
-            lines.push('=========================================');
-            lines.push('ORDER SUMMARY');
-            lines.push('Total Items: ' + CART.length);
-            lines.push('Total Bottles: ' + totalPieces);
-            lines.push('Total MRP Value: Rs.' + fmt(grandMrp));
-            lines.push('Total Payable: Rs.' + fmt(grandTotal));
-            lines.push('Total You Save: Rs.' + fmt(totalSaving));
-            lines.push('=========================================');
-            lines.push('');
-            lines.push('Please confirm product availability, delivery address, and expected delivery timeline.');
-            lines.push('');
-            lines.push('Thank you — VELOQUA, Pure Water. Pure Trust.');
-
-            const msg = encodeURIComponent(lines.join('\n'));
-            window.open('https://wa.me/' + OFFICE_WA + '?text=' + msg, '_blank');
-        }
-
-        /* ─── CONTACT FORM → WHATSAPP (OFFICE NUMBER) ─── */
-        function submitContactForm() {
-            const name = (document.getElementById('cf-name').value || '').trim();
-            const phone = (document.getElementById('cf-phone').value || '').trim();
-            const type = (document.getElementById('cf-type').value || '').trim();
-            const city = (document.getElementById('cf-city').value || '').trim();
-            const qty = (document.getElementById('cf-qty').value || '').trim();
-            const msg = (document.getElementById('cf-msg').value || '').trim();
-
-            if (!name || !phone) {
-                alert('Please fill in your name and phone number before submitting.');
-                return;
-            }
-
-            const lines = [
-                'VELOQUA - New Inquiry from Website',
-                '---',
-                'Name: ' + name,
-                'Phone: ' + phone,
-                'Inquiry Type: ' + type,
-                city ? 'City: ' + city : '',
-                qty ? 'Required Quantity: ' + qty : '',
-                msg ? '' : '',
-                msg ? 'Message:' : '',
-                msg ? msg : '',
-                '---',
-                'Sent via veloqua.in contact form'
-            ].filter(l => l !== null && l !== undefined);
-
-            const waMsg = encodeURIComponent(lines.join('\n'));
-            const waUrl = 'https://wa.me/' + OFFICE_WA + '?text=' + waMsg;
-
-            window.open(waUrl, '_blank');
-
-            // Visual feedback
-            const btn = document.getElementById('cf-submit');
-            btn.textContent = 'Opening WhatsApp...';
-            btn.style.background = 'linear-gradient(135deg,#25D366,#128C7E)';
-            setTimeout(() => {
-                btn.textContent = 'Send Message via WhatsApp';
-                btn.style.background = '';
-            }, 3000);
-        }
-
-        /* ─── INIT ALL QTY CONTROLS ─── */
-        ['q1', 'q2', 'q3', 'q4'].forEach(id => updateProduct(id, 12));
-        ['cq1', 'cq2', 'cq3', 'cq4'].forEach(id => updateCarton(id, 1));
-        renderCart();
-    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>
